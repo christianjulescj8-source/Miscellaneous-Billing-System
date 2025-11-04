@@ -596,7 +596,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
 
             sectionload();
 
-            String firstname, middlename, lastname, section, grade, code, LRN;
+            String firstname, middlename, lastname, section, grade, code, LRN, query1;
             LRN = LRNtxt.getText().trim().toUpperCase();
             firstname = Firstnametxt.getText().trim().toUpperCase();
             middlename = Middlenametxt.getText().trim().toUpperCase();
@@ -643,7 +643,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
                 } else {
                     checkFullname.setText("");
 
-                    String sql = "INSERT INTO student_info( lrn, firstname, middlename, lastname, section, grade, Identifier, school_Year )VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+                    String sql = "INSERT INTO student_info( lrn, firstname, middlename, lastname, section, grade,  school_Year )VALUES(?, ?, ?, ?, ?, ?, ?)";
                     PreparedStatement pst = con.prepareStatement(sql);
                     pst.setString(1, LRN);
                     pst.setString(2, firstname);
@@ -651,9 +651,27 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
                     pst.setString(4, lastname);
                     pst.setString(5, section);
                     pst.setString(6, grade);
-                    pst.setString(7, code);
-                    pst.setString(8, Session.schoolyear);
-                    pst.executeUpdate();             
+                    pst.setString(7, Session.schoolyear);
+                    pst.executeUpdate();   
+                    query1 = "SELECT * FROM student_info WHERE lrn=? ";
+                    PreparedStatement ps = con.prepareStatement(query1);
+                    ResultSet rs = ps.executeQuery();
+                    if(rs.next()){
+                    String id = rs.getString("ID");
+                    String payment = "INSERT INTO student_payment(student_ID, Fee_paid, Total_Paid, 1st_Quarter, 2nd_Quarter, 3rd_Quarter, 4th_Quarter, Date_Q1, Date_Q2, Date_Q3, Date_Q4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    PreparedStatement pstm = con.prepareStatement(payment);
+                    pstm.setString(1, id);
+                    pstm.setString(2, "");
+                    pstm.setString(3, "");
+                    pstm.setString(5, "");
+                    pstm.setString(6, "");
+                    pstm.setString(7, "");
+                    pstm.setString(8, "");
+                    pstm.setString(9, "");
+                    pstm.setString(10, "");
+                    pstm.setString(11, "");
+                    pstm.executeUpdate();
+                    }
                     loadStudentData();
                     sectionload();
 
@@ -675,7 +693,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
-            String firstname, middlename, lastname, section, grade, LRN;
+            String firstname, middlename, lastname, section, grade, LRN, query1;
             LRN = LRNtxt.getText().trim().toUpperCase();
             firstname = Firstnametxt.getText().trim().toUpperCase();
             middlename = Middlenametxt.getText().trim().toUpperCase();
@@ -715,16 +733,16 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
                 } else {
                     int ID = Integer.parseInt(IDD.getText());
                     checkFullname.setText("");
-                    query = "UPDATE student_info SET LRN=?, firstname=?, middlename=?, lastname=?, section=? WHERE ID =? ";
+                    query = "UPDATE student_info SET lrn=?, firstname=?, middlename=?, lastname=?, section=? WHERE ID =? ";
                     PreparedStatement pst = con.prepareStatement(query);
                     pst.setString(1, LRN);
                     pst.setString(2, firstname);
                     pst.setString(3, middlename);
                     pst.setString(4, lastname);
                     pst.setString(5, section);
-                    pst.setInt(6, ID);
+                    pst.setInt(6, ID);                  
                     pst.executeUpdate();
-
+                    
                     Firstnamelabel.setVisible(true);
                     Middlenamelabel.setVisible(true);
                     Lastnamelabel.setVisible(true);
@@ -897,7 +915,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         String SUser = "root";
         String SPass = "";
 
-        String query = "INSERT INTO student_info( lrn, firstname, middlename, lastname, section, grade, school_Year, identifier )VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO student_info( lrn, firstname, middlename, lastname, section, grade, school_Year)VALUES( ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection con = DriverManager.getConnection(SUrl, SUser, SPass); PreparedStatement ps = con.prepareStatement(query); FileInputStream fis = new FileInputStream(new File(filePath)); Workbook workbook = new XSSFWorkbook(fis)) {
 

@@ -58,7 +58,7 @@ public class PaymentForm extends javax.swing.JFrame {
         System.out.println(studID);
         Nameshow.setText(Name);
         System.out.println(feeq);
-        lastpay.setText(feeq);
+        
         startClock();
         loadTable();
         FeePaid();
@@ -77,7 +77,6 @@ public class PaymentForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         Paymentfor = new javax.swing.JLabel();
         Nameshow = new javax.swing.JLabel();
@@ -86,7 +85,6 @@ public class PaymentForm extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         Total = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        lastpay = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -158,12 +156,6 @@ public class PaymentForm extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Recent paid:");
-        jLabel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(255, 255, 255)));
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, -1, -1));
-
         jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Name:");
@@ -215,11 +207,6 @@ public class PaymentForm extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("For:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, -1, -1));
-
-        lastpay.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        lastpay.setForeground(new java.awt.Color(255, 255, 255));
-        lastpay.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
-        jPanel1.add(lastpay, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 810, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -438,8 +425,17 @@ public class PaymentForm extends javax.swing.JFrame {
 
             // 2. Get entered amount
             int amount = Integer.parseInt(Total.getText());
-
-            // 3. Get current payment record
+            int size = selectedItems.size();
+            int count = 0;
+            while (size == count){
+            
+            String recordpayment = "UPDATE student_payment set Fee_paid =?";
+            PreparedStatement fee = con.prepareStatement(recordpayment);
+            fee.setString(1, selectedItems.get(count));
+            fee.executeUpdate();
+            count++;
+            }
+            // 3. Get current payment recor            
             String sqlPayment = "SELECT * FROM student_payment WHERE student_ID = ?";
             PreparedStatement psPay = con.prepareStatement(sqlPayment);
             psPay.setInt(1, this.studentid);
@@ -657,14 +653,12 @@ public class PaymentForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lastpay;
     private javax.swing.JLabel logo;
     // End of variables declaration//GEN-END:variables
 }

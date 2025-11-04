@@ -31,7 +31,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Yearrool.setText(Session.schoolyear);
         if (Session.role.equals("Administrator")) {
             Rooler.setText("Administrator");
-            Student.setVisible(false);
+            
             loadcombobox();
             loadTableStudentData();
         } else if (Session.role.equals("School Staff")) {
@@ -39,7 +39,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
             Accounts.setVisible(false);
             Fee.setVisible(false);
             Section.setVisible(false);
-            Export.setVisible(false);
+            
             loadcombobox();
             loadTableStudentData();
         }
@@ -65,7 +65,6 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Student = new javax.swing.JButton();
         Section = new javax.swing.JButton();
         Year = new javax.swing.JButton();
-        Export = new javax.swing.JButton();
         Accounts = new javax.swing.JButton();
         Fee = new javax.swing.JButton();
         Profile = new javax.swing.JButton();
@@ -268,7 +267,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
                 SectionActionPerformed(evt);
             }
         });
-        Menu.add(Section, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 140, 40));
+        Menu.add(Section, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 140, 40));
 
         Year.setBackground(new java.awt.Color(255, 255, 255));
         Year.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -282,18 +281,6 @@ public class Billing_MainForm extends javax.swing.JFrame {
         });
         Menu.add(Year, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 140, 40));
 
-        Export.setBackground(new java.awt.Color(255, 255, 255));
-        Export.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        Export.setForeground(new java.awt.Color(0, 0, 0));
-        Export.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/export_icon.png"))); // NOI18N
-        Export.setText("Export");
-        Export.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExportActionPerformed(evt);
-            }
-        });
-        Menu.add(Export, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 140, 40));
-
         Accounts.setBackground(new java.awt.Color(255, 255, 255));
         Accounts.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Accounts.setForeground(new java.awt.Color(0, 0, 0));
@@ -304,7 +291,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
                 AccountsActionPerformed(evt);
             }
         });
-        Menu.add(Accounts, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 140, 40));
+        Menu.add(Accounts, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 140, 40));
 
         Fee.setBackground(new java.awt.Color(255, 255, 255));
         Fee.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -316,7 +303,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
                 FeeActionPerformed(evt);
             }
         });
-        Menu.add(Fee, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 140, 40));
+        Menu.add(Fee, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 140, 40));
 
         Profile.setBackground(new java.awt.Color(255, 255, 255));
         Profile.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -966,12 +953,6 @@ public class Billing_MainForm extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_YearActionPerformed
 
-    private void ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportActionPerformed
-        ExportForm exportf = new ExportForm();
-        exportf.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_ExportActionPerformed
-
     private void AccountsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountsActionPerformed
         Security_AccountForm secure = new Security_AccountForm();
         secure.setVisible(true);
@@ -1310,7 +1291,6 @@ public class Billing_MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel DateQ2;
     private javax.swing.JLabel DateQ3;
     private javax.swing.JLabel DateQ4;
-    private javax.swing.JButton Export;
     private javax.swing.JButton Fee;
     private javax.swing.JButton Logout;
     private javax.swing.JPanel Menu;
