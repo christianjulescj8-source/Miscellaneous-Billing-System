@@ -22,7 +22,7 @@ public class Add_YearForm extends javax.swing.JFrame {
         UIManager.put("ScrollBarUI", "miscellaneousbillingsystem.ScrollBarWin11");
         initComponents();
         System.out.println(Session.role);
-         if(Session.role.equals("School Staff")){        
+         if(Session.role.equals("PTA Treasurer")){        
          addyearbtn.setVisible(false);
          undoyearbtn.setVisible(false);
          jLabel2.setText("Select Year:");

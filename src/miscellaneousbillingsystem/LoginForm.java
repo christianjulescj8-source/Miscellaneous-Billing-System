@@ -30,7 +30,7 @@ public class LoginForm extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         Administrator = new javax.swing.JRadioButton();
-        SchoolStaff = new javax.swing.JRadioButton();
+        PTATreasurer = new javax.swing.JRadioButton();
         yearselect = new javax.swing.JComboBox<>();
         Usernamelabel = new javax.swing.JLabel();
         Passwordlabel = new javax.swing.JLabel();
@@ -95,12 +95,12 @@ public class LoginForm extends javax.swing.JFrame {
         jPanel1.add(Administrator);
         Administrator.setBounds(250, 350, 130, 21);
 
-        buttonGroup1.add(SchoolStaff);
-        SchoolStaff.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
-        SchoolStaff.setForeground(new java.awt.Color(0, 0, 0));
-        SchoolStaff.setText("School Staff");
-        jPanel1.add(SchoolStaff);
-        SchoolStaff.setBounds(250, 380, 110, 21);
+        buttonGroup1.add(PTATreasurer);
+        PTATreasurer.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
+        PTATreasurer.setForeground(new java.awt.Color(0, 0, 0));
+        PTATreasurer.setText("PTA Treasurer");
+        jPanel1.add(PTATreasurer);
+        PTATreasurer.setBounds(250, 380, 130, 21);
 
         yearselect.setBackground(new java.awt.Color(255, 255, 255));
         yearselect.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -565,7 +565,7 @@ public class LoginForm extends javax.swing.JFrame {
                         notFound = 1;
 
                         if (notFound == 1 && password.equals(passworddb)) {
-                            String sql = "SELECT * FROM admin_account WHERE username=? AND password=?";
+                            String sql = "SELECT * FROM security_account WHERE username=? AND password=?";
                             PreparedStatement pstmt = con.prepareStatement(sql);
                             pstmt.setString(1, userName);
                             pstmt.setString(2, password);
@@ -616,7 +616,7 @@ public class LoginForm extends javax.swing.JFrame {
                         bullet.setText("");
                         accounts.setText("");
                     }
-                } else if (SchoolStaff.isSelected()) {
+                } else if (PTATreasurer.isSelected()) {
                     query = "SELECT * FROM user_account WHERE username = ?";
                     PreparedStatement pst = con.prepareStatement(query);
                     pst.setString(1, userName);
@@ -627,7 +627,7 @@ public class LoginForm extends javax.swing.JFrame {
                         notFound = 1;
 
                         if (notFound == 1 && password.equals(passworddb)) {
-                            String sql = "SELECT * FROM user_account WHERE username=? AND password=?";
+                            String sql = "SELECT * FROM security_account WHERE username=? AND password=?";
                             PreparedStatement psttms = con.prepareStatement(sql);
                             psttms.setString(1, userName);
                             psttms.setString(2, password);
@@ -637,7 +637,7 @@ public class LoginForm extends javax.swing.JFrame {
                                 String status = rs2.getString("status");
                                 if (status.equals("approved")) {
 
-                                    String role = "School Staff";
+                                    String role = "PTA Treasurer";
                                     String name = Usernamered.getText();
                                     String year1 = yearselect.getSelectedItem().toString();
                                     Session.schoolyear = year1;
@@ -949,13 +949,13 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JLabel ConfirmPasslabel;
     private javax.swing.JTextField ConfirmPasstxt;
     private javax.swing.JLabel Confirmpassredlbl;
+    private javax.swing.JRadioButton PTATreasurer;
     private javax.swing.JLabel Passwordlabel;
     private javax.swing.JLabel Passwordlbl;
     private javax.swing.JLabel Passwordred;
     private javax.swing.JLabel Passwordredlbl;
     private javax.swing.JTextField Passwordtext;
     private javax.swing.JPasswordField Passwordtxt;
-    private javax.swing.JRadioButton SchoolStaff;
     private javax.swing.JLabel Usernamelabel;
     private javax.swing.JLabel Usernamelbl;
     private javax.swing.JLabel Usernamered;

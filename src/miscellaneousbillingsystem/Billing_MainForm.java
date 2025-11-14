@@ -34,8 +34,8 @@ public class Billing_MainForm extends javax.swing.JFrame {
             
             loadcombobox();
             loadTableStudentData();
-        } else if (Session.role.equals("School Staff")) {
-            Rooler.setText("School Staff");
+        } else if (Session.role.equals("PTA Treasurer")) {
+            Rooler.setText("PTA Treasurer");
             Accounts.setVisible(false);
             Fee.setVisible(false);
             Section.setVisible(false);
@@ -518,77 +518,77 @@ public class Billing_MainForm extends javax.swing.JFrame {
 
         Name.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Name.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 300, 20));
+        jPanel1.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 300, 20));
 
         Q2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Q2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(Q2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 80, 20));
+        jPanel1.add(Q2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 80, 20));
 
         jLabel20.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("2nd Quarter:");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("3rd Quarter:");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
 
         jLabel24.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("4th Quarter:");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, -1, -1));
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
 
         jLabel25.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("Name:");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
         jLabel27.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("1st Quarter:");
-        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 90, -1));
+        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 90, -1));
 
         Q3.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Q3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(Q3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, 80, 20));
+        jPanel1.add(Q3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 80, 20));
 
         Q4.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Q4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(Q4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, 80, 20));
+        jPanel1.add(Q4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, 80, 20));
 
         Q1.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Q1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(Q1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 80, 20));
+        jPanel1.add(Q1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 80, 20));
 
         DateQ3.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         DateQ3.setForeground(new java.awt.Color(255, 255, 255));
         DateQ3.setText("Date:");
-        jPanel1.add(DateQ3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 370, -1));
+        jPanel1.add(DateQ3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 370, -1));
 
         DateQ2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         DateQ2.setForeground(new java.awt.Color(255, 255, 255));
         DateQ2.setText("Date:");
-        jPanel1.add(DateQ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 370, -1));
+        jPanel1.add(DateQ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 370, -1));
 
         DateQ4.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         DateQ4.setForeground(new java.awt.Color(255, 255, 255));
         DateQ4.setText("Date:");
-        jPanel1.add(DateQ4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 370, -1));
+        jPanel1.add(DateQ4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 370, -1));
 
         jLabel32.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(255, 255, 255));
         jLabel32.setText("Total:");
-        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, -1, -1));
+        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, -1, -1));
 
         Total.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Total.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, 60, 20));
+        jPanel1.add(Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 60, 20));
 
         DateQ1.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         DateQ1.setForeground(new java.awt.Color(255, 255, 255));
         DateQ1.setText("Date:");
-        jPanel1.add(DateQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 370, -1));
+        jPanel1.add(DateQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 370, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search icon12.png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 100, -1, -1));
@@ -715,7 +715,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
                     + "    si.firstname, ' ', "
                     + "    IF(si.middlename = '' OR si.middlename IS NULL, '', CONCAT(LEFT(si.middlename, 1), '.')) "
                     + ") AS fullname, "
-                    + " si.section, si.grade, si.Identifier, si.ID, "
+                    + " si.section, si.grade, si.ID, "
                     + "sp.student_ID, sp.Fee_paid, sp.`1st_Quarter`, sp.`2nd_Quarter`, sp.`3rd_Quarter`, sp.`4th_Quarter`, sp.Total_Paid, sp.Date_Q1, sp.Date_Q2, sp.Date_Q3, sp.Date_Q4 "
                     + "FROM student_info si "
                     + "LEFT JOIN student_payment sp ON si.ID = sp.student_ID "
@@ -735,7 +735,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
 
             String[] columnHeaders = {
                 "LRN", "Full Name", "Section", "Grade",
-                "Identifier", "Student ID", "Payment ID", "Fee Paid",
+                "Student ID", "Payment ID", "Fee Paid",
                 "1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter", "Total Paid",
                 "Date Q1", "Date Q2", "Date Q3", "Date Q4"
             };
@@ -759,7 +759,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(9).setPreferredWidth(10);
             jTable1.getColumnModel().getColumn(8).setPreferredWidth(10);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
-            int[] hiddenCols = {2, 3, 4, 5, 6, 7, 12, 13, 14, 15, 16}; // indexes start at 0
+            int[] hiddenCols = {2, 3, 4, 5, 6, 7, 12, 13, 14, 15}; // indexes start at 0
             for (int colIndex : hiddenCols) {
                 jTable1.getColumnModel().getColumn(colIndex).setMinWidth(0);
                 jTable1.getColumnModel().getColumn(colIndex).setMaxWidth(0);
@@ -786,7 +786,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
             if (selectedrow > -1) {
                 if (Session.role.equals("Administrator")) {
                     Pay.setVisible(false);
-                } else if (Session.role.equals("School Staff")) {
+                } else if (Session.role.equals("PTA Treasurer")) {
                     Pay.setVisible(true);
                 }
                 //this is a jTextArea
@@ -818,77 +818,10 @@ public class Billing_MainForm extends javax.swing.JFrame {
                 Total.setText(sum);
                 feeprev.setText(feed);
                 studentID.setText(id);
-                int stuid = Integer.parseInt(id);
-                String Identity = jTable1.getValueAt(selectedrow, 3).toString();
-                String query = "SELECT CONCAT( "
-                        + "lastname, ', ', firstname, ' ', "
-                        + "IF(middlename = '' OR middlename IS NULL, '', CONCAT(LEFT(middlename, 1), '.')) "
-                        + ") AS fullname "
-                        + "FROM student_info "
-                        + "WHERE Identifier = ? AND ID <> ?";
-
-                PreparedStatement ps = con.prepareStatement(query);
-                ps.setString(1, Identity);
-                ps.setInt(2, stuid);
-                ResultSet rs = ps.executeQuery();
-
-                StringBuilder siblingsList = new StringBuilder();
-                int count = 1;
-                while (rs.next()) {
-                    String fullname = rs.getString("fullname");
-                    count++;
-
-                    if (!fullname.equalsIgnoreCase(name)) {
-                        siblingsList.append(fullname).append("\n");
-                    }
-                }
-                this.numofsib = count;
-                System.out.println("sibnum: " + count);
-                String qwerty = "SELECT SUM(amount) AS total_amount FROM miscellaneous_fee";
-                PreparedStatement pstm = con.prepareStatement(qwerty);
-                ResultSet reis = pstm.executeQuery();
-                if (reis.next()) {
-                    int studtotal = Integer.parseInt(sum);
-
-                    int discount = 120 / count;
-                    int amount = reis.getInt("total_amount");
-                    if (count > 1) {
-                        amount -= discount;
-                        System.out.println(studtotal);
-                        System.out.println(amount);
-
-                        if (studtotal == amount) {
-                            if (Session.role.equals("Administrator")) {
-                                Pay.setVisible(false);
-                            } else if (Session.role.equals("School Staff")) {
-                                Pay.setVisible(false);
-                            }
-
-                        } else {
-                            if (Session.role.equals("Administrator")) {
-                                Pay.setVisible(false);
-                            } else if (Session.role.equals("School Staff")) {
-                                Pay.setVisible(true);
-                            }
-                        }
-                    } else if (count == 1) {
-                        if (studtotal == amount) {
-                            if (Session.role.equals("Administrator")) {
-                                Pay.setVisible(false);
-                            } else if (Session.role.equals("School Staff")) {
-                                Pay.setVisible(false);
-                            }
-                        } else {
-                            if (Session.role.equals("Administrator")) {
-                                Pay.setVisible(false);
-                            } else if (Session.role.equals("School Staff")) {
-                                Pay.setVisible(true);
-                            }
-                        }
-                    }
-
-                }
-
+                
+                
+                
+                
             }
 
         } catch (Exception e) {
@@ -1006,35 +939,35 @@ public class Billing_MainForm extends javax.swing.JFrame {
 
     private void student7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_student7MouseClicked
         String grade = "7th";
-        Add_StudentForm student = new Add_StudentForm(grade);
+        Add_StudentForm1 student = new Add_StudentForm1(grade);
         student.setVisible(true);
         dispose();
     }//GEN-LAST:event_student7MouseClicked
 
     private void student8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_student8MouseClicked
         String grade = "8th";
-        Add_StudentForm student = new Add_StudentForm(grade);
+        Add_StudentForm1 student = new Add_StudentForm1(grade);
         student.setVisible(true);
         dispose();
     }//GEN-LAST:event_student8MouseClicked
 
     private void student9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_student9MouseClicked
         String grade = "9th";
-        Add_StudentForm student = new Add_StudentForm(grade);
+        Add_StudentForm1 student = new Add_StudentForm1(grade);
         student.setVisible(true);
         dispose();
     }//GEN-LAST:event_student9MouseClicked
 
     private void student10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_student10MouseClicked
         String grade = "10th";
-        Add_StudentForm student = new Add_StudentForm(grade);
+        Add_StudentForm1 student = new Add_StudentForm1(grade);
         student.setVisible(true);
         dispose();
     }//GEN-LAST:event_student10MouseClicked
 
     private void student11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_student11MouseClicked
         String grade = "11th";
-        Add_StudentForm student = new Add_StudentForm(grade);
+        Add_StudentForm1 student = new Add_StudentForm1(grade);
         student.setVisible(true);
         dispose();
     }//GEN-LAST:event_student11MouseClicked

@@ -30,7 +30,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         sorter = new TableRowSorter<>(model);   // create the sorter
         jTable1.setRowSorter(sorter);
-
+        
         Sectionselect.setOpaque(false);
         Sectionselect.setBackground(new Color(0, 0, 0, 0));
         loadStudentData();
@@ -43,10 +43,16 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
 
         initComponents();
         this.level = grade;
-
+        jPanel4.setVisible(false);
+        jPanel5.setVisible(false);
+        
         loadStudentData();
         loadcombobox();
+        
+        if (Session.role.equals("PTA Treasurer")) {
+            data.setVisible(false);
 
+        }
         if (grade.equals("7th")) {
             Rooler.setText("Add Student 7th Grade");
 
@@ -82,6 +88,16 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Rooler = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        ye = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         Create = new javax.swing.JButton();
         Refresh = new javax.swing.JButton();
         Update = new javax.swing.JButton();
@@ -104,7 +120,8 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         LRNlabel = new javax.swing.JLabel();
         LRNtxt = new javax.swing.JTextField();
         LRNred = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        data = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         IDD.setText("jLabel4");
 
@@ -174,6 +191,88 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 94));
 
+        jPanel5.setBackground(new java.awt.Color(0, 153, 0));
+        jPanel5.setLayout(null);
+
+        jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("(Note: This will also delete all the student's payment record)");
+        jPanel5.add(jLabel5);
+        jLabel5.setBounds(0, 40, 470, 19);
+
+        ye.setFont(new java.awt.Font("Baskerville Old Face", 0, 17)); // NOI18N
+        ye.setForeground(new java.awt.Color(255, 255, 255));
+        ye.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ye.setText("Are you sure you want to delete all?");
+        jPanel5.add(ye);
+        ye.setBounds(0, 20, 470, 18);
+
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(0, 153, 0));
+        jButton4.setText("No");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton4);
+        jButton4.setBounds(50, 180, 79, 27);
+
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(0, 153, 0));
+        jButton5.setText("Yes");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton5);
+        jButton5.setBounds(340, 180, 79, 27);
+
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 470, 230));
+
+        jPanel4.setBackground(new java.awt.Color(0, 153, 0));
+        jPanel4.setLayout(null);
+
+        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jLabel2.setText("(Note: This will also delete the student's payment record)");
+        jPanel4.add(jLabel2);
+        jLabel2.setBounds(30, 40, 410, 19);
+
+        jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Are you sure you want to delete this student/s?");
+        jPanel4.add(jLabel4);
+        jLabel4.setBounds(70, 20, 330, 19);
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 153, 0));
+        jButton1.setText("No");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton1);
+        jButton1.setBounds(50, 180, 79, 27);
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 153, 0));
+        jButton2.setText("Yes");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton2);
+        jButton2.setBounds(340, 180, 79, 27);
+
+        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 470, 230));
+
         Create.setBackground(new java.awt.Color(255, 255, 255));
         Create.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Create.setForeground(new java.awt.Color(0, 153, 0));
@@ -205,7 +304,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
                 UpdateActionPerformed(evt);
             }
         });
-        jPanel2.add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, -1, -1));
+        jPanel2.add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, 90, -1));
 
         Delete.setBackground(new java.awt.Color(255, 255, 255));
         Delete.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -260,7 +359,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         Searchlabel.setFont(new java.awt.Font("Baskerville Old Face", 2, 24)); // NOI18N
         Searchlabel.setForeground(new java.awt.Color(204, 204, 255));
         Searchlabel.setText("Search...");
-        jPanel2.add(Searchlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 110, 120, -1));
+        jPanel2.add(Searchlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 110, 120, -1));
 
         Firstnametxt.setBackground(new java.awt.Color(0, 153, 0));
         Firstnametxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -326,10 +425,10 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
                 SearchtxtKeyReleased(evt);
             }
         });
-        jPanel2.add(Searchtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 110, 320, -1));
+        jPanel2.add(Searchtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 110, 380, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search icon12.png"))); // NOI18N
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 100, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 100, -1, -1));
 
         Sectionselect.setBackground(new java.awt.Color(0, 153, 0));
         Sectionselect.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -345,7 +444,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
 
         checkFullname.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         checkFullname.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel2.add(checkFullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 350, 20));
+        jPanel2.add(checkFullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 350, 20));
 
         LRNlabel.setFont(new java.awt.Font("Baskerville Old Face", 2, 19)); // NOI18N
         LRNlabel.setForeground(new java.awt.Color(204, 204, 255));
@@ -370,17 +469,28 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         LRNred.setForeground(new java.awt.Color(255, 0, 0));
         jPanel2.add(LRNred, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 160, 20));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Addicon1.png"))); // NOI18N
-        jButton1.setText("Import data");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        data.setBackground(new java.awt.Color(255, 255, 255));
+        data.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
+        data.setForeground(new java.awt.Color(0, 0, 0));
+        data.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Addicon1.png"))); // NOI18N
+        data.setText("Import data");
+        data.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                dataActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, -1, -1));
+        jPanel2.add(data, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, -1, -1));
+
+        jButton3.setBackground(new java.awt.Color(102, 0, 0));
+        jButton3.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Delete all");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 105, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 582));
 
@@ -402,7 +512,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
         String SUser = "root";
         String SPass = "";
-
+        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
@@ -453,7 +563,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
             Lastnamelabel.setVisible(true);
             Create.setVisible(true);
             // Query with all needed columns
-            String sql = "SELECT LRN, firstname, middlename, lastname, section, grade, Identifier, ID "
+            String sql = "SELECT LRN, firstname, middlename, lastname, section, grade, ID "
                     + "FROM student_info "
                     + "WHERE grade = ? AND school_Year = ? "
                     + "ORDER BY lastname ASC, section ASC";
@@ -470,7 +580,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
 
             // Add all columns to the model
             String[] Columnheader = {
-                "LRN", "First Name", "Middle Name", "Last Name", "Section", "grade", "Identifier", "ID"
+                "LRN", "First Name", "Middle Name", "Last Name", "Section", "grade", "ID"
             };
             for (String header : Columnheader) {
                 model.addColumn(header);
@@ -488,7 +598,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
             jTable1.setModel(model);
 
             // Hide unwanted columns (keep only LRN_Students, firstname, middlename, lastname, section)
-            int[] hiddenCols = {4, 5, 6, 7}; // indexes start at 0
+            int[] hiddenCols = {4, 5, 6}; // indexes start at 0
             for (int colIndex : hiddenCols) {
                 jTable1.getColumnModel().getColumn(colIndex).setMinWidth(0);
                 jTable1.getColumnModel().getColumn(colIndex).setMaxWidth(0);
@@ -550,7 +660,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
                 String middlename = jTable1.getValueAt(selectedrow, 2).toString();
                 String lastname = jTable1.getValueAt(selectedrow, 3).toString();
                 String section = jTable1.getValueAt(selectedrow, 4).toString();
-                String studid = jTable1.getValueAt(selectedrow, 7).toString();
+                String studid = jTable1.getValueAt(selectedrow, 6).toString();
                 IDD.setText(studid);
                 LRNtxt.setText(LRN);
                 Firstnametxt.setText(firstname);
@@ -602,7 +712,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
             middlename = Middlenametxt.getText().trim().toUpperCase();
             lastname = Lastnametxt.getText().trim().toUpperCase();
             section = Sectionselect.getSelectedItem().toString();
-            this.code = code = generateRecoveryCode();
+
             grade = this.level;
             if (LRN.isEmpty()) {
                 LRNred.setText("LRN is required!");
@@ -652,25 +762,27 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
                     pst.setString(5, section);
                     pst.setString(6, grade);
                     pst.setString(7, Session.schoolyear);
-                    pst.executeUpdate();   
+                    pst.executeUpdate();
                     query1 = "SELECT * FROM student_info WHERE lrn=? ";
                     PreparedStatement ps = con.prepareStatement(query1);
+                    ps.setString(1, LRN);
                     ResultSet rs = ps.executeQuery();
-                    if(rs.next()){
-                    String id = rs.getString("ID");
-                    String payment = "INSERT INTO student_payment(student_ID, Fee_paid, Total_Paid, 1st_Quarter, 2nd_Quarter, 3rd_Quarter, 4th_Quarter, Date_Q1, Date_Q2, Date_Q3, Date_Q4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                    PreparedStatement pstm = con.prepareStatement(payment);
-                    pstm.setString(1, id);
-                    pstm.setString(2, "");
-                    pstm.setString(3, "");
-                    pstm.setString(5, "");
-                    pstm.setString(6, "");
-                    pstm.setString(7, "");
-                    pstm.setString(8, "");
-                    pstm.setString(9, "");
-                    pstm.setString(10, "");
-                    pstm.setString(11, "");
-                    pstm.executeUpdate();
+                    if (rs.next()) {
+                        String id = rs.getString("ID");
+                        String payment = "INSERT INTO student_payment(student_ID, Fee_paid, Total_Paid, 1st_Quarter, 2nd_Quarter, 3rd_Quarter, 4th_Quarter, Date_Q1, Date_Q2, Date_Q3, Date_Q4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        PreparedStatement pstm = con.prepareStatement(payment);
+                        pstm.setString(1, id);
+                        pstm.setString(2, "");
+                        pstm.setInt(3, 0);
+                        pstm.setInt(4, 0);
+                        pstm.setInt(5, 0);
+                        pstm.setInt(6, 0);
+                        pstm.setInt(7, 0);
+                        pstm.setString(8, "");
+                        pstm.setString(9, "");
+                        pstm.setString(10, "");
+                        pstm.setString(11, "");
+                        pstm.executeUpdate();
                     }
                     loadStudentData();
                     sectionload();
@@ -726,7 +838,6 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
                 checking.setString(3, section);
                 checking.setString(4, Session.schoolyear);
 
-
                 ResultSet checkname = checking.executeQuery();
                 if (checkname.next() && checkname.getInt("cnt") > 0) {
                     checkFullname.setText("this student is already been added");
@@ -740,9 +851,9 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
                     pst.setString(3, middlename);
                     pst.setString(4, lastname);
                     pst.setString(5, section);
-                    pst.setInt(6, ID);                  
+                    pst.setInt(6, ID);
                     pst.executeUpdate();
-                    
+
                     Firstnamelabel.setVisible(true);
                     Middlenamelabel.setVisible(true);
                     Lastnamelabel.setVisible(true);
@@ -765,37 +876,16 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
     }//GEN-LAST:event_RefreshActionPerformed
 
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
-        int selectedrow = jTable1.getSelectedRow();
-
-        String SUrl, SUser, SPass, query, query2;
-        SUrl = "jdbc:MySQL://localhost:3307/Billing_system_database";
-        SUser = "root";
-        SPass = "";
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
-            int ID = Integer.parseInt(IDD.getText());
-            query = "DELETE FROM student_info WHERE ID = ? ";
-            PreparedStatement pst = con.prepareStatement(query);
-            pst.setInt(1, ID);
-            pst.executeUpdate();
-            query2 = "DELETE FROM student_payment WHERE student_ID = ? ";
-            PreparedStatement ps = con.prepareStatement(query2);
-            ps.setInt(1, ID);
-            ps.executeUpdate();
-            Firstnamelabel.setVisible(true);
-            Middlenamelabel.setVisible(true);
-            Lastnamelabel.setVisible(true);
-
-            Create.setVisible(true);
-            loadStudentData();
-            sectionload();
-            loadStudentData();
-
-        } catch (Exception e) {
-
-        }
-
+        int selectedrow = jTable1.getSelectedRow(); 
+        
+       if(!LRNtxt.getText().isEmpty() && !Firstnametxt.getText().isEmpty() && !Lastnametxt.getText().isEmpty()){
+        Create.setVisible(false);
+        Update.setVisible(false);
+        Refresh.setVisible(false);
+        Delete.setVisible(false);
+        Back.setVisible(false);
+        jPanel4.setVisible(true);
+       }
 
     }//GEN-LAST:event_DeleteActionPerformed
 
@@ -872,7 +962,9 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
     }//GEN-LAST:event_SearchtxtFocusLost
 
     private void SectionselectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SectionselectActionPerformed
+        
         sectionload();
+        
     }//GEN-LAST:event_SectionselectActionPerformed
 
     private void SearchtxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchtxtKeyReleased
@@ -899,8 +991,8 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_LRNtxtFocusLost
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       JFileChooser fileChooser = new JFileChooser();
+    private void dataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Select Excel File");
         fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Excel Files", "xlsx"));
         int result = fileChooser.showOpenDialog(null);
@@ -909,20 +1001,94 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
             File selectedFile = fileChooser.getSelectedFile();
             importExcelToDatabase(selectedFile.getAbsolutePath());
         }
+    }//GEN-LAST:event_dataActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int selectedrow = jTable1.getSelectedRow();
+
+        String SUrl, SUser, SPass, query, query2;
+        SUrl = "jdbc:MySQL://localhost:3307/Billing_system_database";
+        SUser = "root";
+        SPass = "";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+            int ID = Integer.parseInt(IDD.getText());
+            query = "DELETE FROM student_info WHERE ID = ? ";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setInt(1, ID);
+            pst.executeUpdate();
+            query2 = "DELETE FROM student_payment WHERE student_ID = ? ";
+            PreparedStatement ps = con.prepareStatement(query2);
+            ps.setInt(1, ID);
+            ps.executeUpdate();
+            Firstnamelabel.setVisible(true);
+            Middlenamelabel.setVisible(true);
+            Lastnamelabel.setVisible(true);
+
+            Create.setVisible(true);
+            Update.setVisible(true);
+            Refresh.setVisible(true);
+            Delete.setVisible(true);
+            Back.setVisible(true);
+            jPanel4.setVisible(false);
+            loadStudentData();
+            sectionload();
+            loadStudentData();
+
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jPanel4.setVisible(false);
+        Create.setVisible(false);
+        Update.setVisible(true);
+        Refresh.setVisible(true);
+        Delete.setVisible(true);
+        Back.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        jPanel5.setVisible(false);
+        
+        Refresh.setVisible(true);
+        Delete.setVisible(true);
+        Back.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       ye.setText("yey me gana!");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        String section = Sectionselect.getSelectedItem().toString();
+        ye.setText("Are you sure you want to delete all this student from " + section + "?");
+        
+        
+        
+        Refresh.setVisible(false);
+        Delete.setVisible(false);
+        Back.setVisible(false);
+        jPanel5.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
     private void importExcelToDatabase(String filePath) {
         String SUrl = "jdbc:MySQL://localhost:3307/Billing_system_database";
         String SUser = "root";
         String SPass = "";
 
-        String query = "INSERT INTO student_info( lrn, firstname, middlename, lastname, section, grade, school_Year)VALUES( ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO student_info(lrn, firstname, middlename, lastname, section, grade, school_Year) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query2 = "INSERT INTO student_payment(student_ID, Fee_paid, Total_Paid, `1st_Quarter`, `2nd_Quarter`, `3rd_Quarter`, `4th_Quarter`, Date_Q1, Date_Q2, Date_Q3, Date_Q4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection con = DriverManager.getConnection(SUrl, SUser, SPass); PreparedStatement ps = con.prepareStatement(query); FileInputStream fis = new FileInputStream(new File(filePath)); Workbook workbook = new XSSFWorkbook(fis)) {
+        try (Connection con = DriverManager.getConnection(SUrl, SUser, SPass); FileInputStream fis = new FileInputStream(new File(filePath)); Workbook workbook = new XSSFWorkbook(fis)) {
 
-            Sheet sheet = workbook.getSheetAt(0); // read first sheet
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement psts = con.prepareStatement(query2);
+            Sheet sheet = workbook.getSheetAt(0);
             int count = 0;
 
-            // Start reading from row 1 (skip header at row 0)
             for (int i = 1; i <= sheet.getLastRowNum(); i++) {
                 Row row = sheet.getRow(i);
                 if (row == null) {
@@ -935,9 +1101,12 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
                 String lastname = getCellValue(row.getCell(3)).toUpperCase();
                 String section = Sectionselect.getSelectedItem().toString();
                 String grade = this.level;
+
                 if (lrn.isEmpty() && firstname.isEmpty()) {
-                    continue; // skip empty rows
+                    continue;
                 }
+
+                // Insert into student_info
                 ps.setString(1, lrn);
                 ps.setString(2, firstname);
                 ps.setString(3, middlename);
@@ -945,20 +1114,33 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
                 ps.setString(5, section);
                 ps.setString(6, grade);
                 ps.setString(7, Session.schoolyear);
-                ps.setString(8, "");
-                ps.addBatch();
-                count++;
+                ps.executeUpdate();
 
-                if (count % 500 == 0) {
-                    ps.executeBatch();
+                // Get generated student ID
+                ResultSet generatedKeys = ps.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int studentId = generatedKeys.getInt(1);
+
+                    // Insert into student_payment
+                    psts.setInt(1, studentId);
+                    psts.setString(2, "");
+                    psts.setInt(3, 0);
+                    psts.setInt(4, 0);
+                    psts.setInt(5, 0);
+                    psts.setInt(6, 0);
+                    psts.setInt(7, 0);
+                    psts.setString(8, "");
+                    psts.setString(9, "");
+                    psts.setString(10, "");
+                    psts.setString(11, "");
+                    psts.executeUpdate();
                 }
-            }
 
-            ps.executeBatch();
+                count++;
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
-
         }
     }
 
@@ -1057,14 +1239,25 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Sectionselect;
     private javax.swing.JButton Update;
     private javax.swing.JLabel checkFullname;
+    private javax.swing.JButton data;
     private javax.swing.JLabel firstnamered;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel ye;
     // End of variables declaration//GEN-END:variables
 }

@@ -379,9 +379,9 @@ public class SignUpForm extends javax.swing.JFrame {
         groupbutton.add(Staff);
         Staff.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
         Staff.setForeground(new java.awt.Color(0, 0, 0));
-        Staff.setText("School Staff");
+        Staff.setText("PTA Treasurer");
         jPanel1.add(Staff);
-        Staff.setBounds(420, 130, 110, 21);
+        Staff.setBounds(420, 130, 130, 21);
 
         Firstnamered.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         Firstnamered.setForeground(new java.awt.Color(255, 0, 0));
@@ -544,7 +544,7 @@ public class SignUpForm extends javax.swing.JFrame {
                     pst.setString(5, password);
                     pst.setString(6, code);
                     pst.executeUpdate();
-                    String role = "School Staff";
+                    String role = "PTA Treasurer";
                     Squery = "INSERT INTO security_account (role, fullname, username, password, recovery_code, Status) VALUES(?, ?, ?, ?, ?, 'pending')";
                     PreparedStatement ps = con.prepareStatement(Squery);
                     ps.setString(1, role);
