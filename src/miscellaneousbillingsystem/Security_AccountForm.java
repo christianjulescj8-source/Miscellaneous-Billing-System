@@ -330,9 +330,10 @@ public class Security_AccountForm extends javax.swing.JFrame {
                 PreparedStatement pst1 = con.prepareStatement(query1);
                 pst1.setString(1, Code);
                 pst1.executeUpdate();
-                delete.setVisible(false);
+                delete.setVisible(false);   
                 loadAccountData();
             }
+            loadAccountData();
         } catch (Exception e) {
 
         }
@@ -378,6 +379,7 @@ public class Security_AccountForm extends javax.swing.JFrame {
                 delete.setVisible(false);
                 loadAccountData();
             }
+            loadAccountData();
         } catch (Exception e) {
 
         }
@@ -423,6 +425,7 @@ public class Security_AccountForm extends javax.swing.JFrame {
                 delete.setVisible(false);
                 loadAccountData();
             }
+            loadAccountData();
         } catch (Exception e) {
 
         }

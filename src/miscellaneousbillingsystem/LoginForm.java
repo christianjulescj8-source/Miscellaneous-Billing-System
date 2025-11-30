@@ -371,6 +371,11 @@ public class LoginForm extends javax.swing.JFrame {
                 PasswordtextFocusLost(evt);
             }
         });
+        Passwordtext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PasswordtextActionPerformed(evt);
+            }
+        });
         newpass.add(Passwordtext, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 270, -1));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
@@ -910,6 +915,10 @@ public class LoginForm extends javax.swing.JFrame {
     private void AdministratorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdministratorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AdministratorActionPerformed
+
+    private void PasswordtextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordtextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PasswordtextActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -30,7 +30,12 @@ import javax.swing.UIManager;
 public class PaymentForm extends javax.swing.JFrame {
 
     private List<String> selectedItems = new ArrayList<>();
+    private List<String> Feesss = new ArrayList<>();
+    private List<String> amounts = new ArrayList<>();
     private Stack<Object[]> removedRows = new Stack<>();
+    private ArrayList<Double> discountedItems = new ArrayList<>();
+    private ArrayList<Double> discountAmounts = new ArrayList<>();
+    private ArrayList<Double> Itemprice = new ArrayList<>();
     private int totalAmount = 0;
 
     public PaymentForm() {
@@ -44,21 +49,26 @@ public class PaymentForm extends javax.swing.JFrame {
     private String fee;
     private int studentid;
     private int numbersib;
+    private String LRn;
 
-    public PaymentForm(int studID, String Name, String feeq, int numberofsib) {
+    public PaymentForm(int studID, String Name, String feeq, int numberofsib, String Lrn, String remark) {
         UIManager.put("ScrollBarUI", "miscellaneousbillingsystem.ScrollBarWin11");
         initComponents();
         startClock();
         loadTable();
         this.Name = Name;
         this.fee = feeq;
+        this.LRn = Lrn;
         this.studentid = studID;
         this.numbersib = numberofsib;
+
         System.out.println("Siblings " + numberofsib);
         System.out.println(studID);
+        LRN.setText(Lrn);
         Nameshow.setText(Name);
+        remarks.setText(remark);
         System.out.println(feeq);
-        
+
         startClock();
         loadTable();
         FeePaid();
@@ -69,6 +79,7 @@ public class PaymentForm extends javax.swing.JFrame {
     private void initComponents() {
 
         Fiscalyear = new javax.swing.ButtonGroup();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         Rooler = new javax.swing.JLabel();
@@ -77,14 +88,28 @@ public class PaymentForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        LRN = new javax.swing.JLabel();
         Paymentfor = new javax.swing.JLabel();
         Nameshow = new javax.swing.JLabel();
         Confirm = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
+        discountVersion = new javax.swing.JLabel();
         Total = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        Qu2 = new javax.swing.JRadioButton();
+        Qu3 = new javax.swing.JRadioButton();
+        Qu4 = new javax.swing.JRadioButton();
+        Qu1 = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        remarks = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jLabel11 = new javax.swing.JLabel();
+        FinalDiscount = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -99,16 +124,16 @@ public class PaymentForm extends javax.swing.JFrame {
         Rooler.setForeground(new java.awt.Color(0, 0, 0));
         Rooler.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Rooler.setText("PAYMENT");
-        jPanel3.add(Rooler, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 290, 60));
+        jPanel3.add(Rooler, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 990, 60));
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo4.png"))); // NOI18N
         jPanel3.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        CLOCK.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
+        CLOCK.setFont(new java.awt.Font("Bookman Old Style", 0, 24)); // NOI18N
         CLOCK.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jPanel3.add(CLOCK, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, 410, 20));
+        jPanel3.add(CLOCK, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, 400, 30));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 851, 94));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 94));
 
         jTable1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -143,7 +168,7 @@ public class PaymentForm extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 139, 839, 260));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 169, 980, 230));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -156,20 +181,19 @@ public class PaymentForm extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Name:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 100, -1, -1));
+        LRN.setFont(new java.awt.Font("Baskerville Old Face", 0, 35)); // NOI18N
+        LRN.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(LRN, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 520, 40));
 
         Paymentfor.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
         Paymentfor.setForeground(new java.awt.Color(255, 255, 255));
         Paymentfor.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
-        jPanel1.add(Paymentfor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 570, 687, 28));
+        jPanel1.add(Paymentfor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 570, 820, 28));
 
         Nameshow.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
         Nameshow.setForeground(new java.awt.Color(255, 255, 255));
         Nameshow.setText("Albatera, Christian Jules A.");
-        jPanel1.add(Nameshow, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 100, 717, -1));
+        jPanel1.add(Nameshow, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 135, 717, -1));
 
         Confirm.setBackground(new java.awt.Color(255, 255, 255));
         Confirm.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
@@ -180,7 +204,7 @@ public class PaymentForm extends javax.swing.JFrame {
                 ConfirmActionPerformed(evt);
             }
         });
-        jPanel1.add(Confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 630, -1, -1));
+        jPanel1.add(Confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 640, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -191,22 +215,116 @@ public class PaymentForm extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 560, 79, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 570, 79, -1));
 
-        jLabel10.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Total:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(638, 405, -1, -1));
+        discountVersion.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
+        discountVersion.setForeground(new java.awt.Color(255, 255, 255));
+        discountVersion.setText("100");
+        jPanel1.add(discountVersion, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 450, 110, -1));
 
         Total.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
         Total.setForeground(new java.awt.Color(255, 255, 255));
         Total.setText("0");
-        jPanel1.add(Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 405, 115, -1));
+        jPanel1.add(Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 410, 115, -1));
 
         jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("For:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, -1, -1));
+
+        buttonGroup1.add(Qu2);
+        Qu2.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        Qu2.setForeground(new java.awt.Color(255, 255, 255));
+        Qu2.setText("2nd Quarter");
+        jPanel1.add(Qu2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, -1, -1));
+
+        buttonGroup1.add(Qu3);
+        Qu3.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        Qu3.setForeground(new java.awt.Color(255, 255, 255));
+        Qu3.setText("3rd Quarter");
+        jPanel1.add(Qu3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, -1, -1));
+
+        buttonGroup1.add(Qu4);
+        Qu4.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        Qu4.setForeground(new java.awt.Color(255, 255, 255));
+        Qu4.setText("4th Quarter");
+        jPanel1.add(Qu4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, -1, -1));
+
+        buttonGroup1.add(Qu1);
+        Qu1.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        Qu1.setForeground(new java.awt.Color(255, 255, 255));
+        Qu1.setText("1st Quarter");
+        Qu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Qu1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Qu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Remarks:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, -1));
+
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        remarks.setBackground(new java.awt.Color(255, 255, 255));
+        remarks.setColumns(20);
+        remarks.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        remarks.setForeground(new java.awt.Color(0, 0, 0));
+        remarks.setRows(5);
+        jScrollPane2.setViewportView(remarks);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 580, -1));
+
+        jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Name:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 135, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("LRN:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 153, 0));
+        jButton2.setText("Relations");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 410, -1, -1));
+
+        jList1.setBackground(new java.awt.Color(204, 204, 204));
+        jList1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jList1.setForeground(new java.awt.Color(0, 0, 0));
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "25%", "50%", "75%", "100%", "" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jList1);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 440, 80, 100));
+
+        jLabel11.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Total:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 410, -1, -1));
+
+        FinalDiscount.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
+        FinalDiscount.setForeground(new java.awt.Color(255, 255, 255));
+        FinalDiscount.setText("Final Total:");
+        jPanel1.add(FinalDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 450, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -287,10 +405,54 @@ public class PaymentForm extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
 
             String sql = "SELECT Name_of_contribution, Acronym,	amount, acronym_of_Fee, ID FROM `miscellaneous_fee` ";
+            String sql2 = "SELECT * FROM student_payment WHERE student_ID=?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
+            PreparedStatement stsmt = con.prepareStatement(sql2);
+            stsmt.setInt(1, this.studentid);
+            ResultSet rst = stsmt.executeQuery();
             ResultSet rs = stmt.executeQuery();
+            if (rst.next()) {
+                int quarter1 = rst.getInt("1st_Quarter");
+                int quarter2 = rst.getInt("2nd_Quarter");
+                int quarter3 = rst.getInt("3rd_Quarter");
+                int quarter4 = rst.getInt("4th_Quarter");
+                if (quarter1 > 0) {
+                    Qu1.setEnabled(false);
+                    Qu2.setSelected(true);
+                    if (quarter3 > 0) {
+                        Qu3.setEnabled(false);
+                    }
+                    if (quarter4 > 0) {
+                        Qu4.setEnabled(false);
+                    }
+                    System.out.println("naa sa first");
+                    if (quarter2 > 0) {
+                        Qu2.setEnabled(false);
+                        Qu3.setSelected(true);
+                        System.out.println("naa sa second");
+                        if (quarter3 > 0) {
+                            Qu3.setEnabled(false);
+                            Qu4.setSelected(true);
+                            System.out.println("naa sa third");
+                        }
+                    }
+                } else if (quarter2 > 0) {
 
+                    Qu2.setEnabled(false);
+                    Qu3.setSelected(true);
+                    if (quarter3 > 0) {
+                        Qu3.setEnabled(false);
+                        Qu4.setSelected(true);
+                    }
+                } else if (quarter3 > 0) {
+                    Qu3.setEnabled(false);
+                    Qu4.setSelected(true);
+                } else {
+                    Qu1.setSelected(true);
+                }
+
+            }
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnCount = rsmd.getColumnCount();
 
@@ -362,7 +524,7 @@ public class PaymentForm extends javax.swing.JFrame {
     }
 
     private void updateTotalLabel() {
-        Total.setText(String.valueOf(totalAmount));
+        Total.setText(String.valueOf(totalAmount + ".00"));
     }
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -371,10 +533,14 @@ public class PaymentForm extends javax.swing.JFrame {
         int row = jTable1.getSelectedRow();
         if (row != -1) {
             String value = jTable1.getValueAt(row, 2).toString(); // Acronym(amount)
-
+            String value2 = jTable1.getValueAt(row, 1).toString();
+            String value3 = jTable1.getValueAt(row, 0).toString();
+            double value4 = Integer.parseInt(jTable1.getValueAt(row, 1).toString());
             if (!selectedItems.contains(value)) {
                 selectedItems.add(value);
-
+                amounts.add(value2);
+                Feesss.add(value3);
+                Itemprice.add(value4);
                 Object[] rowData = new Object[tableModel.getColumnCount()];
                 for (int i = 0; i < tableModel.getColumnCount(); i++) {
                     rowData[i] = tableModel.getValueAt(row, i);
@@ -397,7 +563,11 @@ public class PaymentForm extends javax.swing.JFrame {
         if (!selectedItems.isEmpty() && !removedRows.isEmpty()) {
             // Remove last from label list
             selectedItems.remove(selectedItems.size() - 1);
-
+            amounts.remove(amounts.size() - 1);
+            Feesss.remove(Feesss.size() - 1);
+            Itemprice.remove(Itemprice.size() - 1);
+            discountedItems.remove(discountedItems.size() - 1);
+            discountAmounts.remove(discountAmounts.size() - 1);
             // Restore row back to table
             Object[] lastRow = removedRows.pop();
             tableModel.addRow(lastRow);
@@ -427,13 +597,13 @@ public class PaymentForm extends javax.swing.JFrame {
             int amount = Integer.parseInt(Total.getText());
             int size = selectedItems.size();
             int count = 0;
-            while (size == count){
-            
-            String recordpayment = "UPDATE student_payment set Fee_paid =?";
-            PreparedStatement fee = con.prepareStatement(recordpayment);
-            fee.setString(1, selectedItems.get(count));
-            fee.executeUpdate();
-            count++;
+            while (size == count) {
+
+                String recordpayment = "UPDATE student_payment set Fee_paid =?";
+                PreparedStatement fee = con.prepareStatement(recordpayment);
+                fee.setString(1, selectedItems.get(count));
+                fee.executeUpdate();
+                count++;
             }
             // 3. Get current payment recor            
             String sqlPayment = "SELECT * FROM student_payment WHERE student_ID = ?";
@@ -464,16 +634,16 @@ public class PaymentForm extends javax.swing.JFrame {
                     }
                     if (amount != 0) {
                         // 4. Find next unpaid quarter
-                        if (q1 == 0 && !date1.equals("Skiped")) {
+                        if (Qu1.isSelected()) {
                             q1 = amount;
                             date1 = CLOCK.getText().toString();
-                        } else if (q2 == 0 && !date2.equals("Skiped")) {
+                        } else if (Qu2.isSelected()) {
                             q2 = amount;
                             date2 = CLOCK.getText().toString();
-                        } else if (q3 == 0 && !date3.equals("Skiped")) {
+                        } else if (Qu3.isSelected()) {
                             q3 = amount;
                             date3 = CLOCK.getText().toString();
-                        } else if (q4 == 0) {
+                        } else if (Qu4.isSelected()) {
                             q4 = amount;
                             date4 = CLOCK.getText().toString();
                         } else {
@@ -492,93 +662,78 @@ public class PaymentForm extends javax.swing.JFrame {
                         int totalPaid = q1 + q2 + q3 + q4;
                         int amountpaid = Integer.parseInt(Total.getText());
 
-                        // 7. Apply sibling discount only if FULL payment reached (450)
-                        if (totalPaid >= totalfull && this.numbersib > 1) {
-                            int discount = 120 / this.numbersib;
-                            if (q1 == amountpaid) {
-                                q1 -= discount;
-                            } else if (q2 == amountpaid) {
-                                q2 -= discount;
-                            } else if (q3 == amountpaid) {
-                                q3 -= discount;
-                            } else if (q4 == amountpaid) {
-                                q4 -= discount;
+                        String remark = remarks.getText();
+
+                        // 8. Update record
+                        String updateSql = "UPDATE student_payment SET Fee_Paid=?, 1st_Quarter=?, 2nd_Quarter=?, 3rd_Quarter=?, 4th_Quarter=?, Total_Paid=?, Date_Q1 = ?, Date_Q2 = ?, Date_Q3 = ?, Date_Q4 = ?, remarks = ? WHERE student_ID=?";
+                        PreparedStatement psUpdate = con.prepareStatement(updateSql);
+                        psUpdate.setString(1, feePaid);
+                        psUpdate.setInt(2, q1);
+                        psUpdate.setInt(3, q2);
+                        psUpdate.setInt(4, q3);
+                        psUpdate.setInt(5, q4);
+                        psUpdate.setInt(6, totalPaid);
+                        psUpdate.setString(7, date1);
+                        psUpdate.setString(8, date2);
+                        psUpdate.setString(9, date3);
+                        psUpdate.setString(10, date4);
+                        psUpdate.setString(11, remark);
+                        psUpdate.setInt(12, this.studentid);
+                        psUpdate.executeUpdate();
+                        String updateSql2 = "INSERT INTO Contribution_paid (student_ID, Fee, amount, Quarter, School_Year) VALUES (?, ?, ?, ?, ?)";
+                        PreparedStatement psUpdate2 = con.prepareStatement(updateSql2);
+                        for (int i = 0; i < Feesss.size(); i++) {
+                            if (Qu1.isSelected()) {
+                                String Fess = Feesss.get(i); // SSGF(50)
+                                String amountStr = amounts.get(i);      // 50
+                                int amountss = Integer.parseInt(amountStr); // convert from String → int
+                                psUpdate2.setInt(1, this.studentid);
+                                psUpdate2.setString(2, Fess);  // Feess
+                                psUpdate2.setInt(3, amountss);       // REAL amount integer
+                                psUpdate2.setString(4, "1st");
+                                psUpdate2.setString(5, Session.schoolyear);
+                                psUpdate2.executeUpdate();
+                                System.out.println("Feesss size: " + Feesss.size());
+                                System.out.println("Amounts size: " + amounts.size());
+                            } else if (Qu2.isSelected()) {
+                                String Fess = Feesss.get(i); // SSGF(50)
+                                String amountStr = amounts.get(i);      // 50
+                                int amountss = Integer.parseInt(amountStr); // convert from String → int
+                                psUpdate2.setInt(1, this.studentid);
+                                psUpdate2.setString(2, Fess);  // Feess
+                                psUpdate2.setInt(3, amountss);       // REAL amount integer
+                                psUpdate2.setString(4, "2nd");
+                                psUpdate2.setString(5, Session.schoolyear);
+                                psUpdate2.executeUpdate();
+
+                            } else if (Qu3.isSelected()) {
+                                String Fess = Feesss.get(i); // SSGF(50)
+                                String amountStr = amounts.get(i);      // 50
+                                int amountss = Integer.parseInt(amountStr); // convert from String → int
+                                psUpdate2.setInt(1, this.studentid);
+                                psUpdate2.setString(2, Fess);  // Feess
+                                psUpdate2.setInt(3, amountss);       // REAL amount integer
+                                psUpdate2.setString(4, "3rd");
+                                psUpdate2.setString(5, Session.schoolyear);
+                                psUpdate2.executeUpdate();
+
+                            } else if (Qu4.isSelected()) {
+                                String Fess = Feesss.get(i); // SSGF(50)
+                                String amountStr = amounts.get(i);      // 50
+                                int amountss = Integer.parseInt(amountStr); // convert from String → int
+                                psUpdate2.setInt(1, this.studentid);
+                                psUpdate2.setString(2, Fess);  // Feess
+                                psUpdate2.setInt(3, amountss);       // REAL amount integer
+                                psUpdate2.setString(4, "4th");
+                                psUpdate2.setString(5, Session.schoolyear);
+                                psUpdate2.executeUpdate();
                             }
-                            amountpaid -= discount;
-                            totalPaid -= discount;
                         }
-
-                        // 8. Update record
-                        String updateSql = "UPDATE student_payment SET Fee_paid=?, 1st_Quarter=?, 2nd_Quarter=?, 3rd_Quarter=?, 4th_Quarter=?, Total_Paid=?, Date_Q1 = ?, Date_Q2 = ?, Date_Q3 = ?, Date_Q4 = ? WHERE student_ID=?";
-                        PreparedStatement psUpdate = con.prepareStatement(updateSql);
-                        psUpdate.setString(1, feePaid);
-                        psUpdate.setInt(2, q1);
-                        psUpdate.setInt(3, q2);
-                        psUpdate.setInt(4, q3);
-                        psUpdate.setInt(5, q4);
-                        psUpdate.setInt(6, totalPaid);
-                        psUpdate.setString(7, date1);
-                        psUpdate.setString(8, date2);
-                        psUpdate.setString(9, date3);
-                        psUpdate.setString(10, date4);
-                        psUpdate.setInt(11, this.studentid);
-                        psUpdate.executeUpdate();
                         String time = CLOCK.getText();
                         String tol = Total.getText();
-                        Official_RecieptForm reciept = new Official_RecieptForm(amountpaid, feeName, time, this.Name, this.studentid, tol);
+                        Official_RecieptForm reciept = new Official_RecieptForm(amountpaid, feeName, time, this.Name, this.studentid, tol, this.LRn, new ArrayList<>(this.Feesss), new ArrayList<>(this.amounts), remark);
                         reciept.setVisible(true);
-                        dispose();
-                    } else if(amount == 0){
-                        if (q1 == 0 && !date1.equals("Skiped")) {
-                            q1 = amount;
-                            date1 = "Skiped";
-                        } else if (q2 == 0 && !date2.equals("Skiped")) {
-                            q2 = amount;
-                            date2 = "Skiped";
-                        } else if (q2 == 0 && !date3.equals("Skiped")) {
-                            q3 = amount;
-                            date3 = "Skiped";
-                        } else if (q4 == 0) {
-                            q4 = amount;
-                            date4 = CLOCK.getText().toString();
-                        } else {
-                            // all quarters paid already
-                            return;
-                        }
-
-                        // 5. Append the new fee into Fee_paid
-                        if (!feePaid.isEmpty()) {
-                            feePaid += ", " + feeName;
-                        } else {
-                            feePaid = feeName;
-                        }
-
-                        // 6. Calculate total paid
-                        int totalPaid = q1 + q2 + q3 + q4;
-                        int amountpaid = Integer.parseInt(Total.getText());
-
-                        // 7. Apply sibling discount only if FULL payment reached (450)
-                        
-
-                        // 8. Update record
-                        String updateSql = "UPDATE student_payment SET Fee_paid=?, 1st_Quarter=?, 2nd_Quarter=?, 3rd_Quarter=?, 4th_Quarter=?, Total_Paid=?, Date_Q1 = ?, Date_Q2 = ?, Date_Q3 = ?, Date_Q4 = ? WHERE student_ID=?";
-                        PreparedStatement psUpdate = con.prepareStatement(updateSql);
-                        psUpdate.setString(1, feePaid);
-                        psUpdate.setInt(2, q1);
-                        psUpdate.setInt(3, q2);
-                        psUpdate.setInt(4, q3);
-                        psUpdate.setInt(5, q4);
-                        psUpdate.setInt(6, totalPaid);
-                        psUpdate.setString(7, date1);
-                        psUpdate.setString(8, date2);
-                        psUpdate.setString(9, date3);
-                        psUpdate.setString(10, date4);
-                        psUpdate.setInt(11, this.studentid);
-                        psUpdate.executeUpdate();
-                        String time = CLOCK.getText();
-                        String tol = Total.getText();
-                        Billing_MainForm main = new Billing_MainForm();
-                        main.setVisible(true);
+                        sibling.setVisible(false);
                         dispose();
                     }
                 }
@@ -590,6 +745,72 @@ public class PaymentForm extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_ConfirmActionPerformed
+
+    private void Qu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Qu1ActionPerformed
+    private static Siblings_Form sibling;
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
+        String SUser = "root";
+        String SPass = "";
+        int ID = this.studentid;
+        String lrn = LRN.getText();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+            String query = "SELECT * FROM student_info WHERE lrn=?";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, lrn);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                String lastname = rs.getString("lastname");
+                if (sibling == null || !sibling.isShowing()) {
+                    sibling = new Siblings_Form(lastname, ID);
+                    sibling.setVisible(true);
+                } else {
+                    sibling.toFront();
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        String selected = jList1.getSelectedValue();
+        double discount1 = 25;
+        double discount2 = 50;
+        double discount3 = 75;
+        double discount4 = 100;
+
+        if ("25%".equals(selected)) {
+            double discountRate = (discount1 / 100);
+            for (double price : Itemprice) {
+                double discountAmount = price * discountRate;
+                double finalPrice = price - discountAmount;
+
+                discountedItems.add(finalPrice);
+                discountAmounts.add(discountAmount);
+
+            }
+            double totalDiscount = 0;
+
+            for (double d : discountAmounts) {
+                totalDiscount += d;
+            }
+            discountVersion.setText(""+totalDiscount);
+        } else if ("50%".equals(selected)) {
+
+        } else if ("75%".equals(selected)) {
+
+        } else if ("100".equals(selected)) {
+
+        }
+    }//GEN-LAST:event_jList1MouseClicked
     private javax.swing.Timer clockTimer;
 
     public void startClock() {
@@ -645,20 +866,35 @@ public class PaymentForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CLOCK;
     private javax.swing.JButton Confirm;
+    private javax.swing.JLabel FinalDiscount;
     private javax.swing.ButtonGroup Fiscalyear;
+    private javax.swing.JLabel LRN;
     private javax.swing.JLabel Nameshow;
     private javax.swing.JLabel Paymentfor;
+    private javax.swing.JRadioButton Qu1;
+    private javax.swing.JRadioButton Qu2;
+    private javax.swing.JRadioButton Qu3;
+    private javax.swing.JRadioButton Qu4;
     private javax.swing.JLabel Rooler;
     private javax.swing.JLabel Total;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel discountVersion;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
+    private javax.swing.JTextArea remarks;
     // End of variables declaration//GEN-END:variables
 }

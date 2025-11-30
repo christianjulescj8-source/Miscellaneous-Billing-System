@@ -98,7 +98,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
+        LRN = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         Q3 = new javax.swing.JLabel();
         Q4 = new javax.swing.JLabel();
@@ -113,6 +113,11 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Searchlabel = new javax.swing.JLabel();
         Searchtxt = new javax.swing.JTextField();
         Pay = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        remarks = new javax.swing.JTextArea();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
 
         feeprev.setText("jLabel7");
 
@@ -514,11 +519,11 @@ public class Billing_MainForm extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Student selected:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, -1, -1));
 
         Name.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Name.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 300, 20));
+        jPanel1.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 300, 20));
 
         Q2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Q2.setForeground(new java.awt.Color(255, 255, 255));
@@ -539,10 +544,9 @@ public class Billing_MainForm extends javax.swing.JFrame {
         jLabel24.setText("4th Quarter:");
         jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
 
-        jLabel25.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setText("Name:");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        LRN.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        LRN.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(LRN, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 260, 20));
 
         jLabel27.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
@@ -578,12 +582,12 @@ public class Billing_MainForm extends javax.swing.JFrame {
 
         jLabel32.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel32.setText("Total:");
-        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, -1, -1));
+        jLabel32.setText("Remarks:");
+        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, -1, -1));
 
         Total.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Total.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 60, 20));
+        jPanel1.add(Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, 60, 20));
 
         DateQ1.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         DateQ1.setForeground(new java.awt.Color(255, 255, 255));
@@ -635,7 +639,31 @@ public class Billing_MainForm extends javax.swing.JFrame {
                 PayActionPerformed(evt);
             }
         });
-        jPanel1.add(Pay, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 540, -1, -1));
+        jPanel1.add(Pay, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, 90, -1));
+
+        remarks.setBackground(new java.awt.Color(255, 255, 255));
+        remarks.setColumns(20);
+        remarks.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
+        remarks.setForeground(new java.awt.Color(0, 0, 0));
+        remarks.setRows(5);
+        jScrollPane1.setViewportView(remarks);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, 380, 100));
+
+        jLabel33.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel33.setText("Total:");
+        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, -1));
+
+        jLabel26.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Name:");
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+
+        jLabel28.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("LRN:");
+        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -696,6 +724,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
 
             String grade = curriculum.getSelectedItem().toString();
             Name.setText("");
+            LRN.setText("");
             Q1.setText("");
             Q2.setText("");
             Q3.setText("");
@@ -707,7 +736,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
             Total.setText("");
             feeprev.setText("");
             studentID.setText("");
-
+            remarks.setText("");
             Pay.setVisible(false);
 
             String sql = "SELECT si.lrn, CONCAT( "
@@ -716,7 +745,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
                     + "    IF(si.middlename = '' OR si.middlename IS NULL, '', CONCAT(LEFT(si.middlename, 1), '.')) "
                     + ") AS fullname, "
                     + " si.section, si.grade, si.ID, "
-                    + "sp.student_ID, sp.Fee_paid, sp.`1st_Quarter`, sp.`2nd_Quarter`, sp.`3rd_Quarter`, sp.`4th_Quarter`, sp.Total_Paid, sp.Date_Q1, sp.Date_Q2, sp.Date_Q3, sp.Date_Q4 "
+                    + "sp.student_ID, sp.Fee_Paid, sp.`1st_Quarter`, sp.`2nd_Quarter`, sp.`3rd_Quarter`, sp.`4th_Quarter`, sp.Total_Paid, sp.Date_Q1, sp.Date_Q2, sp.Date_Q3, sp.Date_Q4, sp.remarks "
                     + "FROM student_info si "
                     + "LEFT JOIN student_payment sp ON si.ID = sp.student_ID "
                     + "WHERE si.grade = ? AND si.school_Year = ? "
@@ -737,7 +766,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
                 "LRN", "Full Name", "Section", "Grade",
                 "Student ID", "Payment ID", "Fee Paid",
                 "1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter", "Total Paid",
-                "Date Q1", "Date Q2", "Date Q3", "Date Q4"
+                "Date Q1", "Date Q2", "Date Q3", "Date Q4", "Remarks"
             };
 
             for (String header : columnHeaders) {
@@ -754,12 +783,13 @@ public class Billing_MainForm extends javax.swing.JFrame {
 
             jTable1.setModel(model);
             jTable1.setModel(model);
-            jTable1.getColumnModel().getColumn(11).setPreferredWidth(10);
-            jTable1.getColumnModel().getColumn(10).setPreferredWidth(10);
-            jTable1.getColumnModel().getColumn(9).setPreferredWidth(10);
-            jTable1.getColumnModel().getColumn(8).setPreferredWidth(10);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
-            int[] hiddenCols = {2, 3, 4, 5, 6, 7, 12, 13, 14, 15}; // indexes start at 0
+            jTable1.getColumnModel().getColumn(11).setPreferredWidth(5);
+            jTable1.getColumnModel().getColumn(10).setPreferredWidth(5);
+            jTable1.getColumnModel().getColumn(9).setPreferredWidth(5);
+            jTable1.getColumnModel().getColumn(8).setPreferredWidth(5);
+            jTable1.getColumnModel().getColumn(7).setPreferredWidth(5);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
+            int[] hiddenCols = {2, 3, 4, 5, 6, 12, 13, 14, 15, 16}; // indexes start at 0
             for (int colIndex : hiddenCols) {
                 jTable1.getColumnModel().getColumn(colIndex).setMinWidth(0);
                 jTable1.getColumnModel().getColumn(colIndex).setMaxWidth(0);
@@ -794,6 +824,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
                 //"Identifier", "Student ID", "Payment ID", "Fee Paid",
                 //"1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter", "Total Paid",
                 //"Date Q1", "Date Q2", "Date Q3", "Date Q4"
+                String lrn = jTable1.getValueAt(selectedrow, 0).toString();
                 String name = jTable1.getValueAt(selectedrow, 1).toString();
                 String id = jTable1.getValueAt(selectedrow, 4).toString();
                 String qo1 = jTable1.getValueAt(selectedrow, 7).toString();
@@ -806,7 +837,9 @@ public class Billing_MainForm extends javax.swing.JFrame {
                 String dq3 = jTable1.getValueAt(selectedrow, 14).toString();
                 String dq4 = jTable1.getValueAt(selectedrow, 15).toString();
                 String feed = jTable1.getValueAt(selectedrow, 6).toString();
+                String remark = jTable1.getValueAt(selectedrow, 16).toString();
                 Name.setText(name);
+                LRN.setText(lrn);
                 Q1.setText(qo1);
                 Q2.setText(qo2);
                 Q3.setText(qo3);
@@ -818,7 +851,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
                 Total.setText(sum);
                 feeprev.setText(feed);
                 studentID.setText(id);
-                
+                remarks.setText(remark);
                 
                 
                 
@@ -1134,10 +1167,13 @@ public class Billing_MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_SearchtxtKeyReleased
 
     private void PayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayActionPerformed
+        
         int sid = Integer.parseInt(studentID.getText());
         String feeles = feeprev.getText();
         String name = Name.getText();
-        PaymentForm pay = new PaymentForm(sid, name, feeles, this.numofsib);
+        String Lrn = LRN.getText();
+        String remark = remarks.getText();
+        PaymentForm pay = new PaymentForm(sid, name, feeles, this.numofsib, Lrn, remark);
         pay.setVisible(true);
         dispose();
     }//GEN-LAST:event_PayActionPerformed
@@ -1225,6 +1261,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel DateQ3;
     private javax.swing.JLabel DateQ4;
     private javax.swing.JButton Fee;
+    private javax.swing.JLabel LRN;
     private javax.swing.JButton Logout;
     private javax.swing.JPanel Menu;
     private javax.swing.JLabel Name;
@@ -1261,18 +1298,22 @@ public class Billing_MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
+    private javax.swing.JTextArea remarks;
     private javax.swing.JLabel student10;
     private javax.swing.JLabel student11;
     private javax.swing.JLabel student12;

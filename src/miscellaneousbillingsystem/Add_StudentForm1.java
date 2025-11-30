@@ -753,7 +753,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
                 } else {
                     checkFullname.setText("");
 
-                    String sql = "INSERT INTO student_info( lrn, firstname, middlename, lastname, section, grade,  school_Year )VALUES(?, ?, ?, ?, ?, ?, ?)";
+                    String sql = "INSERT INTO student_info( lrn, firstname, middlename, lastname, section, grade,  school_Year)VALUES(?, ?, ?, ?, ?, ?, ?)";
                     PreparedStatement pst = con.prepareStatement(sql);
                     pst.setString(1, LRN);
                     pst.setString(2, firstname);
@@ -769,7 +769,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
                     ResultSet rs = ps.executeQuery();
                     if (rs.next()) {
                         String id = rs.getString("ID");
-                        String payment = "INSERT INTO student_payment(student_ID, Fee_paid, Total_Paid, 1st_Quarter, 2nd_Quarter, 3rd_Quarter, 4th_Quarter, Date_Q1, Date_Q2, Date_Q3, Date_Q4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        String payment = "INSERT INTO student_payment(student_ID, Fee_Paid, Total_Paid, 1st_Quarter, 2nd_Quarter, 3rd_Quarter, 4th_Quarter, Date_Q1, Date_Q2, Date_Q3, Date_Q4, School_Year, remarks) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                         PreparedStatement pstm = con.prepareStatement(payment);
                         pstm.setString(1, id);
                         pstm.setString(2, "");
@@ -782,6 +782,8 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
                         pstm.setString(9, "");
                         pstm.setString(10, "");
                         pstm.setString(11, "");
+                        pstm.setString(12, Session.schoolyear);
+                        pstm.setString(13, "");
                         pstm.executeUpdate();
                     }
                     loadStudentData();
@@ -992,7 +994,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
     }//GEN-LAST:event_LRNtxtFocusLost
 
     private void dataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
+          JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Select Excel File");
         fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Excel Files", "xlsx"));
         int result = fileChooser.showOpenDialog(null);
@@ -1037,7 +1039,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
             loadStudentData();
 
         } catch (Exception e) {
-
+            System.out.println("Error!" + e.getMessage());
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -1059,7 +1061,38 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       ye.setText("yey me gana!");
+        String SUrl, SUser, SPass, query, query2;
+        SUrl = "jdbc:MySQL://localhost:3307/Billing_system_database";
+        SUser = "root";
+        SPass = "";
+        try {
+            String sect = Sectionselect.getSelectedItem().toString();
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+            
+            query = "DELETE FROM student_info WHERE section=? AND school_Year= ? ";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, sect);
+            pst.setString(2, Session.schoolyear);
+            pst.executeUpdate();
+            jPanel5.setVisible(false);
+            Firstnamelabel.setVisible(true);
+            Middlenamelabel.setVisible(true);
+            Lastnamelabel.setVisible(true);
+
+            Create.setVisible(true);
+            Update.setVisible(true);
+            Refresh.setVisible(true);
+            Delete.setVisible(true);
+            Back.setVisible(true);
+            
+            loadStudentData();
+            sectionload();
+            loadStudentData();
+
+        } catch (Exception e) {
+            System.out.println("Error!" + e.getMessage());
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -1080,7 +1113,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         String SPass = "";
 
         String query = "INSERT INTO student_info(lrn, firstname, middlename, lastname, section, grade, school_Year) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        String query2 = "INSERT INTO student_payment(student_ID, Fee_paid, Total_Paid, `1st_Quarter`, `2nd_Quarter`, `3rd_Quarter`, `4th_Quarter`, Date_Q1, Date_Q2, Date_Q3, Date_Q4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query2 = "INSERT INTO student_payment(student_ID, Fee_Paid, Total_Paid, `1st_Quarter`, `2nd_Quarter`, `3rd_Quarter`, `4th_Quarter`, Date_Q1, Date_Q2, Date_Q3, Date_Q4, School_Year, remarks) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection con = DriverManager.getConnection(SUrl, SUser, SPass); FileInputStream fis = new FileInputStream(new File(filePath)); Workbook workbook = new XSSFWorkbook(fis)) {
 
@@ -1133,7 +1166,10 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
                     psts.setString(9, "");
                     psts.setString(10, "");
                     psts.setString(11, "");
+                    psts.setString(12, Session.schoolyear);
+                    psts.setString(13, "");
                     psts.executeUpdate();
+                    loadStudentData();
                 }
 
                 count++;
