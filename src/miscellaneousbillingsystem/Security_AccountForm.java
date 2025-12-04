@@ -255,7 +255,8 @@ public class Security_AccountForm extends javax.swing.JFrame {
 
             // Apply model
             jTable1.setModel(model);
-
+            jTable1.setFocusable(false);
+            jTable1.setDefaultEditor(Object.class, null);
             // Hide unwanted columns (example: hide Grade, Identifier, IDs, etc.)
             int[] hiddenCols = {0};
             for (int colIndex : hiddenCols) {

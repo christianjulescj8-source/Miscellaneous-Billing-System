@@ -24,45 +24,15 @@ import javax.swing.BorderFactory;
 
 public class Official_RecieptForm extends javax.swing.JFrame {
 
-    private String lrn;
-    private ArrayList<String> fee;
-    private ArrayList<String> amount;
-    private int total = 0;
+    
 
     public Official_RecieptForm() {
         setUndecorated(true);
         initComponents();
 
-    }
-
-    public Official_RecieptForm(int totalPaid,
-            String feeName,
-            String time,
-            String Name,
-            int studentid,
-            String tol,
-            String LRn,
-            ArrayList<String> Feesss,
-            ArrayList<String> amounts,
-            String remark) {
-        setUndecorated(true);
-        initComponents();
-        name.setText(Name);
-        LRN.setText(LRn);
-        this.lrn = LRn;
-        this.fee = Feesss;
-        this.amount = amounts;
-        remarkss.setText(remark);
-        Date.setText(time);
         infoStudent();
         feeload();
         amountload();
-        if (tol.equals("450")) {
-
-        } else {
-
-        }
-        System.out.println(totalPaid);
 
     }
 
@@ -103,18 +73,21 @@ public class Official_RecieptForm extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(599, 421));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(796, 565));
-        jPanel1.setPreferredSize(new java.awt.Dimension(397, 1123));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setPreferredSize(new java.awt.Dimension(595, 421));
+        jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 10)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Republic ot the Phillipines");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 795, 30));
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(0, 0, 590, 20);
 
         print.setBackground(new java.awt.Color(0, 0, 0));
         print.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
@@ -125,91 +98,108 @@ public class Official_RecieptForm extends javax.swing.JFrame {
                 printMouseClicked(evt);
             }
         });
-        jPanel1.add(print, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, -1, -1));
+        jPanel1.add(print);
+        print.setBounds(540, 10, 47, 29);
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/deped logo patial2 finished.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 100, -1));
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(130, 10, 100, 58);
 
-        jLabel2.setFont(new java.awt.Font("Old English Text MT", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Old English Text MT", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Department of Education");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 795, -1));
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(0, 20, 590, 17);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Tangub City National High School");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 795, -1));
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(0, 60, 590, 10);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Region X - Nothern Mindanao");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 795, -1));
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(0, 40, 590, 10);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Division of Tangub City");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 65, 795, -1));
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(0, 50, 590, 10);
 
-        name.setFont(new java.awt.Font("Baskerville Old Face", 0, 13)); // NOI18N
+        name.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         name.setForeground(new java.awt.Color(0, 0, 0));
         name.setText("Christian Jules A. Albatera");
-        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 138, 270, 20));
+        jPanel1.add(name);
+        name.setBounds(40, 128, 160, 20);
 
-        Section.setFont(new java.awt.Font("Baskerville Old Face", 0, 13)); // NOI18N
+        Section.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         Section.setForeground(new java.awt.Color(0, 0, 0));
         Section.setText("ICT");
-        jPanel1.add(Section, new org.netbeans.lib.awtextra.AbsoluteConstraints(362, 121, 110, 13));
+        jPanel1.add(Section);
+        Section.setBounds(262, 120, 70, 13);
 
-        jLabel10.setFont(new java.awt.Font("Baskerville Old Face", 0, 20)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Receipt");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 800, -1));
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(0, 100, 590, 19);
 
-        jLabel11.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Baskerville Old Face", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Remarks:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, -1, -1));
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(10, 370, 45, 12);
 
-        Grade.setFont(new java.awt.Font("Baskerville Old Face", 0, 13)); // NOI18N
+        Grade.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         Grade.setForeground(new java.awt.Color(0, 0, 0));
         Grade.setText("12");
-        jPanel1.add(Grade, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 141, 70, 13));
+        jPanel1.add(Grade);
+        Grade.setBounds(259, 130, 30, 13);
 
-        LRN.setFont(new java.awt.Font("Baskerville Old Face", 0, 13)); // NOI18N
+        LRN.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         LRN.setForeground(new java.awt.Color(0, 0, 0));
         LRN.setText("1223434536363");
-        jPanel1.add(LRN, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 121, 200, 13));
+        jPanel1.add(LRN);
+        LRN.setBounds(35, 119, 140, 13);
 
-        Date.setFont(new java.awt.Font("Baskerville Old Face", 0, 13)); // NOI18N
+        Date.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         Date.setForeground(new java.awt.Color(0, 0, 0));
         Date.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 120, 130, 13));
+        jPanel1.add(Date);
+        Date.setBounds(440, 120, 110, 13);
 
-        jLabel15.setFont(new java.awt.Font("Baskerville Old Face", 0, 13)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Grade:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, -1, -1));
+        jPanel1.add(jLabel15);
+        jLabel15.setBounds(230, 130, 27, 11);
 
-        jLabel16.setFont(new java.awt.Font("Baskerville Old Face", 0, 13)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Section:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
+        jPanel1.add(jLabel16);
+        jLabel16.setBounds(230, 120, 31, 11);
 
-        jLabel17.setFont(new java.awt.Font("Baskerville Old Face", 0, 13)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Date:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, -1, -1));
+        jPanel1.add(jLabel17);
+        jLabel17.setBounds(410, 120, 22, 11);
 
         jLabel12.setFont(new java.awt.Font("Baskerville Old Face", 0, 13)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 510, 150, 20));
+        jPanel1.add(jLabel12);
+        jLabel12.setBounds(310, 370, 150, 20);
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -218,13 +208,14 @@ public class Official_RecieptForm extends javax.swing.JFrame {
 
         Amount.setBackground(new java.awt.Color(255, 255, 255));
         Amount.setColumns(20);
-        Amount.setFont(new java.awt.Font("Baskerville Old Face", 0, 13)); // NOI18N
+        Amount.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         Amount.setForeground(new java.awt.Color(0, 0, 0));
         Amount.setRows(5);
         Amount.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         jScrollPane1.setViewportView(Amount);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 190, 40, 270));
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(520, 160, 40, 200);
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -233,33 +224,39 @@ public class Official_RecieptForm extends javax.swing.JFrame {
 
         Fees.setBackground(new java.awt.Color(255, 255, 255));
         Fees.setColumns(20);
-        Fees.setFont(new java.awt.Font("Baskerville Old Face", 0, 13)); // NOI18N
+        Fees.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         Fees.setForeground(new java.awt.Color(0, 0, 0));
         Fees.setRows(5);
         Fees.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         jScrollPane2.setViewportView(Fees);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 680, 270));
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(20, 160, 490, 200);
 
-        jLabel13.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Baskerville Old Face", 0, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Paid Fees:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
+        jPanel1.add(jLabel13);
+        jLabel13.setBounds(270, 149, 56, 15);
 
-        jLabel14.setFont(new java.awt.Font("Baskerville Old Face", 0, 13)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Name:");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        jPanel1.add(jLabel14);
+        jLabel14.setBounds(10, 132, 27, 11);
 
-        jLabel18.setFont(new java.awt.Font("Baskerville Old Face", 0, 13)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Baskerville Old Face", 0, 12)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Signiture");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 530, 90, 20));
+        jPanel1.add(jLabel18);
+        jLabel18.setBounds(370, 390, 90, 20);
 
-        TOTAL.setFont(new java.awt.Font("Baskerville Old Face", 0, 15)); // NOI18N
+        TOTAL.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         TOTAL.setForeground(new java.awt.Color(0, 0, 0));
+        TOTAL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TOTAL.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(TOTAL, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 470, 60, 16));
+        jPanel1.add(TOTAL);
+        TOTAL.setBounds(510, 370, 60, 16);
 
         jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -267,34 +264,27 @@ public class Official_RecieptForm extends javax.swing.JFrame {
 
         remarkss.setBackground(new java.awt.Color(255, 255, 255));
         remarkss.setColumns(20);
+        remarkss.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         remarkss.setRows(5);
         remarkss.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         jScrollPane3.setViewportView(remarkss);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, 440, -1));
+        jPanel1.add(jScrollPane3);
+        jScrollPane3.setBounds(60, 370, 220, 40);
 
-        jLabel20.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Baskerville Old Face", 0, 12)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Total:");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 470, -1, -1));
+        jPanel1.add(jLabel20);
+        jLabel20.setBounds(480, 370, 38, 16);
 
-        jLabel21.setFont(new java.awt.Font("Baskerville Old Face", 0, 13)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("LRN:");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+        jPanel1.add(jLabel21);
+        jLabel21.setBounds(10, 120, 22, 11);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 796, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -305,14 +295,47 @@ public class Official_RecieptForm extends javax.swing.JFrame {
             String SUser = "root";
             String SPass = "";
             Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
-            String sql = "SELECT * FROM student_info WHERE lrn = ?";
+            
+            String sql = "SELECT si.lrn, CONCAT( "
+                    + "    si.lastname, ', ', "
+                    + "    si.firstname, ' ', "
+                    + "    IF(si.middlename = '' OR si.middlename IS NULL, '', CONCAT(LEFT(si.middlename, 1), '.')) "
+                    + ") AS fullname, "
+                    + " si.section, si.grade, si.ID, "
+                    + "sp.student_ID, sp.Fee_Paid, sp.`1st_Quarter`, sp.`2nd_Quarter`, sp.`3rd_Quarter`, sp.`4th_Quarter`, sp.Total_Paid, sp.Date_Q1, sp.Date_Q2, sp.Date_Q3, sp.Date_Q4, sp.remarks "
+                    + "FROM student_info si "
+                    + "LEFT JOIN student_payment sp ON si.ID = sp.student_ID "
+                    + "WHERE si.ID = ? AND si.school_Year = ? ";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, this.lrn);
+            pst.setInt(1, Session.studentID);
+            pst.setString(2, Session.schoolyear);
+            System.out.println("DEBUG studentID = " + Session.studentID);
+            System.out.println("DEBUG schoolyear = " + Session.schoolyear);
+            System.out.println("DEBUG timer = " + Session.timer);
+            System.out.println("---- Running SQL ----");
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 String grade = rs.getString("grade");
                 String sect = rs.getString("section");
+                String fullname = rs.getString("fullname");
+                String fullpaid = rs.getString("Total_Paid");
+                String LRn = rs.getString("lrn");
+                String remarks = rs.getString("remarks");
+                
                 Section.setText(sect);
+                LRN.setText(LRn);
+                name.setText(fullname);
+                Date.setText(Session.timer);
+                TOTAL.setText(fullpaid);
+                remarkss.setText(remarks);
+                
+                System.out.println(grade);
+                System.out.println(sect);
+                System.out.println(fullname);
+                System.out.println(fullpaid);
+                System.out.println(LRn);
+                System.out.println(remarks);
+
                 if (grade.equals("7th")) {
                     Grade.setText("7");
 
@@ -327,15 +350,26 @@ public class Official_RecieptForm extends javax.swing.JFrame {
 
                 } else if (grade.equals("11th")) {
                     Grade.setText("11");
-
+                    jLabel16.setText("Strand");
                 } else if (grade.equals("12th")) {
                     Grade.setText("12");
-
+                    jLabel16.setText("Strand:");
                 } else {
                     System.out.println("not good");
                 }
                 Grade.setText(grade);
 
+            }
+            String query = "SELECT Fee, amount FROM contribution_Paid WHERE student_ID = ? AND School_Year = ? AND Quarter = ?";
+            PreparedStatement pmt = con.prepareStatement(query);
+            pmt.setInt(1, Session.studentID);
+            pmt.setString(2, Session.schoolyear);
+            pmt.setString(3, Session.Quarter);
+            ResultSet rso = pmt.executeQuery();
+            while(rso.next()){
+            Session.Fees.add(rso.getString("Fee"));
+            Session.AmountItem.add(rso.getString("amount"));
+            
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -344,20 +378,22 @@ public class Official_RecieptForm extends javax.swing.JFrame {
     }
 
     public void feeload() {
+        
         Fees.setBorder(null);
         Fees.setFocusable(false);
         Fees.setEditable(false);
         Fees.setBackground(Color.WHITE);
         jScrollPane2.setBorder(BorderFactory.createEmptyBorder());
-        
+
         remarkss.setBorder(null);
         remarkss.setFocusable(false);
         remarkss.setEditable(false);
         remarkss.setBackground(Color.WHITE);
         jScrollPane3.setBorder(BorderFactory.createEmptyBorder());
-        
-        for (int i = 0; i < fee.size(); i++) {
-            Fees.append(fee.get(i) + "\n");
+
+        for (int i = 0; i < Session.Fees.size(); i++) {
+            Fees.append(Session.Fees.get(i) + "\n");
+            System.out.println(Session.Fees.get(i));
         }
     }
 
@@ -367,13 +403,12 @@ public class Official_RecieptForm extends javax.swing.JFrame {
         Amount.setEditable(false);
         Amount.setBackground(Color.WHITE);
         jScrollPane1.setBorder(BorderFactory.createEmptyBorder());
-        
-        for (int i = 0; i < amount.size(); i++) {
-            Amount.append(amount.get(i) + "\n");
-            int value = Integer.parseInt(amount.get(i));
-            this.total += value;
+
+        for (int i = 0; i < Session.AmountItem.size(); i++) {
+            Amount.append(Session.AmountItem.get(i) + "\n");
+            System.out.println(Session.AmountItem.get(i));
         }
-        TOTAL.setText(String.valueOf(total));
+
     }
 
     private void printReceipt() {
@@ -397,10 +432,7 @@ public class Official_RecieptForm extends javax.swing.JFrame {
                 return Printable.PAGE_EXISTS;
             });
 
-            boolean ok = job.printDialog();
-            if (ok) {
-                job.print();
-            }
+            job.print();
         } catch (PrinterException ex) {
             ex.printStackTrace();
         }

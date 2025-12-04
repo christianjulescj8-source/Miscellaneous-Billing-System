@@ -33,9 +33,9 @@ public class PaymentForm extends javax.swing.JFrame {
     private List<String> Feesss = new ArrayList<>();
     private List<String> amounts = new ArrayList<>();
     private Stack<Object[]> removedRows = new Stack<>();
-    private ArrayList<Double> discountedItems = new ArrayList<>();
-    private ArrayList<Double> discountAmounts = new ArrayList<>();
+
     private ArrayList<Double> Itemprice = new ArrayList<>();
+    private List<String> IDofFees = new ArrayList<>();
     private int totalAmount = 0;
 
     public PaymentForm() {
@@ -59,6 +59,7 @@ public class PaymentForm extends javax.swing.JFrame {
         this.Name = Name;
         this.fee = feeq;
         this.LRn = Lrn;
+        Session.studentID = studID;
         this.studentid = studID;
         this.numbersib = numberofsib;
 
@@ -93,7 +94,6 @@ public class PaymentForm extends javax.swing.JFrame {
         Nameshow = new javax.swing.JLabel();
         Confirm = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        discountVersion = new javax.swing.JLabel();
         Total = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         Qu2 = new javax.swing.JRadioButton();
@@ -106,10 +106,7 @@ public class PaymentForm extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jLabel11 = new javax.swing.JLabel();
-        FinalDiscount = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -217,11 +214,6 @@ public class PaymentForm extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 570, 79, -1));
 
-        discountVersion.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
-        discountVersion.setForeground(new java.awt.Color(255, 255, 255));
-        discountVersion.setText("100");
-        jPanel1.add(discountVersion, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 450, 110, -1));
-
         Total.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
         Total.setForeground(new java.awt.Color(255, 255, 255));
         Total.setText("0");
@@ -298,33 +290,10 @@ public class PaymentForm extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 410, -1, -1));
 
-        jList1.setBackground(new java.awt.Color(204, 204, 204));
-        jList1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jList1.setForeground(new java.awt.Color(0, 0, 0));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "25%", "50%", "75%", "100%", "" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList1MouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(jList1);
-
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 440, 80, 100));
-
         jLabel11.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Total:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 410, -1, -1));
-
-        FinalDiscount.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
-        FinalDiscount.setForeground(new java.awt.Color(255, 255, 255));
-        FinalDiscount.setText("Final Total:");
-        jPanel1.add(FinalDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 450, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -340,6 +309,7 @@ public class PaymentForm extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
     public void FeePaid() {
         try {
             String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
@@ -368,26 +338,32 @@ public class PaymentForm extends javax.swing.JFrame {
             }
 
             // 3. Query all fees
-            String sqlFees = "SELECT Name_of_contribution, amount, Acronym FROM miscellaneous_fee";
+            String sqlFees = "SELECT ID, Name_of_contribution, amount, Acronym FROM miscellaneous_fee";
             PreparedStatement pstFees = con.prepareStatement(sqlFees);
             ResultSet rsFees = pstFees.executeQuery();
 
-            DefaultTableModel model = new DefaultTableModel(new String[]{"Name of Contribution", "Amount", "Acronym"}, 0);
+            DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Name of Contribution", "Amount", "Acronym"}, 0);
             jTable1.setModel(model);
             System.out.println("Raw Fee_paid: " + feePaid);
             // 4. Only add fees that are NOT in paidSet
             while (rsFees.next()) {
                 String name = rsFees.getString("Name_of_contribution");
                 int amount = rsFees.getInt("amount");
-                String acronym = rsFees.getString("Acronym");  // use Acronym_of_Fee for matching
-
-                if (!paidSet.contains(acronym)) {
-                    model.addRow(new Object[]{name, amount, acronym});
+                String ID = rsFees.getString("ID");
+                String acronym = rsFees.getString("Acronym");
+                if (!paidSet.contains(ID)) {
+                    model.addRow(new Object[]{ID, name, amount, acronym});
                 }
             }
-            jTable1.getColumnModel().getColumn(2).setMinWidth(0);
-            jTable1.getColumnModel().getColumn(2).setMaxWidth(0);
-            jTable1.getColumnModel().getColumn(2).setWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+            jTable1.getColumnModel().getColumn(0).setWidth(0);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(0);
+            jTable1.getColumnModel().getColumn(3).setWidth(0);
+            jTable1.setFocusable(false);
+            jTable1.setDefaultEditor(Object.class, null);
+            
             con.close();
 
         } catch (Exception e) {
@@ -532,22 +508,24 @@ public class PaymentForm extends javax.swing.JFrame {
         DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
         int row = jTable1.getSelectedRow();
         if (row != -1) {
-            String value = jTable1.getValueAt(row, 2).toString(); // Acronym(amount)
-            String value2 = jTable1.getValueAt(row, 1).toString();
-            String value3 = jTable1.getValueAt(row, 0).toString();
-            double value4 = Integer.parseInt(jTable1.getValueAt(row, 1).toString());
+            String value = jTable1.getValueAt(row, 3).toString(); // Acronym(amount)
+            String value2 = jTable1.getValueAt(row, 2).toString();
+            String value3 = jTable1.getValueAt(row, 1).toString();
+            String value5 = jTable1.getValueAt(row, 0).toString();
+            double value4 = Integer.parseInt(jTable1.getValueAt(row, 2).toString());
             if (!selectedItems.contains(value)) {
                 selectedItems.add(value);
                 amounts.add(value2);
                 Feesss.add(value3);
                 Itemprice.add(value4);
+                IDofFees.add(value5);
                 Object[] rowData = new Object[tableModel.getColumnCount()];
                 for (int i = 0; i < tableModel.getColumnCount(); i++) {
                     rowData[i] = tableModel.getValueAt(row, i);
                 }
                 removedRows.push(rowData);
 
-                int amount = Integer.parseInt(jTable1.getValueAt(row, 1).toString()); // Amount
+                int amount = Integer.parseInt(jTable1.getValueAt(row, 2).toString()); // Amount
                 totalAmount += amount;
 
                 updateTotalLabel();
@@ -566,13 +544,13 @@ public class PaymentForm extends javax.swing.JFrame {
             amounts.remove(amounts.size() - 1);
             Feesss.remove(Feesss.size() - 1);
             Itemprice.remove(Itemprice.size() - 1);
-            discountedItems.remove(discountedItems.size() - 1);
-            discountAmounts.remove(discountAmounts.size() - 1);
+
+            IDofFees.remove(IDofFees.size() - 1);
             // Restore row back to table
             Object[] lastRow = removedRows.pop();
             tableModel.addRow(lastRow);
 
-            int amount = Integer.parseInt(lastRow[1].toString()); // Amount column
+            int amount = Integer.parseInt(lastRow[2].toString()); // Amount column
             totalAmount -= amount;
 
             updateTotalLabel();
@@ -592,9 +570,9 @@ public class PaymentForm extends javax.swing.JFrame {
         String SUser = "root";
         String SPass = "";
         try (Connection con = DriverManager.getConnection(SUrl, SUser, SPass)) {
-
+            Session.Discount = false;
             // 2. Get entered amount
-            int amount = Integer.parseInt(Total.getText());
+            double amount = Double.parseDouble(Total.getText());
             int size = selectedItems.size();
             int count = 0;
             while (size == count) {
@@ -612,16 +590,16 @@ public class PaymentForm extends javax.swing.JFrame {
             ResultSet rsPay = psPay.executeQuery();
 
             if (rsPay.next()) {
-                int q1 = rsPay.getInt("1st_Quarter");
-                int q2 = rsPay.getInt("2nd_Quarter");
-                int q3 = rsPay.getInt("3rd_Quarter");
-                int q4 = rsPay.getInt("4th_Quarter");
+                double q1 = rsPay.getInt("1st_Quarter");
+                double q2 = rsPay.getInt("2nd_Quarter");
+                double q3 = rsPay.getInt("3rd_Quarter");
+                double q4 = rsPay.getInt("4th_Quarter");
                 String date1 = rsPay.getString("Date_Q1");
                 String date2 = rsPay.getString("Date_Q2");
                 String date3 = rsPay.getString("Date_Q3");
                 String date4 = rsPay.getString("Date_Q4");
                 String feePaid = rsPay.getString("Fee_paid");
-                String feeName = Paymentfor.getText();
+
                 String sql = "SELECT SUM(amount) AS total_amount FROM miscellaneous_fee";
                 PreparedStatement ps = con.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
@@ -653,14 +631,18 @@ public class PaymentForm extends javax.swing.JFrame {
 
                         // 5. Append the new fee into Fee_paid
                         if (!feePaid.isEmpty()) {
-                            feePaid += ", " + feeName;
+                            for (String i : IDofFees) {
+                                feePaid += ", " + i;
+                            }
                         } else {
-                            feePaid = feeName;
+                            for (String i : IDofFees) {
+                                feePaid = feePaid += ", " + i;;
+                            }
                         }
 
                         // 6. Calculate total paid
-                        int totalPaid = q1 + q2 + q3 + q4;
-                        int amountpaid = Integer.parseInt(Total.getText());
+                        double totalPaid = q1 + q2 + q3 + q4;
+                        double amountpaid = Double.parseDouble(Total.getText());
 
                         String remark = remarks.getText();
 
@@ -668,11 +650,11 @@ public class PaymentForm extends javax.swing.JFrame {
                         String updateSql = "UPDATE student_payment SET Fee_Paid=?, 1st_Quarter=?, 2nd_Quarter=?, 3rd_Quarter=?, 4th_Quarter=?, Total_Paid=?, Date_Q1 = ?, Date_Q2 = ?, Date_Q3 = ?, Date_Q4 = ?, remarks = ? WHERE student_ID=?";
                         PreparedStatement psUpdate = con.prepareStatement(updateSql);
                         psUpdate.setString(1, feePaid);
-                        psUpdate.setInt(2, q1);
-                        psUpdate.setInt(3, q2);
-                        psUpdate.setInt(4, q3);
-                        psUpdate.setInt(5, q4);
-                        psUpdate.setInt(6, totalPaid);
+                        psUpdate.setDouble(2, q1);
+                        psUpdate.setDouble(3, q2);
+                        psUpdate.setDouble(4, q3);
+                        psUpdate.setDouble(5, q4);
+                        psUpdate.setDouble(6, totalPaid);
                         psUpdate.setString(7, date1);
                         psUpdate.setString(8, date2);
                         psUpdate.setString(9, date3);
@@ -680,60 +662,77 @@ public class PaymentForm extends javax.swing.JFrame {
                         psUpdate.setString(11, remark);
                         psUpdate.setInt(12, this.studentid);
                         psUpdate.executeUpdate();
-                        String updateSql2 = "INSERT INTO Contribution_paid (student_ID, Fee, amount, Quarter, School_Year) VALUES (?, ?, ?, ?, ?)";
+                        String updateSql2 = "INSERT INTO Contribution_paid (student_ID, Fee, amount, Quarter, School_Year, Fee_ID) VALUES (?, ?, ?, ?, ?, ?)";
                         PreparedStatement psUpdate2 = con.prepareStatement(updateSql2);
                         for (int i = 0; i < Feesss.size(); i++) {
                             if (Qu1.isSelected()) {
                                 String Fess = Feesss.get(i); // SSGF(50)
-                                String amountStr = amounts.get(i);      // 50
-                                int amountss = Integer.parseInt(amountStr); // convert from String → int
+                                String amountStr = amounts.get(i);    // 50
+                                String feeId = IDofFees.get(i);
+                                double amountss = Double.parseDouble(amountStr); // convert from String → int
                                 psUpdate2.setInt(1, this.studentid);
                                 psUpdate2.setString(2, Fess);  // Feess
-                                psUpdate2.setInt(3, amountss);       // REAL amount integer
+                                psUpdate2.setDouble(3, amountss);       // REAL amount integer
                                 psUpdate2.setString(4, "1st");
                                 psUpdate2.setString(5, Session.schoolyear);
+                                psUpdate2.setString(6, feeId);
                                 psUpdate2.executeUpdate();
                                 System.out.println("Feesss size: " + Feesss.size());
                                 System.out.println("Amounts size: " + amounts.size());
+                                Session.Quarter = "1st";
                             } else if (Qu2.isSelected()) {
                                 String Fess = Feesss.get(i); // SSGF(50)
-                                String amountStr = amounts.get(i);      // 50
-                                int amountss = Integer.parseInt(amountStr); // convert from String → int
+                                String amountStr = amounts.get(i);    // 50
+                                String feeId = IDofFees.get(i);
+                                double amountss = Double.parseDouble(amountStr); // convert from String → int
                                 psUpdate2.setInt(1, this.studentid);
                                 psUpdate2.setString(2, Fess);  // Feess
-                                psUpdate2.setInt(3, amountss);       // REAL amount integer
+                                psUpdate2.setDouble(3, amountss);       // REAL amount integer
                                 psUpdate2.setString(4, "2nd");
                                 psUpdate2.setString(5, Session.schoolyear);
+                                psUpdate2.setString(6, feeId);
                                 psUpdate2.executeUpdate();
-
+                                Session.Quarter = "2nd";
                             } else if (Qu3.isSelected()) {
                                 String Fess = Feesss.get(i); // SSGF(50)
-                                String amountStr = amounts.get(i);      // 50
-                                int amountss = Integer.parseInt(amountStr); // convert from String → int
+                                String amountStr = amounts.get(i);    // 50
+                                String feeId = IDofFees.get(i);
+                                double amountss = Double.parseDouble(amountStr); // convert from String → int
                                 psUpdate2.setInt(1, this.studentid);
                                 psUpdate2.setString(2, Fess);  // Feess
-                                psUpdate2.setInt(3, amountss);       // REAL amount integer
+                                psUpdate2.setDouble(3, amountss);       // REAL amount integer
                                 psUpdate2.setString(4, "3rd");
                                 psUpdate2.setString(5, Session.schoolyear);
+                                psUpdate2.setString(6, feeId);
                                 psUpdate2.executeUpdate();
-
+                                Session.Quarter = "3rd";
                             } else if (Qu4.isSelected()) {
                                 String Fess = Feesss.get(i); // SSGF(50)
-                                String amountStr = amounts.get(i);      // 50
-                                int amountss = Integer.parseInt(amountStr); // convert from String → int
+                                String amountStr = amounts.get(i);    // 50
+                                String feeId = IDofFees.get(i);
+                                double amountss = Double.parseDouble(amountStr); // convert from String → int
                                 psUpdate2.setInt(1, this.studentid);
                                 psUpdate2.setString(2, Fess);  // Feess
-                                psUpdate2.setInt(3, amountss);       // REAL amount integer
+                                psUpdate2.setDouble(3, amountss);       // REAL amount integer
                                 psUpdate2.setString(4, "4th");
                                 psUpdate2.setString(5, Session.schoolyear);
+                                psUpdate2.setString(6, feeId);
                                 psUpdate2.executeUpdate();
+                                Session.Quarter = "4th";
                             }
                         }
                         String time = CLOCK.getText();
                         String tol = Total.getText();
-                        Official_RecieptForm reciept = new Official_RecieptForm(amountpaid, feeName, time, this.Name, this.studentid, tol, this.LRn, new ArrayList<>(this.Feesss), new ArrayList<>(this.amounts), remark);
+                        
+                        Session.timer = CLOCK.getText();
+                        this.Feesss = Session.Fees;
+                        this.amounts = Session.AmountItem;
+                        remarks.setText(Session.remarkss);
+                        Official_RecieptForm reciept = new Official_RecieptForm();
                         reciept.setVisible(true);
-                        sibling.setVisible(false);
+                        if (sibling != null) {
+                            sibling.setVisible(false);
+                        }
                         dispose();
                     }
                 }
@@ -779,38 +778,6 @@ public class PaymentForm extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        String selected = jList1.getSelectedValue();
-        double discount1 = 25;
-        double discount2 = 50;
-        double discount3 = 75;
-        double discount4 = 100;
-
-        if ("25%".equals(selected)) {
-            double discountRate = (discount1 / 100);
-            for (double price : Itemprice) {
-                double discountAmount = price * discountRate;
-                double finalPrice = price - discountAmount;
-
-                discountedItems.add(finalPrice);
-                discountAmounts.add(discountAmount);
-
-            }
-            double totalDiscount = 0;
-
-            for (double d : discountAmounts) {
-                totalDiscount += d;
-            }
-            discountVersion.setText(""+totalDiscount);
-        } else if ("50%".equals(selected)) {
-
-        } else if ("75%".equals(selected)) {
-
-        } else if ("100".equals(selected)) {
-
-        }
-    }//GEN-LAST:event_jList1MouseClicked
     private javax.swing.Timer clockTimer;
 
     public void startClock() {
@@ -866,7 +833,6 @@ public class PaymentForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CLOCK;
     private javax.swing.JButton Confirm;
-    private javax.swing.JLabel FinalDiscount;
     private javax.swing.ButtonGroup Fiscalyear;
     private javax.swing.JLabel LRN;
     private javax.swing.JLabel Nameshow;
@@ -878,7 +844,6 @@ public class PaymentForm extends javax.swing.JFrame {
     private javax.swing.JLabel Rooler;
     private javax.swing.JLabel Total;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel discountVersion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -887,12 +852,10 @@ public class PaymentForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
     private javax.swing.JTextArea remarks;

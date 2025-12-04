@@ -81,6 +81,8 @@ public class Siblings_Form extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setPreferredWidth(5);
             jTable1.getColumnModel().getColumn(2).setPreferredWidth(20);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
+            jTable1.setFocusable(false);
+            jTable1.setDefaultEditor(Object.class, null);
             int[] hiddenCols = {0, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16}; // indexes start at 0
             for (int colIndex : hiddenCols) {
                 jTable1.getColumnModel().getColumn(colIndex).setMinWidth(0);

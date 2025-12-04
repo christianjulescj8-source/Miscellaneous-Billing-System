@@ -325,6 +325,8 @@ public class Add_FeeForm extends javax.swing.JFrame {
             jTable1.setModel(model);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(20);
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
+            jTable1.setFocusable(false);
+            jTable1.setDefaultEditor(Object.class, null);
             // Hide unwanted columns (keep only LRN_Students, firstname, middlename, lastname, section)
             int[] hiddenCols = {1, 4}; // indexes start at 0
             for (int colIndex : hiddenCols) {

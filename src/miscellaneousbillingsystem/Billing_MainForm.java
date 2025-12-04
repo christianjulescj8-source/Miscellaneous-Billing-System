@@ -22,7 +22,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
 
     public Billing_MainForm() {
         initComponents();
-
+        //Pay1.setVisible(false);
         curriculum.setSelectedIndex(0);
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -118,6 +118,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
+        Pay1 = new javax.swing.JButton();
 
         feeprev.setText("jLabel7");
 
@@ -665,6 +666,17 @@ public class Billing_MainForm extends javax.swing.JFrame {
         jLabel28.setText("LRN:");
         jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
+        Pay1.setBackground(new java.awt.Color(255, 255, 255));
+        Pay1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        Pay1.setForeground(new java.awt.Color(0, 153, 0));
+        Pay1.setText("Discount");
+        Pay1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Pay1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Pay1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 110, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -789,6 +801,8 @@ public class Billing_MainForm extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(8).setPreferredWidth(5);
             jTable1.getColumnModel().getColumn(7).setPreferredWidth(5);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
+            jTable1.setFocusable(false);
+            jTable1.setDefaultEditor(Object.class, null);
             int[] hiddenCols = {2, 3, 4, 5, 6, 12, 13, 14, 15, 16}; // indexes start at 0
             for (int colIndex : hiddenCols) {
                 jTable1.getColumnModel().getColumn(colIndex).setMinWidth(0);
@@ -812,6 +826,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+            String SQL = "";
             int selectedrow = jTable1.getSelectedRow();
             if (selectedrow > -1) {
                 if (Session.role.equals("Administrator")) {
@@ -1220,6 +1235,14 @@ public class Billing_MainForm extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_Section12MouseClicked
 
+    private void Pay1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pay1ActionPerformed
+        
+        Session.studentID = Integer.parseInt(studentID.getText().toString());
+        SPSdiscountForm discount = new SPSdiscountForm();
+        discount.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Pay1ActionPerformed
+
     public static void main(String args[]) {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1267,6 +1290,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel Name;
     private javax.swing.JLabel OpenMenuBtn;
     private javax.swing.JButton Pay;
+    private javax.swing.JButton Pay1;
     private javax.swing.JButton Profile;
     private javax.swing.JLabel Q1;
     private javax.swing.JLabel Q2;

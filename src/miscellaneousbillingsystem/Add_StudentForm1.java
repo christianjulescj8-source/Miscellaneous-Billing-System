@@ -508,7 +508,8 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-     public void sectionload() {
+     
+    public void sectionload() {
         String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
         String SUser = "root";
         String SPass = "";
@@ -596,7 +597,8 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
 
             // Apply model
             jTable1.setModel(model);
-
+            jTable1.setFocusable(false);
+            jTable1.setDefaultEditor(Object.class, null);
             // Hide unwanted columns (keep only LRN_Students, firstname, middlename, lastname, section)
             int[] hiddenCols = {4, 5, 6}; // indexes start at 0
             for (int colIndex : hiddenCols) {
@@ -1070,10 +1072,11 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
             
-            query = "DELETE FROM student_info WHERE section=? AND school_Year= ? ";
+            query = "DELETE FROM student_info WHERE section=? AND school_Year= ? AND grade = ? ";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, sect);
             pst.setString(2, Session.schoolyear);
+            pst.setString(3, this.level);
             pst.executeUpdate();
             jPanel5.setVisible(false);
             Firstnamelabel.setVisible(true);
