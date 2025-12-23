@@ -41,7 +41,7 @@ public class Siblings_Form extends javax.swing.JFrame {
                     + "LEFT JOIN student_payment sp ON si.ID = sp.student_ID "
                     + "WHERE si.lastname = ? "
                     + "  AND si.school_Year = ? "
-                    + "  AND si.ID <> ? " // <-- exclude this student
+                    + "  AND si.ID <> ? " 
                     + "ORDER BY si.lastname ASC, si.firstname ASC";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -138,6 +138,9 @@ public class Siblings_Form extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 153, 0));
         jButton1.setText("Back");
+        jButton1.setBorderPainted(false);
+        jButton1.setFocusPainted(false);
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

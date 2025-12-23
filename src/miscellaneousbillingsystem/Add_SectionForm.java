@@ -27,10 +27,7 @@ public class Add_SectionForm extends javax.swing.JFrame {
     public Add_SectionForm() {
         UIManager.put("ScrollBarUI", "miscellaneousbillingsystem.ScrollBarWin11");
         initComponents();
-        
 
-        
-        
         jTable1.getColumnModel().getColumn(0).setMinWidth(0);
         jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
         jTable1.getColumnModel().getColumn(0).setWidth(0);
@@ -60,7 +57,7 @@ public class Add_SectionForm extends javax.swing.JFrame {
             Rooler.setText("Add Section 12th Grade");
             loadStudentData12th();
         } else {
-            System.out.println("not good");
+
         }
     }
 
@@ -161,6 +158,9 @@ public class Add_SectionForm extends javax.swing.JFrame {
         Create.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Create.setForeground(new java.awt.Color(255, 255, 255));
         Create.setText("Create");
+        Create.setBorderPainted(false);
+        Create.setFocusPainted(false);
+        Create.setFocusable(false);
         Create.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CreateActionPerformed(evt);
@@ -172,6 +172,9 @@ public class Add_SectionForm extends javax.swing.JFrame {
         Refresh.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Refresh.setForeground(new java.awt.Color(255, 255, 255));
         Refresh.setText("Refresh");
+        Refresh.setBorderPainted(false);
+        Refresh.setFocusPainted(false);
+        Refresh.setFocusable(false);
         Refresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RefreshActionPerformed(evt);
@@ -183,6 +186,9 @@ public class Add_SectionForm extends javax.swing.JFrame {
         Delete.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Delete.setForeground(new java.awt.Color(255, 255, 255));
         Delete.setText("Delete");
+        Delete.setBorderPainted(false);
+        Delete.setFocusPainted(false);
+        Delete.setFocusable(false);
         Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteActionPerformed(evt);
@@ -205,6 +211,9 @@ public class Add_SectionForm extends javax.swing.JFrame {
         Back.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Back.setForeground(new java.awt.Color(255, 255, 255));
         Back.setText("Back");
+        Back.setBorderPainted(false);
+        Back.setFocusPainted(false);
+        Back.setFocusable(false);
         Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackActionPerformed(evt);
@@ -557,7 +566,7 @@ public class Add_SectionForm extends javax.swing.JFrame {
             Sectionlebel.setVisible(true);
             loadStudentData12th();
         } else {
-            System.out.println("not good");
+
         }
     }//GEN-LAST:event_RefreshActionPerformed
 
@@ -650,7 +659,7 @@ public class Add_SectionForm extends javax.swing.JFrame {
                     Sectionlebel.setVisible(true);
                     loadStudentData12th();
                 } else {
-                    System.out.println("not good");
+
                 }
             }
         } catch (Exception e) {
@@ -700,7 +709,7 @@ public class Add_SectionForm extends javax.swing.JFrame {
             } else if (this.level.equals("12th")) {
                 loadStudentData12th();
             } else {
-                System.out.println("not good");
+
             }
 
             con.close();
@@ -715,7 +724,7 @@ public class Add_SectionForm extends javax.swing.JFrame {
         int selectedRow = jTable1.getSelectedRow();
 
         if (selectedRow == -1) {
-            return; // nothing selected
+            return;
         }
 
         String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
@@ -757,7 +766,7 @@ public class Add_SectionForm extends javax.swing.JFrame {
                 } else if (this.level.equals("12th")) {
                     loadStudentData12th();
                 } else {
-                    System.out.println("not good");
+
                 }
 
                 con.close();
@@ -801,14 +810,14 @@ public class Add_SectionForm extends javax.swing.JFrame {
 
         /* Create and display the form */
         try {
-        // Set look and feel first (optional)
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            // Set look and feel first (optional)
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
-        // Apply custom scrollbar globally
-        UIManager.put("ScrollBarUI", "miscellaneousbillingsystem.ScrollBarWin11");
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
+            // Apply custom scrollbar globally
+            UIManager.put("ScrollBarUI", "miscellaneousbillingsystem.ScrollBarWin11");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Add_SectionForm().setVisible(true);

@@ -13,12 +13,12 @@ import javax.swing.JRadioButton;
 
 public class SignUpForm extends javax.swing.JFrame {
 
-    
     private String codeq;
+
     public SignUpForm() {
-        
+
         initComponents();
-        
+
         Passwordtxt.setEchoChar('\u2022');
         ConfirmPasstxt.setEchoChar('\u2022');
 
@@ -29,9 +29,9 @@ public class SignUpForm extends javax.swing.JFrame {
         Staff.setFocusPainted(false);
         Staff.setBackground(new Color(240, 240, 240));
         Staff.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -215,6 +215,9 @@ public class SignUpForm extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Create");
         jButton1.setToolTipText("");
+        jButton1.setBorderPainted(false);
+        jButton1.setFocusPainted(false);
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -368,6 +371,8 @@ public class SignUpForm extends javax.swing.JFrame {
         Admin.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
         Admin.setForeground(new java.awt.Color(0, 0, 0));
         Admin.setText("Administrator");
+        Admin.setFocusPainted(false);
+        Admin.setFocusable(false);
         Admin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AdminActionPerformed(evt);
@@ -380,6 +385,8 @@ public class SignUpForm extends javax.swing.JFrame {
         Staff.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
         Staff.setForeground(new java.awt.Color(0, 0, 0));
         Staff.setText("PTA Treasurer");
+        Staff.setFocusPainted(false);
+        Staff.setFocusable(false);
         jPanel1.add(Staff);
         Staff.setBounds(420, 130, 130, 21);
 
@@ -421,10 +428,9 @@ public class SignUpForm extends javax.swing.JFrame {
 
     private void hidePassMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hidePassMousePressed
         if (ConfirmPasstxt.getEchoChar() != 0) {
-            ConfirmPasstxt.setEchoChar((char) 0); // Show password
+            ConfirmPasstxt.setEchoChar((char) 0);
             hidePass.setVisible(false);
         } else {
-            // Hide password
 
         }
 
@@ -436,7 +442,7 @@ public class SignUpForm extends javax.swing.JFrame {
 
     private void showPassMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPassMousePressed
         ConfirmPasstxt.setEchoChar('\u2022');
-        // Show password
+
         hidePass.setVisible(true);
 
     }//GEN-LAST:event_showPassMousePressed
@@ -528,12 +534,11 @@ public class SignUpForm extends javax.swing.JFrame {
                     ps.setString(3, userName);
                     ps.setString(4, password);
                     ps.setString(5, code);
-                    ps.executeUpdate();                   
+                    ps.executeUpdate();
                     LoginForm login = new LoginForm();
                     login.setVisible(true);
                     dispose();
-                    System.out.println("it created!");                   
-                   
+
                 } else if (Staff.isSelected()) {
                     query = "INSERT INTO user_account (first_name, middle_name, last_name, username, password, recovery_code, Status) VALUES (?, ?, ?, ?, ?, ?, 'pending')";
                     PreparedStatement pst = con.prepareStatement(query);
@@ -552,12 +557,11 @@ public class SignUpForm extends javax.swing.JFrame {
                     ps.setString(3, userName);
                     ps.setString(4, password);
                     ps.setString(5, code);
-                    ps.executeUpdate();                   
+                    ps.executeUpdate();
                     LoginForm login = new LoginForm();
                     login.setVisible(true);
                     dispose();
-                    System.out.println("it created!");                   
-                    
+
                 } else {
                     bullet.setText("Please select a role");
                 }
@@ -674,7 +678,7 @@ public class SignUpForm extends javax.swing.JFrame {
 
     private void hidePass1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hidePass1MousePressed
         if (Passwordtxt.getEchoChar() != 0) {
-            Passwordtxt.setEchoChar((char) 0); // Show password
+            Passwordtxt.setEchoChar((char) 0);
             hidePass1.setVisible(false);
         } else {
 
@@ -687,7 +691,7 @@ public class SignUpForm extends javax.swing.JFrame {
 
     private void showPass1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPass1MousePressed
         Passwordtxt.setEchoChar('\u2022');
-        // Show password
+
         hidePass1.setVisible(true);
     }//GEN-LAST:event_showPass1MousePressed
 

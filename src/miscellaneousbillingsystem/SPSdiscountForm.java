@@ -33,18 +33,20 @@ import javax.swing.UIManager;
 
 public class SPSdiscountForm extends javax.swing.JFrame {
 
-    
     private ArrayList<Integer> ids = new ArrayList<>();
     private ArrayList<Double> Itemprice = new ArrayList<>();
     private ArrayList<Double> discountedItems = new ArrayList<>();
     private ArrayList<Double> discountAmounts = new ArrayList<>();
-    
-    
+
     public SPSdiscountForm() {
         initComponents();
+        ids.clear();
+        Itemprice.clear();
+        discountedItems.clear();
+        discountAmounts.clear();
         confirm.setVisible(false);
         loadPaidFees();
-        laodDiscount();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -113,6 +115,9 @@ public class SPSdiscountForm extends javax.swing.JFrame {
         confirm.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         confirm.setForeground(new java.awt.Color(0, 153, 0));
         confirm.setText("Confirm");
+        confirm.setBorderPainted(false);
+        confirm.setFocusPainted(false);
+        confirm.setFocusable(false);
         confirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmActionPerformed(evt);
@@ -125,6 +130,13 @@ public class SPSdiscountForm extends javax.swing.JFrame {
         cityMeet.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         cityMeet.setForeground(new java.awt.Color(255, 255, 255));
         cityMeet.setText("25% - City Meet");
+        cityMeet.setFocusPainted(false);
+        cityMeet.setFocusable(false);
+        cityMeet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cityMeetMouseClicked(evt);
+            }
+        });
         cityMeet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cityMeetActionPerformed(evt);
@@ -137,6 +149,8 @@ public class SPSdiscountForm extends javax.swing.JFrame {
         provincialMeet.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         provincialMeet.setForeground(new java.awt.Color(255, 255, 255));
         provincialMeet.setText("50% - Provincial Meet");
+        provincialMeet.setFocusPainted(false);
+        provincialMeet.setFocusable(false);
         provincialMeet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 provincialMeetActionPerformed(evt);
@@ -149,6 +163,13 @@ public class SPSdiscountForm extends javax.swing.JFrame {
         regionalMeet.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         regionalMeet.setForeground(new java.awt.Color(255, 255, 255));
         regionalMeet.setText("75% - Regional Meet");
+        regionalMeet.setFocusPainted(false);
+        regionalMeet.setFocusable(false);
+        regionalMeet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regionalMeetActionPerformed(evt);
+            }
+        });
         jPanel1.add(regionalMeet);
         regionalMeet.setBounds(332, 170, 150, 20);
 
@@ -156,6 +177,8 @@ public class SPSdiscountForm extends javax.swing.JFrame {
         nationalMeet.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         nationalMeet.setForeground(new java.awt.Color(255, 255, 255));
         nationalMeet.setText("100% - National Meet");
+        nationalMeet.setFocusPainted(false);
+        nationalMeet.setFocusable(false);
         nationalMeet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nationalMeetActionPerformed(evt);
@@ -168,6 +191,9 @@ public class SPSdiscountForm extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 153, 0));
         jButton2.setText("Back");
+        jButton2.setBorderPainted(false);
+        jButton2.setFocusPainted(false);
+        jButton2.setFocusable(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -245,14 +271,13 @@ public class SPSdiscountForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void loadPaidFees() {
-     
+
         try {
             String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
             String SUser = "root";
             String SPass = "";
             Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
 
-            // 1. Get Fee_paid for this student
             String sqlPaid = "SELECT Fee_paid FROM student_payment WHERE student_ID = ?";
             PreparedStatement pstPaid = con.prepareStatement(sqlPaid);
             pstPaid.setInt(1, Session.studentID);
@@ -261,185 +286,238 @@ public class SPSdiscountForm extends javax.swing.JFrame {
             String feePaid = "";
             if (rsPaid.next()) {
                 feePaid = rsPaid.getString("Fee_paid");
-                
+
                 if (feePaid == null) {
                     feePaid = "";
                 }
             }
 
-            // 2. Put all paid acronyms into a HashSet for quick lookup
             Set<String> paidSet = new HashSet<>();
             for (String token : feePaid.split(",")) {
-                paidSet.add(token.trim()); // trim spaces
+                paidSet.add(token.trim());
             }
 
-            // 3. Query all fees
-            String sqlFees = "SELECT ID, Name_of_contribution, amount, Acronym FROM miscellaneous_fee";
+            String sqlFees = "SELECT ID_Contribution, Fee, amount FROM contribution_paid WHERE student_ID =? AND School_Year =? ";
             PreparedStatement pstFees = con.prepareStatement(sqlFees);
+            pstFees.setInt(1, Session.studentID);
+            pstFees.setString(2, Session.schoolyear);
             ResultSet rsFees = pstFees.executeQuery();
 
-            DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Name of Contribution", "Amount", "Acronym"}, 0);
+            DefaultTableModel model = new DefaultTableModel(new String[]{"ID_Contribution", "Fee", "amount"}, 0);
             jTable1.setModel(model);
-            System.out.println("Raw Fee_paid: " + feePaid);
-            // 4. Only add fees that are NOT in paidSet
+
             while (rsFees.next()) {
-                String name = rsFees.getString("Name_of_contribution");
+                String name = rsFees.getString("Fee");
                 int amount = rsFees.getInt("amount");
-                String ID = rsFees.getString("ID");
-                String acronym = rsFees.getString("Acronym");
-                if (paidSet.contains(ID)) {
-                    model.addRow(new Object[]{ID, name, amount, acronym});
-                }
+                String ID = rsFees.getString("ID_Contribution");
+
+                model.addRow(new Object[]{ID, name, amount});
+
             }
             jTable1.getColumnModel().getColumn(0).setMinWidth(0);
             jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
             jTable1.getColumnModel().getColumn(0).setWidth(0);
-            jTable1.getColumnModel().getColumn(3).setMinWidth(0);
-            jTable1.getColumnModel().getColumn(3).setMaxWidth(0);
-            jTable1.getColumnModel().getColumn(3).setWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+            jTable1.getColumnModel().getColumn(0).setWidth(0);
             jTable1.setFocusable(false);
             jTable1.setDefaultEditor(Object.class, null);
-            
-            
 
             for (int i = 0; i < model.getRowCount(); i++) {
-            Object value = model.getValueAt(i, 0); // column 0 = ID
-            ids.add(Integer.parseInt(value.toString()));
+                Object value = model.getValueAt(i, 0);
+                ids.add(Integer.parseInt(value.toString()));
             }
             for (int i = 0; i < model.getRowCount(); i++) {
-            Object value = model.getValueAt(i, 2); 
-            Itemprice.add(Double.parseDouble(value.toString()));
+                Object value = model.getValueAt(i, 2);
+
+                Itemprice.add(Double.parseDouble(value.toString()));
             }
-            
+
             con.close();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-    
-    }
-
-    public void laodDiscount() {
-
-        double discount1 = 25;
-        double discount2 = 50;
-        double discount3 = 75;
-        double discount4 = 100;
-
-        if (cityMeet.isSelected()) {
-            confirm.setVisible(true);
-            double discountRate = (discount1 / 100);
-            for (double price : Itemprice) {
-                double discountAmount = price * discountRate;
-                double finalPrice = price - discountAmount;
-
-                discountedItems.add(finalPrice);
-                discountAmounts.add(discountAmount);
-
-            }
-            double totalDiscount = 0;
-
-            for (double d : discountAmounts) {
-                totalDiscount += d;
-            }
-            
-        } else if (provincialMeet.isSelected()) {
-            confirm.setVisible(true);
-            double discountRate = (discount2 / 100);
-            for (double price : Itemprice) {
-                double discountAmount = price * discountRate;
-                double finalPrice = price - discountAmount;
-
-                discountedItems.add(finalPrice);
-                discountAmounts.add(discountAmount);
-                System.out.println(price);
-
-            }
-            double totalDiscount = 0;
-            for (double d : discountAmounts) {
-                totalDiscount += d;
-            }
-        } else if (regionalMeet.isSelected()) {
-            confirm.setVisible(true);
-            double discountRate = (discount3 / 100);
-            for (double price : Itemprice) {
-                double discountAmount = price * discountRate;
-                double finalPrice = price - discountAmount;
-
-                discountedItems.add(finalPrice);
-                discountAmounts.add(discountAmount);
-
-            }
-            double totalDiscount = 0;
-            for (double d : discountAmounts) {
-                totalDiscount += d;
-            }
-        } else if (nationalMeet.isSelected()) {
-            confirm.setVisible(true);
-            double discountRate = (discount4 / 100);
-            for (double price : Itemprice) {
-                double discountAmount = price * discountRate;
-                double finalPrice = price - discountAmount;
-
-                discountedItems.add(finalPrice);
-                discountAmounts.add(discountAmount);
-
-            }
-            double totalDiscount = 0;
-            for (double d : discountAmounts) {
-                totalDiscount += d;
-            }
-        }
 
     }
-    private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-       String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
+    private String forRemark;
+
+    private void applyDiscount(double discountPercent) {
+        String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
         String SUser = "root";
         String SPass = "";
-        
-        try{
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
-        for(int i = 0; i < ids.size(); i++){
-        double discountedItem = discountedItems.get(i);
-        
-        int feeID = ids.get(i);
-        
-        Session.Discount = true;
-        Session.IDoffee = ids;
-        Session.dicountedAmount = discountAmounts;
-        Session.dicountedPrice = discountedItems;
-        String sql = "UPDATE contribution_paid SET amount = ? WHERE Fee_ID =?";
-        PreparedStatement pst = con.prepareStatement(sql);
-        pst.setInt(1, feeID);
-        pst.setDouble(2, discountedItem);
-        pst.executeUpdate();
-        Official_RecieptForm reciept = new Official_RecieptForm();
-        reciept.setVisible(true);
-        dispose();
+        try {
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+            String sql = "SELECT * FROM student_payment where student_ID = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, Session.studentID);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                String remark = rs.getString("remarks");
+                discountedItems.clear();
+                discountAmounts.clear();
+                confirm.setVisible(true);
+                if (discountPercent == 25.0) {
+                    if (remark == null || remark.isEmpty()) {
+                        this.forRemark = "25% discount granted for City Meet participation.";
+                    } else {
+                        this.forRemark = remark + "\n25% discount granted for City Meet participation.";
+                    }
+                } else if (discountPercent == 50.0) {
+                    if (remark == null || remark.isEmpty()) {
+                        this.forRemark = "50% discount granted for Provincial Meet participation.";
+                    } else {
+                        this.forRemark = remark + "\n25% discount granted for Provincial Meet participation.";
+                    }
+                } else if (discountPercent == 75.0) {
+                    if (remark == null || remark.isEmpty()) {
+                        this.forRemark = "75% discount granted for Regional Meet participation.";
+                    } else {
+                        this.forRemark = remark + "\n25% discount granted for Regional Meet participation.";
+                    }
+                } else if (discountPercent == 100.0) {
+                    if (remark == null || remark.isEmpty()) {
+                        this.forRemark = "100% discount granted for National Meet participation.";
+                    } else {
+                        this.forRemark = remark + "\n25% discount granted for National Meet participation.";
+                    }
+                }
+                double discountRate = discountPercent / 100;
+
+                for (double price : Itemprice) {
+                    double discountAmount = price * discountRate;
+                    double finalPrice = price - discountAmount;
+
+                    discountedItems.add(finalPrice);
+                    discountAmounts.add(discountAmount);
+                }
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
         }
-        }catch(Exception e){
-        
-        
-        
+    }
+    private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
+        String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
+        String SUser = "root";
+        String SPass = "";
+
+        Session.Discount = true;
+
+        try (Connection con = DriverManager.getConnection(SUrl, SUser, SPass)) {
+
+            String updateFeeSQL = "UPDATE contribution_paid SET amount = ? WHERE ID_Contribution = ?";
+            try (PreparedStatement pst = con.prepareStatement(updateFeeSQL)) {
+                for (int i = 0; i < ids.size(); i++) {
+                    pst.setDouble(1, discountedItems.get(i));
+                    pst.setInt(2, ids.get(i));
+                    pst.executeUpdate();
+                }
+            }
+            String rema = "UPDATE student_payment SET remarks = ? WHERE student_ID = ? AND School_Year =? ";
+            PreparedStatement ps = con.prepareStatement(rema);
+            ps.setString(1, this.forRemark);
+            ps.setInt(2, Session.studentID);
+            ps.setString(3, Session.schoolyear);
+            ps.executeUpdate();
+            String Q1 = "1st";
+            String Q2 = "2nd";
+            String Q3 = "3rd";
+            String Q4 = "4th";
+            String sql1 = "SELECT SUM(amount) AS TOTAL1 FROM contribution_paid WHERE Quarter = ? AND student_ID = ? AND School_Year=?";
+            String sql2 = "SELECT SUM(amount) AS TOTAL2 FROM contribution_paid WHERE Quarter = ? AND student_ID = ? AND School_Year=?";
+            String sql3 = "SELECT SUM(amount) AS TOTAL3 FROM contribution_paid WHERE Quarter = ? AND student_ID = ? AND School_Year=?";
+            String sql4 = "SELECT SUM(amount) AS TOTAL4 FROM contribution_paid WHERE Quarter = ? AND student_ID = ? AND School_Year=?";
+            String sql5 = "SELECT SUM(amount) AS TOTAL5 FROM contribution_paid WHERE student_ID = ? AND School_Year=?";
+            String Query1 = "UPDATE student_payment SET 1st_Quarter = ?, 2nd_Quarter = ?, 3rd_Quarter= ?, 4th_Quarter = ?, Total_Paid = ? WHERE student_ID = ?";
+            PreparedStatement pst1 = con.prepareStatement(sql1);
+            pst1.setString(1, Q1);
+            pst1.setInt(2, Session.studentID);
+            pst1.setString(3, Session.schoolyear);
+            ResultSet rs1 = pst1.executeQuery();
+            PreparedStatement pst2 = con.prepareStatement(sql2);
+            pst2.setString(1, Q2);
+            pst2.setInt(2, Session.studentID);
+            pst2.setString(3, Session.schoolyear);
+            ResultSet rs2 = pst2.executeQuery();
+            PreparedStatement pst3 = con.prepareStatement(sql3);
+            pst3.setString(1, Q3);
+            pst3.setInt(2, Session.studentID);
+            pst3.setString(3, Session.schoolyear);
+            ResultSet rs3 = pst3.executeQuery();
+            PreparedStatement pst4 = con.prepareStatement(sql4);
+            pst4.setString(1, Q4);
+            pst4.setInt(2, Session.studentID);
+            pst4.setString(3, Session.schoolyear);
+            ResultSet rs4 = pst4.executeQuery();
+            PreparedStatement pst5 = con.prepareStatement(sql5);
+            pst5.setInt(1, Session.studentID);
+            pst5.setString(2, Session.schoolyear);
+            ResultSet rs5 = pst5.executeQuery();
+            PreparedStatement pmt = con.prepareStatement(Query1);
+            if (rs1.next() && rs2.next() && rs3.next() && rs4.next() && rs5.next()) {
+                double Quarter1 = rs1.getDouble("TOTAL1");
+                double Quarter2 = rs2.getDouble("TOTAL2");
+                double Quarter3 = rs3.getDouble("TOTAL3");
+                double Quarter4 = rs4.getDouble("TOTAL4");
+                double total = rs5.getDouble("TOTAL5");
+                pmt.setDouble(1, Quarter1);
+                pmt.setDouble(2, Quarter2);
+                pmt.setDouble(3, Quarter3);
+                pmt.setDouble(4, Quarter4);
+                pmt.setDouble(5, total);
+                pmt.setInt(6, Session.studentID);
+                pmt.executeUpdate();
+            }
+           
+            Session.IDoffee = ids;
+            Session.AmountItem = Itemprice;
+            Session.dicountedAmount = discountAmounts;
+
+            
+            Official_RecieptForm reciept = new Official_RecieptForm();
+            reciept.setVisible(true);
+            dispose();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_confirmActionPerformed
 
     private void cityMeetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityMeetActionPerformed
-        // TODO add your handling code here:
+
+        applyDiscount(25);
     }//GEN-LAST:event_cityMeetActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        Billing_MainForm Main = new Billing_MainForm();
+        Main.setVisible(true);
+        dispose();
+        Session.Fees.clear();
+        Session.AmountItem.clear();
+        Session.dicountedPrice.clear();
+        Session.dicountedAmount.clear();
+        Session.IDoffee.clear();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void nationalMeetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nationalMeetActionPerformed
-        // TODO add your handling code here:
+        applyDiscount(100);
     }//GEN-LAST:event_nationalMeetActionPerformed
 
     private void provincialMeetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provincialMeetActionPerformed
-        // TODO add your handling code here:
+        applyDiscount(50);
+
     }//GEN-LAST:event_provincialMeetActionPerformed
+
+    private void cityMeetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cityMeetMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityMeetMouseClicked
+
+    private void regionalMeetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regionalMeetActionPerformed
+        applyDiscount(75);
+
+    }//GEN-LAST:event_regionalMeetActionPerformed
 
     /**
      * @param args the command line arguments

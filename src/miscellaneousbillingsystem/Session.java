@@ -15,7 +15,7 @@ public class Session {
     public static String timer;
     public static String remarkss;
     public static List<String> Fees = new ArrayList<>();
-    public static List<String> AmountItem = new ArrayList<>();
+    public static List<Double> AmountItem = new ArrayList<>();
     public static List<Double> dicountedPrice = new ArrayList<>();
     public static List<Double> dicountedAmount = new ArrayList<>();
     public static ArrayList<Integer> IDoffee = new ArrayList<>();

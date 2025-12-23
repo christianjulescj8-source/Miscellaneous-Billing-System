@@ -31,7 +31,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Yearrool.setText(Session.schoolyear);
         if (Session.role.equals("Administrator")) {
             Rooler.setText("Administrator");
-            
+
             loadcombobox();
             loadTableStudentData();
         } else if (Session.role.equals("PTA Treasurer")) {
@@ -39,7 +39,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
             Accounts.setVisible(false);
             Fee.setVisible(false);
             Section.setVisible(false);
-            
+
             loadcombobox();
             loadTableStudentData();
         }
@@ -135,6 +135,9 @@ public class Billing_MainForm extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 153, 0));
         jButton1.setText("Refresh");
+        jButton1.setBorderPainted(false);
+        jButton1.setFocusPainted(false);
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -147,6 +150,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         curriculum.setForeground(new java.awt.Color(255, 255, 255));
         curriculum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7th", "8th", "9th", "10th", "11th", "12th" }));
         curriculum.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        curriculum.setFocusable(false);
         curriculum.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
@@ -173,6 +177,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Sectionselect.setForeground(new java.awt.Color(255, 255, 255));
         Sectionselect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         Sectionselect.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        Sectionselect.setFocusable(false);
         Sectionselect.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SectionselectMouseClicked(evt);
@@ -203,8 +208,9 @@ public class Billing_MainForm extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 94));
 
-        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setBackground(new java.awt.Color(0, 0, 0));
         jScrollPane2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jScrollPane2.setForeground(new java.awt.Color(0, 0, 0));
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jScrollPane2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -213,6 +219,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
             }
         });
 
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -256,6 +263,9 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Student.setForeground(new java.awt.Color(0, 0, 0));
         Student.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Addicon1.png"))); // NOI18N
         Student.setText("Student");
+        Student.setBorderPainted(false);
+        Student.setFocusPainted(false);
+        Student.setFocusable(false);
         Student.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 StudentActionPerformed(evt);
@@ -268,6 +278,9 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Section.setForeground(new java.awt.Color(0, 0, 0));
         Section.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Manage_Section123.png"))); // NOI18N
         Section.setText("Section");
+        Section.setBorderPainted(false);
+        Section.setFocusPainted(false);
+        Section.setFocusable(false);
         Section.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SectionActionPerformed(evt);
@@ -280,6 +293,9 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Year.setForeground(new java.awt.Color(0, 0, 0));
         Year.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Yearicon123.png"))); // NOI18N
         Year.setText("Year");
+        Year.setBorderPainted(false);
+        Year.setFocusPainted(false);
+        Year.setFocusable(false);
         Year.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 YearActionPerformed(evt);
@@ -292,6 +308,9 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Accounts.setForeground(new java.awt.Color(0, 0, 0));
         Accounts.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/securityicon12.jpg"))); // NOI18N
         Accounts.setText("Accounts");
+        Accounts.setBorderPainted(false);
+        Accounts.setFocusPainted(false);
+        Accounts.setFocusable(false);
         Accounts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AccountsActionPerformed(evt);
@@ -304,6 +323,9 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Fee.setForeground(new java.awt.Color(0, 0, 0));
         Fee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/misce12.png"))); // NOI18N
         Fee.setText("Fees");
+        Fee.setBorderPainted(false);
+        Fee.setFocusPainted(false);
+        Fee.setFocusable(false);
         Fee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FeeActionPerformed(evt);
@@ -316,6 +338,9 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Profile.setForeground(new java.awt.Color(0, 0, 0));
         Profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Profile12.png"))); // NOI18N
         Profile.setText("Profile");
+        Profile.setBorderPainted(false);
+        Profile.setFocusPainted(false);
+        Profile.setFocusable(false);
         Menu.add(Profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 140, 40));
 
         Logout.setBackground(new java.awt.Color(255, 255, 255));
@@ -323,6 +348,9 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Logout.setForeground(new java.awt.Color(0, 0, 0));
         Logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logout123.png"))); // NOI18N
         Logout.setText("Logout");
+        Logout.setBorderPainted(false);
+        Logout.setFocusPainted(false);
+        Logout.setFocusable(false);
         Logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogoutActionPerformed(evt);
@@ -635,6 +663,8 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Pay.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         Pay.setForeground(new java.awt.Color(0, 153, 0));
         Pay.setText("Pay");
+        Pay.setFocusPainted(false);
+        Pay.setFocusable(false);
         Pay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PayActionPerformed(evt);
@@ -670,6 +700,8 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Pay1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         Pay1.setForeground(new java.awt.Color(0, 153, 0));
         Pay1.setText("Discount");
+        Pay1.setFocusPainted(false);
+        Pay1.setFocusable(false);
         Pay1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Pay1ActionPerformed(evt);
@@ -702,6 +734,11 @@ public class Billing_MainForm extends javax.swing.JFrame {
 
             // Clear old items first
             Sectionselect.removeAllItems();
+
+            remarks.setBorder(null);
+            remarks.setFocusable(false);
+            remarks.setEditable(false);
+            remarks.setBackground(Color.WHITE);
 
             // Get selected curriculum
             String level = curriculum.getSelectedItem().toString();
@@ -867,9 +904,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
                 feeprev.setText(feed);
                 studentID.setText(id);
                 remarks.setText(remark);
-                
-                
-                
+
             }
 
         } catch (Exception e) {
@@ -1182,7 +1217,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_SearchtxtKeyReleased
 
     private void PayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayActionPerformed
-        
+
         int sid = Integer.parseInt(studentID.getText());
         String feeles = feeprev.getText();
         String name = Name.getText();
@@ -1236,7 +1271,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_Section12MouseClicked
 
     private void Pay1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pay1ActionPerformed
-        
+
         Session.studentID = Integer.parseInt(studentID.getText().toString());
         SPSdiscountForm discount = new SPSdiscountForm();
         discount.setVisible(true);

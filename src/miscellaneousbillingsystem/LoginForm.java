@@ -87,6 +87,8 @@ public class LoginForm extends javax.swing.JFrame {
         Administrator.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
         Administrator.setForeground(new java.awt.Color(0, 0, 0));
         Administrator.setText("Administrator");
+        Administrator.setFocusPainted(false);
+        Administrator.setFocusable(false);
         Administrator.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AdministratorActionPerformed(evt);
@@ -99,6 +101,8 @@ public class LoginForm extends javax.swing.JFrame {
         PTATreasurer.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
         PTATreasurer.setForeground(new java.awt.Color(0, 0, 0));
         PTATreasurer.setText("PTA Treasurer");
+        PTATreasurer.setFocusPainted(false);
+        PTATreasurer.setFocusable(false);
         jPanel1.add(PTATreasurer);
         PTATreasurer.setBounds(250, 380, 130, 21);
 
@@ -108,6 +112,7 @@ public class LoginForm extends javax.swing.JFrame {
         yearselect.setMaximumRowCount(7);
         yearselect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         yearselect.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        yearselect.setFocusable(false);
         yearselect.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 yearselectMouseClicked(evt);
@@ -189,6 +194,9 @@ public class LoginForm extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
         jButton1.setToolTipText("");
+        jButton1.setBorderPainted(false);
+        jButton1.setFocusPainted(false);
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -382,6 +390,9 @@ public class LoginForm extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(51, 204, 0));
         jButton4.setText("Hide");
+        jButton4.setBorderPainted(false);
+        jButton4.setFocusPainted(false);
+        jButton4.setFocusable(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -393,6 +404,9 @@ public class LoginForm extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(51, 204, 0));
         jButton5.setText("Confirm");
+        jButton5.setBorderPainted(false);
+        jButton5.setFocusPainted(false);
+        jButton5.setFocusable(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -491,7 +505,7 @@ public class LoginForm extends javax.swing.JFrame {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
-            yearselect.removeAllItems(); // clear old data
+            yearselect.removeAllItems();
             while (rs.next()) {
                 yearselect.addItem(rs.getString("Year"));
             }
@@ -593,9 +607,8 @@ public class LoginForm extends javax.swing.JFrame {
                                     Passwordred.setText("");
                                     bullet.setText("");
                                     accounts.setText("");
-                                    // redirect to main page
-                                
-                                } else if(status.equals("rejected")){
+
+                                } else if (status.equals("rejected")) {
                                     accounts.setText("Your account has been rejected by admin.");
                                 } else {
                                     accounts.setText("Your account is not approved yet by admin.");
@@ -656,8 +669,8 @@ public class LoginForm extends javax.swing.JFrame {
                                     Passwordred.setText("");
                                     bullet.setText("");
                                     accounts.setText("");
-                                    // redirect to main page
-                                } else if(status.equals("rejected")){
+
+                                } else if (status.equals("rejected")) {
                                     accounts.setText("Your account has been rejected by admin.");
                                 } else {
                                     accounts.setText("Your account is not approved yet by admin.");
@@ -710,7 +723,6 @@ public class LoginForm extends javax.swing.JFrame {
             lock.setVisible(false);
             open.setVisible(true);
         } else {
-            // Hide password
 
         }
 
@@ -718,7 +730,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void showPassMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPassMousePressed
         Passwordtxt.setEchoChar('\u2022');
-        // Show password
+
         hidePass.setVisible(true);
         lock.setVisible(true);
         open.setVisible(false);

@@ -39,6 +39,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
         Amounttxt = new javax.swing.JTextField();
         Feetxt = new javax.swing.JTextField();
         Acronymtxt = new javax.swing.JTextField();
+        Parent = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -117,7 +118,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
         Rooler.setForeground(new java.awt.Color(255, 255, 255));
         Rooler.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Rooler.setText("Add Fee Contribution");
-        jPanel3.add(Rooler, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 390, 40));
+        jPanel3.add(Rooler, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 700, 40));
 
         Feenamered.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         Feenamered.setForeground(new java.awt.Color(255, 0, 0));
@@ -132,34 +133,43 @@ public class Add_FeeForm extends javax.swing.JFrame {
         Create.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Create.setForeground(new java.awt.Color(0, 153, 0));
         Create.setText("Create");
+        Create.setBorderPainted(false);
+        Create.setFocusPainted(false);
+        Create.setFocusable(false);
         Create.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CreateActionPerformed(evt);
             }
         });
-        jPanel3.add(Create, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 90, -1));
+        jPanel3.add(Create, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 90, -1));
 
         Refresh.setBackground(new java.awt.Color(255, 255, 255));
         Refresh.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Refresh.setForeground(new java.awt.Color(0, 153, 0));
         Refresh.setText("Refresh");
+        Refresh.setBorderPainted(false);
+        Refresh.setFocusPainted(false);
+        Refresh.setFocusable(false);
         Refresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RefreshActionPerformed(evt);
             }
         });
-        jPanel3.add(Refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 90, -1));
+        jPanel3.add(Refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 90, -1));
 
         Delete.setBackground(new java.awt.Color(255, 255, 255));
         Delete.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Delete.setForeground(new java.awt.Color(0, 153, 0));
         Delete.setText("Delete");
+        Delete.setBorderPainted(false);
+        Delete.setFocusPainted(false);
+        Delete.setFocusable(false);
         Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteActionPerformed(evt);
             }
         });
-        jPanel3.add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 90, -1));
+        jPanel3.add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 90, -1));
 
         Update.setBackground(new java.awt.Color(255, 255, 255));
         Update.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -170,12 +180,15 @@ public class Add_FeeForm extends javax.swing.JFrame {
                 UpdateActionPerformed(evt);
             }
         });
-        jPanel3.add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
+        jPanel3.add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
         Back.setBackground(new java.awt.Color(255, 255, 255));
         Back.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Back.setForeground(new java.awt.Color(0, 153, 0));
         Back.setText("Back");
+        Back.setBorderPainted(false);
+        Back.setFocusPainted(false);
+        Back.setFocusable(false);
         Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackActionPerformed(evt);
@@ -245,6 +258,18 @@ public class Add_FeeForm extends javax.swing.JFrame {
         });
         jPanel3.add(Acronymtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 160, -1));
 
+        Parent.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        Parent.setForeground(new java.awt.Color(255, 255, 255));
+        Parent.setText("Per Perant");
+        Parent.setFocusPainted(false);
+        Parent.setFocusable(false);
+        Parent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ParentActionPerformed(evt);
+            }
+        });
+        jPanel3.add(Parent, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, -1, -1));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -294,8 +319,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
             Feenamered.setText("");
             Amountred.setText("");
             Acronymred.setText("");
-            // Clear text fields           
-            // Query with all needed columns
+
             String sql = "SELECT Name_of_contribution, Acronym, acronym_of_Fee, amount, ID FROM `miscellaneous_fee` ";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -306,13 +330,11 @@ public class Add_FeeForm extends javax.swing.JFrame {
 
             DefaultTableModel model = new DefaultTableModel();
 
-            // Add all columns to the model
-            String[] columnheader = { "Name of Contribution", "Acronym", "Acronym of Fee", "Amount", "ID"};
+            String[] columnheader = {"Name of Contribution", "Acronym", "Acronym of Fee", "Amount", "ID"};
             for (String Header : columnheader) {
                 model.addColumn(Header);
             }
 
-            // Fill rows
             while (rs.next()) {
                 Object[] row = new Object[columnCount];
                 for (int i = 1; i <= columnCount; i++) {
@@ -321,14 +343,13 @@ public class Add_FeeForm extends javax.swing.JFrame {
                 model.addRow(row);
             }
 
-            // Apply model
             jTable1.setModel(model);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(20);
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
             jTable1.setFocusable(false);
             jTable1.setDefaultEditor(Object.class, null);
-            // Hide unwanted columns (keep only LRN_Students, firstname, middlename, lastname, section)
-            int[] hiddenCols = {1, 4}; // indexes start at 0
+
+            int[] hiddenCols = {1, 4};
             for (int colIndex : hiddenCols) {
                 jTable1.getColumnModel().getColumn(colIndex).setMinWidth(0);
                 jTable1.getColumnModel().getColumn(colIndex).setMaxWidth(0);
@@ -392,20 +413,39 @@ public class Add_FeeForm extends javax.swing.JFrame {
                 Amountred.setText("It's empty!");
                 Acronymred.setText("");
             } else {
-                String query = "INSERT INTO `miscellaneous_fee` (Name_of_contribution, Acronym, amount, acronym_of_Fee) VALUES (?, ?, ?, ?) ";
-                PreparedStatement pst = con.prepareStatement(query);
-                pst.setString(1, namefee);
-                pst.setString(2, acronymq);
-                pst.setString(3, amount);
-                pst.setString(4, acronym);
-                pst.executeUpdate();
-                Acronymtxt.setText("");
-                Acronymlbl.setVisible(true);
-                Feetxt.setText("");
-                Feelbl.setVisible(true);
-                Amounttxt.setText("");
-                Amountlbl.setVisible(true);
-                Create.setVisible(true);
+                if (Parent.isSelected()) {
+                    String query = "INSERT INTO `miscellaneous_fee` (Name_of_contribution, Acronym, amount, acronym_of_Fee, Per_Parent) VALUES (?, ?, ?, ?, ?) ";
+                    PreparedStatement pst = con.prepareStatement(query);
+                    pst.setString(1, namefee);
+                    pst.setString(2, acronymq);
+                    pst.setString(3, amount);
+                    pst.setString(4, acronym);
+                    pst.setBoolean(5, true);
+                    pst.executeUpdate();
+                    Acronymtxt.setText("");
+                    Acronymlbl.setVisible(true);
+                    Feetxt.setText("");
+                    Feelbl.setVisible(true);
+                    Amounttxt.setText("");
+                    Amountlbl.setVisible(true);
+                    Create.setVisible(true);
+                } else if (!Parent.isSelected()) {
+                    String query = "INSERT INTO `miscellaneous_fee` (Name_of_contribution, Acronym, amount, acronym_of_Fee, Per_Parent) VALUES (?, ?, ?, ?, ?) ";
+                    PreparedStatement pst = con.prepareStatement(query);
+                    pst.setString(1, namefee);
+                    pst.setString(2, acronymq);
+                    pst.setString(3, amount);
+                    pst.setString(4, acronym);
+                    pst.setBoolean(5, false);
+                    pst.executeUpdate();
+                    Acronymtxt.setText("");
+                    Acronymlbl.setVisible(true);
+                    Feetxt.setText("");
+                    Feelbl.setVisible(true);
+                    Amounttxt.setText("");
+                    Amountlbl.setVisible(true);
+                    Create.setVisible(true);
+                }
                 loaddata();
                 con.close();
             }
@@ -461,7 +501,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
         int selectedRow = jTable1.getSelectedRow();
 
         if (selectedRow == -1) {
-            return; // nothing selected
+            return;
         }
 
         String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
@@ -577,6 +617,14 @@ public class Add_FeeForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AcronymtxtFocusLost
 
+    private void ParentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentActionPerformed
+        if (Parent.isSelected()) {
+            Rooler.setText("Add Fee Contribution (PER PARENT)");
+        } else if (!Parent.isSelected()) {
+            Rooler.setText("Add Fee Contribution");
+        }
+    }//GEN-LAST:event_ParentActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -626,6 +674,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
     private javax.swing.JLabel Feelbl;
     private javax.swing.JLabel Feenamered;
     private javax.swing.JTextField Feetxt;
+    private javax.swing.JCheckBox Parent;
     private javax.swing.JButton Refresh;
     private javax.swing.JLabel Rooler;
     private javax.swing.JButton Update;
