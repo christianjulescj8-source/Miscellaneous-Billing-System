@@ -158,7 +158,7 @@ public class Official_RecieptForm extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Remarks:");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(20, 380, 45, 10);
+        jLabel11.setBounds(10, 380, 45, 10);
 
         Grade.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         Grade.setForeground(new java.awt.Color(0, 0, 0));
@@ -273,7 +273,7 @@ public class Official_RecieptForm extends javax.swing.JFrame {
         jScrollPane3.setViewportView(remarkss);
 
         jPanel1.add(jScrollPane3);
-        jScrollPane3.setBounds(70, 370, 230, 40);
+        jScrollPane3.setBounds(60, 370, 240, 40);
 
         jLabel20.setFont(new java.awt.Font("Baskerville Old Face", 0, 12)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
@@ -343,23 +343,36 @@ public class Official_RecieptForm extends javax.swing.JFrame {
                 String grade = rs.getString("grade");
                 String sect = rs.getString("section");
                 String fullname = rs.getString("fullname");
-
+                String date1 = rs.getString("Date_Q1");
+                String date2 = rs.getString("Date_Q2");
+                String date3 = rs.getString("Date_Q3");
+                String date4 = rs.getString("Date_Q4");
+                
                 String LRn = rs.getString("lrn");
                 String remarks = rs.getString("remarks");
 
                 Section.setText(sect);
                 LRN.setText(LRn);
                 name.setText(fullname);
-                Date.setText(Session.timer);
+                
                 remarkss.setText(remarks);
                 if (Session.Discount == false) {
-
+                    
                     String query = "SELECT SUM(amount) AS Total FROM contribution_Paid WHERE student_ID = ? AND School_Year = ? AND Quarter = ?";
                     PreparedStatement pmt = con.prepareStatement(query);
                     pmt.setInt(1, Session.studentID);
                     pmt.setString(2, Session.schoolyear);
                     pmt.setString(3, Session.Quarter);
                     ResultSet rso = pmt.executeQuery();
+                    if(Session.Quarter.equals("1st")){
+                        Date.setText(date1);
+                    } else if(Session.Quarter.equals("2nd")){
+                        Date.setText(date2);
+                    } else if(Session.Quarter.equals("3rd")){
+                        Date.setText(date3);
+                    } else if(Session.Quarter.equals("4th")){
+                        Date.setText(date4);
+                    }
                     if (rso.next()) {
                         double total = rso.getDouble("Total");
                         String formatted = String.format("%.2f", total);
@@ -371,6 +384,7 @@ public class Official_RecieptForm extends javax.swing.JFrame {
                     PreparedStatement pmt = con.prepareStatement(query);
                     pmt.setInt(1, Session.studentID);
                     pmt.setString(2, Session.schoolyear);
+                    Date.setText(Session.timer);
                     ResultSet rso = pmt.executeQuery();
                     if (rso.next()) {
                         double total = rso.getDouble("Total");

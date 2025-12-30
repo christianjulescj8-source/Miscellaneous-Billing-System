@@ -52,6 +52,13 @@ public class LoginForm extends javax.swing.JFrame {
         lock = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         accounts = new javax.swing.JLabel();
+        forgotpass = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        Codelbl = new javax.swing.JLabel();
+        Codetxt = new javax.swing.JTextField();
+        Codered = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         newpass = new javax.swing.JPanel();
         ConfirmPasslabel = new javax.swing.JLabel();
         Usernamelbl = new javax.swing.JLabel();
@@ -65,13 +72,6 @@ public class LoginForm extends javax.swing.JFrame {
         Passwordtext = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        forgotpass = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        Codelbl = new javax.swing.JLabel();
-        Codetxt = new javax.swing.JTextField();
-        Codered = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         logo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -299,7 +299,67 @@ public class LoginForm extends javax.swing.JFrame {
 
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 570, 600));
 
-        newpass.setBackground(new java.awt.Color(51, 204, 0));
+        forgotpass.setBackground(new java.awt.Color(0, 102, 0));
+        forgotpass.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 0, 28)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Enter your recovery code:");
+        forgotpass.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
+
+        Codelbl.setFont(new java.awt.Font("Baskerville Old Face", 2, 24)); // NOI18N
+        Codelbl.setForeground(new java.awt.Color(204, 204, 255));
+        Codelbl.setText("Recovery Code...");
+        forgotpass.add(Codelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
+
+        Codetxt.setBackground(new java.awt.Color(0, 102, 0));
+        Codetxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
+        Codetxt.setForeground(new java.awt.Color(255, 255, 255));
+        Codetxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        Codetxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                CodetxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                CodetxtFocusLost(evt);
+            }
+        });
+        Codetxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CodetxtActionPerformed(evt);
+            }
+        });
+        forgotpass.add(Codetxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 260, -1));
+
+        Codered.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        Codered.setForeground(new java.awt.Color(255, 0, 0));
+        forgotpass.add(Codered, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 260, 25));
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 102, 0));
+        jButton2.setText("Hide");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        forgotpass.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 90, -1));
+
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(0, 102, 0));
+        jButton3.setText("Confirm");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        forgotpass.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, -1));
+
+        jPanel3.add(forgotpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 600));
+
+        newpass.setBackground(new java.awt.Color(0, 102, 0));
         newpass.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ConfirmPasslabel.setFont(new java.awt.Font("Baskerville Old Face", 2, 24)); // NOI18N
@@ -334,7 +394,7 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel8.setText("Set new username and password:");
         newpass.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
-        ConfirmPasstxt.setBackground(new java.awt.Color(51, 204, 0));
+        ConfirmPasstxt.setBackground(new java.awt.Color(0, 102, 0));
         ConfirmPasstxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
         ConfirmPasstxt.setForeground(new java.awt.Color(255, 255, 255));
         ConfirmPasstxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
@@ -353,7 +413,7 @@ public class LoginForm extends javax.swing.JFrame {
         });
         newpass.add(ConfirmPasstxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 270, -1));
 
-        Usernametext.setBackground(new java.awt.Color(51, 204, 0));
+        Usernametext.setBackground(new java.awt.Color(0, 102, 0));
         Usernametext.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
         Usernametext.setForeground(new java.awt.Color(255, 255, 255));
         Usernametext.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
@@ -367,7 +427,7 @@ public class LoginForm extends javax.swing.JFrame {
         });
         newpass.add(Usernametext, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 270, -1));
 
-        Passwordtext.setBackground(new java.awt.Color(51, 204, 0));
+        Passwordtext.setBackground(new java.awt.Color(0, 102, 0));
         Passwordtext.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
         Passwordtext.setForeground(new java.awt.Color(255, 255, 255));
         Passwordtext.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
@@ -388,7 +448,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(51, 204, 0));
+        jButton4.setForeground(new java.awt.Color(0, 102, 0));
         jButton4.setText("Hide");
         jButton4.setBorderPainted(false);
         jButton4.setFocusPainted(false);
@@ -402,7 +462,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(51, 204, 0));
+        jButton5.setForeground(new java.awt.Color(0, 102, 0));
         jButton5.setText("Confirm");
         jButton5.setBorderPainted(false);
         jButton5.setFocusPainted(false);
@@ -415,66 +475,6 @@ public class LoginForm extends javax.swing.JFrame {
         newpass.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 450, -1, -1));
 
         jPanel3.add(newpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 600));
-
-        forgotpass.setBackground(new java.awt.Color(51, 204, 0));
-        forgotpass.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 0, 28)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Enter your recovery code:");
-        forgotpass.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
-
-        Codelbl.setFont(new java.awt.Font("Baskerville Old Face", 2, 24)); // NOI18N
-        Codelbl.setForeground(new java.awt.Color(204, 204, 255));
-        Codelbl.setText("Recovery Code...");
-        forgotpass.add(Codelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
-
-        Codetxt.setBackground(new java.awt.Color(51, 204, 0));
-        Codetxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
-        Codetxt.setForeground(new java.awt.Color(255, 255, 255));
-        Codetxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
-        Codetxt.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                CodetxtFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                CodetxtFocusLost(evt);
-            }
-        });
-        Codetxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CodetxtActionPerformed(evt);
-            }
-        });
-        forgotpass.add(Codetxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 260, -1));
-
-        Codered.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        Codered.setForeground(new java.awt.Color(255, 0, 0));
-        forgotpass.add(Codered, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 260, 25));
-
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 204, 0));
-        jButton2.setText("Hide");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        forgotpass.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 90, -1));
-
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(51, 204, 0));
-        jButton3.setText("Confirm");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        forgotpass.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, -1));
-
-        jPanel3.add(forgotpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 600));
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/final logo for login and signup.png"))); // NOI18N
         jPanel3.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 390, 370));

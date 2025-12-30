@@ -51,8 +51,8 @@ public class ExportForm extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         Rooler = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Sectionselect = new javax.swing.JComboBox<>();
@@ -84,15 +84,15 @@ public class ExportForm extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(153, 255, 153));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo4.png"))); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 100));
-
         Rooler.setFont(new java.awt.Font("Baskerville Old Face", 0, 70)); // NOI18N
         Rooler.setForeground(new java.awt.Color(0, 0, 0));
         Rooler.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Rooler.setText("Report");
         Rooler.setToolTipText("");
-        jPanel2.add(Rooler, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 6, 980, 88));
+        jPanel2.add(Rooler, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 6, 990, 88));
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo smaller.png"))); // NOI18N
+        jPanel2.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel3.add(jPanel2);
         jPanel2.setBounds(0, 0, 1100, 100);
@@ -758,7 +758,6 @@ public class ExportForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -770,5 +769,6 @@ public class ExportForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel logo;
     // End of variables declaration//GEN-END:variables
 }

@@ -130,7 +130,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(0, 153, 0));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
@@ -191,7 +191,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 94));
 
-        jPanel5.setBackground(new java.awt.Color(0, 153, 0));
+        jPanel5.setBackground(new java.awt.Color(0, 102, 0));
         jPanel5.setLayout(null);
 
         jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -239,7 +239,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
 
         jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 470, 230));
 
-        jPanel4.setBackground(new java.awt.Color(0, 153, 0));
+        jPanel4.setBackground(new java.awt.Color(0, 102, 0));
         jPanel4.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -382,7 +382,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         Searchlabel.setText("Search...");
         jPanel2.add(Searchlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 110, 120, -1));
 
-        Firstnametxt.setBackground(new java.awt.Color(0, 153, 0));
+        Firstnametxt.setBackground(new java.awt.Color(0, 102, 0));
         Firstnametxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Firstnametxt.setForeground(new java.awt.Color(255, 255, 255));
         Firstnametxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
@@ -396,7 +396,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         });
         jPanel2.add(Firstnametxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 230, -1));
 
-        Middlenametxt.setBackground(new java.awt.Color(0, 153, 0));
+        Middlenametxt.setBackground(new java.awt.Color(0, 102, 0));
         Middlenametxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Middlenametxt.setForeground(new java.awt.Color(255, 255, 255));
         Middlenametxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
@@ -410,7 +410,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         });
         jPanel2.add(Middlenametxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 230, -1));
 
-        Lastnametxt.setBackground(new java.awt.Color(0, 153, 0));
+        Lastnametxt.setBackground(new java.awt.Color(0, 102, 0));
         Lastnametxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Lastnametxt.setForeground(new java.awt.Color(255, 255, 255));
         Lastnametxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
@@ -424,7 +424,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         });
         jPanel2.add(Lastnametxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 230, -1));
 
-        Searchtxt.setBackground(new java.awt.Color(0, 153, 0));
+        Searchtxt.setBackground(new java.awt.Color(0, 102, 0));
         Searchtxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 22)); // NOI18N
         Searchtxt.setForeground(new java.awt.Color(255, 255, 255));
         Searchtxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
@@ -451,7 +451,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search icon12.png"))); // NOI18N
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 100, -1, -1));
 
-        Sectionselect.setBackground(new java.awt.Color(0, 153, 0));
+        Sectionselect.setBackground(new java.awt.Color(0, 102, 0));
         Sectionselect.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Sectionselect.setForeground(new java.awt.Color(255, 255, 255));
         Sectionselect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -473,7 +473,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         LRNlabel.setText("LRN...");
         jPanel2.add(LRNlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 110, -1));
 
-        LRNtxt.setBackground(new java.awt.Color(0, 153, 0));
+        LRNtxt.setBackground(new java.awt.Color(0, 102, 0));
         LRNtxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         LRNtxt.setForeground(new java.awt.Color(255, 255, 255));
         LRNtxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));

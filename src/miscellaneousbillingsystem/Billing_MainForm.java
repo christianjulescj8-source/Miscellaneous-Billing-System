@@ -11,8 +11,10 @@ import java.util.Random;
 import java.util.regex.Pattern;
 import javax.swing.RowFilter;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableRowSorter;
 
 public class Billing_MainForm extends javax.swing.JFrame {
@@ -22,7 +24,8 @@ public class Billing_MainForm extends javax.swing.JFrame {
 
     public Billing_MainForm() {
         initComponents();
-        //Pay1.setVisible(false);
+        jTable1.getTableHeader().setOpaque(false);
+        jTable1.getTableHeader().setBackground(new Color(153,255,153));
         curriculum.setSelectedIndex(0);
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -31,7 +34,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Yearrool.setText(Session.schoolyear);
         if (Session.role.equals("Administrator")) {
             Rooler.setText("Administrator");
-
+            report.setVisible(false);
             loadcombobox();
             loadTableStudentData();
         } else if (Session.role.equals("PTA Treasurer")) {
@@ -39,7 +42,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
             Accounts.setVisible(false);
             Fee.setVisible(false);
             Section.setVisible(false);
-
+            report1.setVisible(false);
             loadcombobox();
             loadTableStudentData();
         }
@@ -69,6 +72,8 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Fee = new javax.swing.JButton();
         Profile = new javax.swing.JButton();
         Logout = new javax.swing.JButton();
+        report = new javax.swing.JButton();
+        report1 = new javax.swing.JButton();
         Backhome = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         OpenMenuBtn = new javax.swing.JLabel();
@@ -119,6 +124,10 @@ public class Billing_MainForm extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         Pay1 = new javax.swing.JButton();
+        viewQ2 = new javax.swing.JButton();
+        viewQ3 = new javax.swing.JButton();
+        viewQ4 = new javax.swing.JButton();
+        viewQ1 = new javax.swing.JButton();
 
         feeprev.setText("jLabel7");
 
@@ -127,13 +136,13 @@ public class Billing_MainForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
         jPanel1.setForeground(new java.awt.Color(0, 153, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 153, 0));
+        jButton1.setForeground(new java.awt.Color(0, 102, 0));
         jButton1.setText("Refresh");
         jButton1.setBorderPainted(false);
         jButton1.setFocusPainted(false);
@@ -145,7 +154,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 100, 110, 35));
 
-        curriculum.setBackground(new java.awt.Color(0, 153, 0));
+        curriculum.setBackground(new java.awt.Color(0, 102, 0));
         curriculum.setFont(new java.awt.Font("Baskerville Old Face", 0, 17)); // NOI18N
         curriculum.setForeground(new java.awt.Color(255, 255, 255));
         curriculum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7th", "8th", "9th", "10th", "11th", "12th" }));
@@ -172,7 +181,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         });
         jPanel1.add(curriculum, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, -1, -1));
 
-        Sectionselect.setBackground(new java.awt.Color(0, 153, 0));
+        Sectionselect.setBackground(new java.awt.Color(0, 102, 0));
         Sectionselect.setFont(new java.awt.Font("Baskerville Old Face", 0, 17)); // NOI18N
         Sectionselect.setForeground(new java.awt.Color(255, 255, 255));
         Sectionselect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -358,6 +367,36 @@ public class Billing_MainForm extends javax.swing.JFrame {
         });
         Menu.add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 140, 40));
 
+        report.setBackground(new java.awt.Color(255, 255, 255));
+        report.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        report.setForeground(new java.awt.Color(0, 0, 0));
+        report.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/reportsunfinished1.png"))); // NOI18N
+        report.setText("Reports");
+        report.setBorderPainted(false);
+        report.setFocusPainted(false);
+        report.setFocusable(false);
+        report.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportActionPerformed(evt);
+            }
+        });
+        Menu.add(report, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 140, 40));
+
+        report1.setBackground(new java.awt.Color(255, 255, 255));
+        report1.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        report1.setForeground(new java.awt.Color(0, 0, 0));
+        report1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/reportsunfinished1.png"))); // NOI18N
+        report1.setText("Reports");
+        report1.setBorderPainted(false);
+        report1.setFocusPainted(false);
+        report1.setFocusable(false);
+        report1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                report1ActionPerformed(evt);
+            }
+        });
+        Menu.add(report1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 140, 40));
+
         Backhome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back123.png"))); // NOI18N
         Backhome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -368,7 +407,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/menubackground123.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        Menu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 436));
+        Menu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 436));
 
         jPanel1.add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 0, 500));
 
@@ -632,7 +671,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Searchlabel.setText("Search...");
         jPanel1.add(Searchlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 110, 120, -1));
 
-        Searchtxt.setBackground(new java.awt.Color(0, 153, 0));
+        Searchtxt.setBackground(new java.awt.Color(0, 102, 0));
         Searchtxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 22)); // NOI18N
         Searchtxt.setForeground(new java.awt.Color(255, 255, 255));
         Searchtxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
@@ -661,7 +700,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
 
         Pay.setBackground(new java.awt.Color(255, 255, 255));
         Pay.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        Pay.setForeground(new java.awt.Color(0, 153, 0));
+        Pay.setForeground(new java.awt.Color(0, 102, 0));
         Pay.setText("Pay");
         Pay.setFocusPainted(false);
         Pay.setFocusable(false);
@@ -679,7 +718,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         remarks.setRows(5);
         jScrollPane1.setViewportView(remarks);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, 380, 100));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 390, 100));
 
         jLabel33.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(255, 255, 255));
@@ -698,7 +737,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
 
         Pay1.setBackground(new java.awt.Color(255, 255, 255));
         Pay1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        Pay1.setForeground(new java.awt.Color(0, 153, 0));
+        Pay1.setForeground(new java.awt.Color(0, 102, 0));
         Pay1.setText("Discount");
         Pay1.setFocusPainted(false);
         Pay1.setFocusable(false);
@@ -708,6 +747,50 @@ public class Billing_MainForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Pay1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 110, -1));
+
+        viewQ2.setBackground(new java.awt.Color(255, 255, 255));
+        viewQ2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        viewQ2.setForeground(new java.awt.Color(0, 102, 0));
+        viewQ2.setText("View");
+        viewQ2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewQ2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(viewQ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, -1, -1));
+
+        viewQ3.setBackground(new java.awt.Color(255, 255, 255));
+        viewQ3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        viewQ3.setForeground(new java.awt.Color(0, 102, 0));
+        viewQ3.setText("View");
+        viewQ3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewQ3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(viewQ3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, -1, -1));
+
+        viewQ4.setBackground(new java.awt.Color(255, 255, 255));
+        viewQ4.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        viewQ4.setForeground(new java.awt.Color(0, 102, 0));
+        viewQ4.setText("View");
+        viewQ4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewQ4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(viewQ4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, -1, -1));
+
+        viewQ1.setBackground(new java.awt.Color(255, 255, 255));
+        viewQ1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        viewQ1.setForeground(new java.awt.Color(0, 102, 0));
+        viewQ1.setText("View");
+        viewQ1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewQ1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(viewQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -770,8 +853,13 @@ public class Billing_MainForm extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
-
+            JTableHeader Theader = jTable1.getTableHeader();
+            Theader.setBackground(new java.awt.Color(153, 255, 153)); //[153,255,153]
             String grade = curriculum.getSelectedItem().toString();
+            viewQ1.setVisible(false);
+            viewQ2.setVisible(false);
+            viewQ3.setVisible(false);
+            viewQ4.setVisible(false);
             Name.setText("");
             LRN.setText("");
             Q1.setText("");
@@ -895,15 +983,19 @@ public class Billing_MainForm extends javax.swing.JFrame {
                 Q1.setText(qo1);
                 Q2.setText(qo2);
                 Q3.setText(qo3);
-                Q4.setText(qo4);
+                Q4.setText(qo4);              
                 DateQ1.setText("Date: " + dq1);
                 DateQ2.setText("Date: " + dq2);
                 DateQ3.setText("Date: " + dq3);
-                DateQ4.setText("Date: " + dq4);
+                DateQ4.setText("Date: " + dq4);               
                 Total.setText(sum);
                 feeprev.setText(feed);
                 studentID.setText(id);
                 remarks.setText(remark);
+                if(!dq1.isEmpty()){viewQ1.setVisible(true);}
+                if(!dq2.isEmpty()){viewQ2.setVisible(true);}
+                if(!dq3.isEmpty()){viewQ3.setVisible(true);}
+                if(!dq4.isEmpty()){viewQ4.setVisible(true);}
 
             }
 
@@ -1278,6 +1370,56 @@ public class Billing_MainForm extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_Pay1ActionPerformed
 
+    private void reportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportActionPerformed
+        ExportForm export = new ExportForm();
+        export.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_reportActionPerformed
+
+    private void report1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_report1ActionPerformed
+        ExportForm export = new ExportForm();
+        export.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_report1ActionPerformed
+
+    private void viewQ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewQ1ActionPerformed
+        
+        Session.Quarter = "1st";
+        Session.Discount = false;
+        Session.studentID = Integer.parseInt(studentID.getText().toString());
+        Official_RecieptForm reciept = new Official_RecieptForm();
+        reciept.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_viewQ1ActionPerformed
+
+    private void viewQ2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewQ2ActionPerformed
+        Session.Quarter = "2nd";
+        Session.Discount = false;
+        Session.studentID = Integer.parseInt(studentID.getText().toString());
+        Official_RecieptForm reciept = new Official_RecieptForm();
+        reciept.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_viewQ2ActionPerformed
+
+    private void viewQ3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewQ3ActionPerformed
+        Session.Quarter = "3rd";
+        Session.Discount = false;
+        Session.studentID = Integer.parseInt(studentID.getText().toString());
+        Official_RecieptForm reciept = new Official_RecieptForm();
+        reciept.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_viewQ3ActionPerformed
+
+    private void viewQ4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewQ4ActionPerformed
+        Session.Quarter = "4th";
+        Session.Discount = false;
+        Session.studentID = Integer.parseInt(studentID.getText().toString());
+        Official_RecieptForm reciept = new Official_RecieptForm();
+        reciept.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_viewQ4ActionPerformed
+
     public static void main(String args[]) {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1373,6 +1515,8 @@ public class Billing_MainForm extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
     private javax.swing.JTextArea remarks;
+    private javax.swing.JButton report;
+    private javax.swing.JButton report1;
     private javax.swing.JLabel student10;
     private javax.swing.JLabel student11;
     private javax.swing.JLabel student12;
@@ -1380,5 +1524,9 @@ public class Billing_MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel student8;
     private javax.swing.JLabel student9;
     private javax.swing.JLabel studentID;
+    private javax.swing.JButton viewQ1;
+    private javax.swing.JButton viewQ2;
+    private javax.swing.JButton viewQ3;
+    private javax.swing.JButton viewQ4;
     // End of variables declaration//GEN-END:variables
 }

@@ -85,7 +85,7 @@ public class Add_SectionForm extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
@@ -144,7 +144,7 @@ public class Add_SectionForm extends javax.swing.JFrame {
         jPanel2.add(Sectionred, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 170, 20));
 
         Rooler.setFont(new java.awt.Font("Baskerville Old Face", 0, 30)); // NOI18N
-        Rooler.setForeground(new java.awt.Color(0, 153, 0));
+        Rooler.setForeground(new java.awt.Color(255, 255, 255));
         Rooler.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Rooler.setText("Add Section");
         jPanel2.add(Rooler, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 40));
@@ -154,9 +154,9 @@ public class Add_SectionForm extends javax.swing.JFrame {
         Sectionlebel.setText("Section...");
         jPanel2.add(Sectionlebel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
-        Create.setBackground(new java.awt.Color(0, 153, 0));
+        Create.setBackground(new java.awt.Color(255, 255, 255));
         Create.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        Create.setForeground(new java.awt.Color(255, 255, 255));
+        Create.setForeground(new java.awt.Color(0, 102, 0));
         Create.setText("Create");
         Create.setBorderPainted(false);
         Create.setFocusPainted(false);
@@ -166,11 +166,11 @@ public class Add_SectionForm extends javax.swing.JFrame {
                 CreateActionPerformed(evt);
             }
         });
-        jPanel2.add(Create, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 90, -1));
+        jPanel2.add(Create, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 100, -1));
 
-        Refresh.setBackground(new java.awt.Color(0, 153, 0));
+        Refresh.setBackground(new java.awt.Color(255, 255, 255));
         Refresh.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        Refresh.setForeground(new java.awt.Color(255, 255, 255));
+        Refresh.setForeground(new java.awt.Color(0, 102, 0));
         Refresh.setText("Refresh");
         Refresh.setBorderPainted(false);
         Refresh.setFocusPainted(false);
@@ -180,11 +180,11 @@ public class Add_SectionForm extends javax.swing.JFrame {
                 RefreshActionPerformed(evt);
             }
         });
-        jPanel2.add(Refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 90, -1));
+        jPanel2.add(Refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 100, -1));
 
-        Delete.setBackground(new java.awt.Color(0, 153, 0));
+        Delete.setBackground(new java.awt.Color(255, 255, 255));
         Delete.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        Delete.setForeground(new java.awt.Color(255, 255, 255));
+        Delete.setForeground(new java.awt.Color(0, 102, 0));
         Delete.setText("Delete");
         Delete.setBorderPainted(false);
         Delete.setFocusPainted(false);
@@ -194,7 +194,7 @@ public class Add_SectionForm extends javax.swing.JFrame {
                 DeleteActionPerformed(evt);
             }
         });
-        jPanel2.add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 90, -1));
+        jPanel2.add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 100, -1));
 
         Update.setBackground(new java.awt.Color(0, 153, 0));
         Update.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -205,11 +205,11 @@ public class Add_SectionForm extends javax.swing.JFrame {
                 UpdateActionPerformed(evt);
             }
         });
-        jPanel2.add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+        jPanel2.add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 100, -1));
 
-        Back.setBackground(new java.awt.Color(0, 153, 0));
+        Back.setBackground(new java.awt.Color(255, 255, 255));
         Back.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        Back.setForeground(new java.awt.Color(255, 255, 255));
+        Back.setForeground(new java.awt.Color(0, 102, 0));
         Back.setText("Back");
         Back.setBorderPainted(false);
         Back.setFocusPainted(false);
@@ -221,10 +221,10 @@ public class Add_SectionForm extends javax.swing.JFrame {
         });
         jPanel2.add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 95, -1));
 
-        Sectiontxt.setBackground(new java.awt.Color(255, 255, 255));
+        Sectiontxt.setBackground(new java.awt.Color(0, 102, 0));
         Sectiontxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 20)); // NOI18N
         Sectiontxt.setForeground(new java.awt.Color(0, 0, 0));
-        Sectiontxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 0)));
+        Sectiontxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
         Sectiontxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 SectiontxtFocusGained(evt);

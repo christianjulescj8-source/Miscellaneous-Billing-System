@@ -48,7 +48,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel3.setBackground(new java.awt.Color(0, 153, 0));
+        jPanel3.setBackground(new java.awt.Color(0, 102, 0));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
@@ -141,7 +141,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
                 CreateActionPerformed(evt);
             }
         });
-        jPanel3.add(Create, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 90, -1));
+        jPanel3.add(Create, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 100, -1));
 
         Refresh.setBackground(new java.awt.Color(255, 255, 255));
         Refresh.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -155,7 +155,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
                 RefreshActionPerformed(evt);
             }
         });
-        jPanel3.add(Refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 90, -1));
+        jPanel3.add(Refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 100, -1));
 
         Delete.setBackground(new java.awt.Color(255, 255, 255));
         Delete.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -169,7 +169,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
                 DeleteActionPerformed(evt);
             }
         });
-        jPanel3.add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 90, -1));
+        jPanel3.add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 100, -1));
 
         Update.setBackground(new java.awt.Color(255, 255, 255));
         Update.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -180,7 +180,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
                 UpdateActionPerformed(evt);
             }
         });
-        jPanel3.add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        jPanel3.add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 100, -1));
 
         Back.setBackground(new java.awt.Color(255, 255, 255));
         Back.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -196,7 +196,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
         });
         jPanel3.add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 95, -1));
 
-        Amounttxt.setBackground(new java.awt.Color(0, 153, 0));
+        Amounttxt.setBackground(new java.awt.Color(0, 102, 0));
         Amounttxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 20)); // NOI18N
         Amounttxt.setForeground(new java.awt.Color(255, 255, 255));
         Amounttxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
@@ -220,7 +220,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
         });
         jPanel3.add(Amounttxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 100, -1));
 
-        Feetxt.setBackground(new java.awt.Color(0, 153, 0));
+        Feetxt.setBackground(new java.awt.Color(0, 102, 0));
         Feetxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 20)); // NOI18N
         Feetxt.setForeground(new java.awt.Color(255, 255, 255));
         Feetxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
@@ -239,7 +239,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
         });
         jPanel3.add(Feetxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 240, -1));
 
-        Acronymtxt.setBackground(new java.awt.Color(0, 153, 0));
+        Acronymtxt.setBackground(new java.awt.Color(0, 102, 0));
         Acronymtxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 20)); // NOI18N
         Acronymtxt.setForeground(new java.awt.Color(255, 255, 255));
         Acronymtxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));

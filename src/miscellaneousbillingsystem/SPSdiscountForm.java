@@ -91,7 +91,7 @@ public class SPSdiscountForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 153));
