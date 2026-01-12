@@ -48,6 +48,8 @@ public class ExportForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -57,9 +59,10 @@ public class ExportForm extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         Sectionselect = new javax.swing.JComboBox<>();
         curriculum = new javax.swing.JComboBox<>();
+        Categorie = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -72,7 +75,26 @@ public class ExportForm extends javax.swing.JFrame {
         TotalStudent = new javax.swing.JLabel();
         Q3 = new javax.swing.JLabel();
         Q4 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+
+        jButton2.setBackground(new java.awt.Color(0, 153, 0));
+        jButton2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Export to Excel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setBackground(new java.awt.Color(0, 153, 0));
+        jButton4.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Export to PDF");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -89,7 +111,7 @@ public class ExportForm extends javax.swing.JFrame {
         Rooler.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Rooler.setText("Report");
         Rooler.setToolTipText("");
-        jPanel2.add(Rooler, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 6, 990, 88));
+        jPanel2.add(Rooler, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 990, 88));
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo smaller.png"))); // NOI18N
         jPanel2.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -149,7 +171,7 @@ public class ExportForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(Sectionselect);
-        Sectionselect.setBounds(240, 120, 160, 22);
+        Sectionselect.setBounds(720, 120, 160, 22);
 
         curriculum.setBackground(new java.awt.Color(255, 255, 255));
         curriculum.setFont(new java.awt.Font("Baskerville Old Face", 0, 17)); // NOI18N
@@ -176,7 +198,25 @@ public class ExportForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(curriculum);
-        curriculum.setBounds(150, 120, 80, 22);
+        curriculum.setBounds(630, 120, 80, 22);
+
+        Categorie.setBackground(new java.awt.Color(255, 255, 255));
+        Categorie.setFont(new java.awt.Font("Baskerville Old Face", 0, 17)); // NOI18N
+        Categorie.setForeground(new java.awt.Color(0, 0, 0));
+        Categorie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fees", "Students", "All Students" }));
+        Categorie.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        Categorie.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CategorieMouseClicked(evt);
+            }
+        });
+        Categorie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CategorieActionPerformed(evt);
+            }
+        });
+        jPanel3.add(Categorie);
+        Categorie.setBounds(130, 120, 160, 22);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -188,19 +228,7 @@ public class ExportForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton1);
-        jButton1.setBounds(430, 120, 100, 25);
-
-        jButton2.setBackground(new java.awt.Color(0, 153, 0));
-        jButton2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Export to Excel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton2);
-        jButton2.setBounds(630, 110, 170, 40);
+        jButton1.setBounds(870, 120, 100, 25);
 
         jButton3.setBackground(new java.awt.Color(0, 153, 0));
         jButton3.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -213,6 +241,8 @@ public class ExportForm extends javax.swing.JFrame {
         });
         jPanel3.add(jButton3);
         jButton3.setBounds(10, 110, 76, 30);
+        jPanel3.add(jDateChooser1);
+        jDateChooser1.setBounds(430, 120, 170, 26);
 
         jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -279,18 +309,6 @@ public class ExportForm extends javax.swing.JFrame {
         Q4.setForeground(new java.awt.Color(0, 0, 0));
         jPanel3.add(Q4);
         Q4.setBounds(740, 640, 80, 20);
-
-        jButton4.setBackground(new java.awt.Color(0, 153, 0));
-        jButton4.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Export to PDF");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton4);
-        jButton4.setBounds(810, 110, 170, 40);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -703,6 +721,14 @@ public class ExportForm extends javax.swing.JFrame {
         exportTableToPDF(jTable1);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void CategorieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CategorieMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CategorieMouseClicked
+
+    private void CategorieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategorieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CategorieActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -745,6 +771,7 @@ public class ExportForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Categorie;
     private javax.swing.JLabel Overall;
     private javax.swing.JLabel Q1;
     private javax.swing.JLabel Q2;
@@ -758,6 +785,7 @@ public class ExportForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

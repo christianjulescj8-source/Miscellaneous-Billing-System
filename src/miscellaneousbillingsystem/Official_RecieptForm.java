@@ -27,7 +27,12 @@ public class Official_RecieptForm extends javax.swing.JFrame {
     public Official_RecieptForm() {
         setUndecorated(true);
         initComponents();
-
+        Back.setVisible(false);
+        if(Session.Identify.equals("FromMain")){
+        Back.setVisible(true);
+        } else if(Session.Identify.equals("FromPay")){
+        Back.setVisible(false);
+        }
         infoStudent();
         feeload();
         amountload();
@@ -36,11 +41,14 @@ public class Official_RecieptForm extends javax.swing.JFrame {
         }
     }
 
+    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        Back = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         print = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -82,6 +90,17 @@ public class Official_RecieptForm extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(796, 565));
         jPanel1.setPreferredSize(new java.awt.Dimension(595, 421));
         jPanel1.setLayout(null);
+
+        Back.setFont(new java.awt.Font("Baskerville Old Face", 0, 22)); // NOI18N
+        Back.setForeground(new java.awt.Color(0, 0, 0));
+        Back.setText("Back");
+        Back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BackMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Back);
+        Back.setBounds(10, 10, 50, 30);
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 10)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -137,13 +156,13 @@ public class Official_RecieptForm extends javax.swing.JFrame {
 
         name.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         name.setForeground(new java.awt.Color(0, 0, 0));
-        name.setText("Christian Jules A. Albatera");
+        name.setText("f");
         jPanel1.add(name);
         name.setBounds(50, 115, 160, 11);
 
         Section.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         Section.setForeground(new java.awt.Color(0, 0, 0));
-        Section.setText("ICT");
+        Section.setText("f");
         jPanel1.add(Section);
         Section.setBounds(264, 100, 70, 10);
 
@@ -162,13 +181,13 @@ public class Official_RecieptForm extends javax.swing.JFrame {
 
         Grade.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         Grade.setForeground(new java.awt.Color(0, 0, 0));
-        Grade.setText("12");
+        Grade.setText("3");
         jPanel1.add(Grade);
         Grade.setBounds(260, 115, 30, 11);
 
         LRN.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         LRN.setForeground(new java.awt.Color(0, 0, 0));
-        LRN.setText("1223434536363");
+        LRN.setText("3");
         jPanel1.add(LRN);
         LRN.setBounds(43, 100, 140, 11);
 
@@ -256,7 +275,6 @@ public class Official_RecieptForm extends javax.swing.JFrame {
         TOTAL.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         TOTAL.setForeground(new java.awt.Color(0, 0, 0));
         TOTAL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TOTAL.setText("200.00");
         TOTAL.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jPanel1.add(TOTAL);
         TOTAL.setBounds(510, 390, 60, 10);
@@ -347,30 +365,30 @@ public class Official_RecieptForm extends javax.swing.JFrame {
                 String date2 = rs.getString("Date_Q2");
                 String date3 = rs.getString("Date_Q3");
                 String date4 = rs.getString("Date_Q4");
-                
+
                 String LRn = rs.getString("lrn");
                 String remarks = rs.getString("remarks");
 
                 Section.setText(sect);
                 LRN.setText(LRn);
                 name.setText(fullname);
-                
+
                 remarkss.setText(remarks);
                 if (Session.Discount == false) {
-                    
+
                     String query = "SELECT SUM(amount) AS Total FROM contribution_Paid WHERE student_ID = ? AND School_Year = ? AND Quarter = ?";
                     PreparedStatement pmt = con.prepareStatement(query);
                     pmt.setInt(1, Session.studentID);
                     pmt.setString(2, Session.schoolyear);
                     pmt.setString(3, Session.Quarter);
                     ResultSet rso = pmt.executeQuery();
-                    if(Session.Quarter.equals("1st")){
+                    if (Session.Quarter.equals("1st")) {
                         Date.setText(date1);
-                    } else if(Session.Quarter.equals("2nd")){
+                    } else if (Session.Quarter.equals("2nd")) {
                         Date.setText(date2);
-                    } else if(Session.Quarter.equals("3rd")){
+                    } else if (Session.Quarter.equals("3rd")) {
                         Date.setText(date3);
-                    } else if(Session.Quarter.equals("4th")){
+                    } else if (Session.Quarter.equals("4th")) {
                         Date.setText(date4);
                     }
                     if (rso.next()) {
@@ -550,6 +568,17 @@ public class Official_RecieptForm extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_printMouseClicked
 
+    private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
+        Billing_MainForm main = new Billing_MainForm();
+        main.setVisible(true);
+        dispose();
+        Session.Fees.clear();
+        Session.AmountItem.clear();
+        Session.dicountedPrice.clear();
+        Session.dicountedAmount.clear();
+        Session.IDoffee.clear();
+    }//GEN-LAST:event_BackMouseClicked
+
     public static void main(String args[]) {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -583,6 +612,7 @@ public class Official_RecieptForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Amount;
+    private javax.swing.JLabel Back;
     private javax.swing.JLabel Date;
     private javax.swing.JTextArea Fees;
     private javax.swing.JLabel Grade;

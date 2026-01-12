@@ -662,7 +662,7 @@ public class PaymentForm extends javax.swing.JFrame {
                                 }
                             } else {
                                 for (String i : IDofFees) {
-                                    feePaid = feePaid += ", " + i;;
+                                    feePaid = feePaid += ", " + i;
                                 }
                             }
 
@@ -685,7 +685,7 @@ public class PaymentForm extends javax.swing.JFrame {
                             psUpdate.setString(11, remark);
                             psUpdate.setInt(12, this.studentid);
                             psUpdate.executeUpdate();
-                            String updateSql2 = "INSERT INTO Contribution_paid (student_ID, Fee, amount, Quarter, School_Year, Fee_ID) VALUES (?, ?, ?, ?, ?, ?)";
+                            String updateSql2 = "INSERT INTO Contribution_paid (student_ID, Fee, amount, Quarter, School_Year, Fee_ID, Date) VALUES (?, ?, ?, ?, ?, ?, ?)";
                             PreparedStatement psUpdate2 = con.prepareStatement(updateSql2);
                             for (int i = 0; i < Feesss.size(); i++) {
                                 if (Qu1.isSelected()) {
@@ -699,6 +699,7 @@ public class PaymentForm extends javax.swing.JFrame {
                                     psUpdate2.setString(4, "1st");
                                     psUpdate2.setString(5, Session.schoolyear);
                                     psUpdate2.setString(6, feeId);
+                                    psUpdate2.setString(7, CLOCK.getText().toString());
                                     psUpdate2.executeUpdate();
                                     Session.Quarter = "1st";
                                 } else if (Qu2.isSelected()) {
@@ -712,6 +713,7 @@ public class PaymentForm extends javax.swing.JFrame {
                                     psUpdate2.setString(4, "2nd");
                                     psUpdate2.setString(5, Session.schoolyear);
                                     psUpdate2.setString(6, feeId);
+                                    psUpdate2.setString(7, CLOCK.getText().toString());
                                     psUpdate2.executeUpdate();
                                     Session.Quarter = "2nd";
                                 } else if (Qu3.isSelected()) {
@@ -725,6 +727,7 @@ public class PaymentForm extends javax.swing.JFrame {
                                     psUpdate2.setString(4, "3rd");
                                     psUpdate2.setString(5, Session.schoolyear);
                                     psUpdate2.setString(6, feeId);
+                                    psUpdate2.setString(7, CLOCK.getText().toString());
                                     psUpdate2.executeUpdate();
                                     Session.Quarter = "3rd";
                                 } else if (Qu4.isSelected()) {
@@ -738,6 +741,7 @@ public class PaymentForm extends javax.swing.JFrame {
                                     psUpdate2.setString(4, "4th");
                                     psUpdate2.setString(5, Session.schoolyear);
                                     psUpdate2.setString(6, feeId);
+                                    psUpdate2.setString(7, CLOCK.getText().toString());
                                     psUpdate2.executeUpdate();
                                     Session.Quarter = "4th";
                                 }

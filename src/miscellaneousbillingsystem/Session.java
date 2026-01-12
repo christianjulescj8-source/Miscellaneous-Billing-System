@@ -20,4 +20,5 @@ public class Session {
     public static List<Double> dicountedAmount = new ArrayList<>();
     public static ArrayList<Integer> IDoffee = new ArrayList<>();
     public static String Quarter;
+    public static String Identify;
 }

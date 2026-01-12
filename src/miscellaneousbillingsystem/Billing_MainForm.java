@@ -1309,7 +1309,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_SearchtxtKeyReleased
 
     private void PayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayActionPerformed
-
+        Session.Identify = "FromPay";
         int sid = Integer.parseInt(studentID.getText());
         String feeles = feeprev.getText();
         String name = Name.getText();
@@ -1363,7 +1363,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_Section12MouseClicked
 
     private void Pay1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pay1ActionPerformed
-
+        Session.Identify = "FromPay";
         Session.studentID = Integer.parseInt(studentID.getText().toString());
         SPSdiscountForm discount = new SPSdiscountForm();
         discount.setVisible(true);
@@ -1387,6 +1387,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Session.Quarter = "1st";
         Session.Discount = false;
         Session.studentID = Integer.parseInt(studentID.getText().toString());
+        Session.Identify = "FromMain";
         Official_RecieptForm reciept = new Official_RecieptForm();
         reciept.setVisible(true);
         dispose();
@@ -1397,6 +1398,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Session.Quarter = "2nd";
         Session.Discount = false;
         Session.studentID = Integer.parseInt(studentID.getText().toString());
+        Session.Identify = "FromMain";
         Official_RecieptForm reciept = new Official_RecieptForm();
         reciept.setVisible(true);
         dispose();
@@ -1406,6 +1408,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Session.Quarter = "3rd";
         Session.Discount = false;
         Session.studentID = Integer.parseInt(studentID.getText().toString());
+        Session.Identify = "FromMain";
         Official_RecieptForm reciept = new Official_RecieptForm();
         reciept.setVisible(true);
         dispose();
@@ -1415,6 +1418,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Session.Quarter = "4th";
         Session.Discount = false;
         Session.studentID = Integer.parseInt(studentID.getText().toString());
+        Session.Identify = "FromMain";
         Official_RecieptForm reciept = new Official_RecieptForm();
         reciept.setVisible(true);
         dispose();
