@@ -94,21 +94,21 @@ public class Add_FeeForm extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 440, 310));
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 440, 300));
 
         Amountred.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         Amountred.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel3.add(Amountred, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 100, 20));
+        jPanel3.add(Amountred, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 100, 20));
 
         Acronymlbl.setFont(new java.awt.Font("Baskerville Old Face", 2, 20)); // NOI18N
         Acronymlbl.setForeground(new java.awt.Color(204, 204, 255));
         Acronymlbl.setText("Acronym...");
-        jPanel3.add(Acronymlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 100, 20));
+        jPanel3.add(Acronymlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 100, 20));
 
         Feelbl.setFont(new java.awt.Font("Baskerville Old Face", 2, 20)); // NOI18N
         Feelbl.setForeground(new java.awt.Color(204, 204, 255));
         Feelbl.setText("Fee name....");
-        jPanel3.add(Feelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        jPanel3.add(Feelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
         Acronymred.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         Acronymred.setForeground(new java.awt.Color(255, 0, 0));
@@ -122,12 +122,12 @@ public class Add_FeeForm extends javax.swing.JFrame {
 
         Feenamered.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         Feenamered.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel3.add(Feenamered, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 170, 20));
+        jPanel3.add(Feenamered, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 170, 20));
 
         Amountlbl.setFont(new java.awt.Font("Baskerville Old Face", 2, 20)); // NOI18N
         Amountlbl.setForeground(new java.awt.Color(204, 204, 255));
         Amountlbl.setText("Amount...");
-        jPanel3.add(Amountlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 90, -1));
+        jPanel3.add(Amountlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 90, -1));
 
         Create.setBackground(new java.awt.Color(255, 255, 255));
         Create.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -218,7 +218,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
                 AmounttxtKeyTyped(evt);
             }
         });
-        jPanel3.add(Amounttxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 100, -1));
+        jPanel3.add(Amounttxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 100, -1));
 
         Feetxt.setBackground(new java.awt.Color(0, 102, 0));
         Feetxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 20)); // NOI18N
@@ -237,7 +237,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
                 FeetxtActionPerformed(evt);
             }
         });
-        jPanel3.add(Feetxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 240, -1));
+        jPanel3.add(Feetxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 620, -1));
 
         Acronymtxt.setBackground(new java.awt.Color(0, 102, 0));
         Acronymtxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 20)); // NOI18N
@@ -256,7 +256,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
                 AcronymtxtActionPerformed(evt);
             }
         });
-        jPanel3.add(Acronymtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 160, -1));
+        jPanel3.add(Acronymtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 160, -1));
 
         Parent.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         Parent.setForeground(new java.awt.Color(255, 255, 255));
@@ -310,6 +310,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
             Acronymtxt.setText("");
+            Parent.setVisible(true);
             Acronymlbl.setVisible(true);
             Feetxt.setText("");
             Feelbl.setVisible(true);
@@ -380,11 +381,12 @@ public class Add_FeeForm extends javax.swing.JFrame {
             Acronymtxt.setText(acronym);
             Acronymlbl.setVisible(false);
             Create.setVisible(false);
+            Parent.setVisible(false);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
-
+ 
     }//GEN-LAST:event_jScrollPane2MouseClicked
 
     private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
@@ -416,7 +418,7 @@ public class Add_FeeForm extends javax.swing.JFrame {
                 if (Parent.isSelected()) {
                     String query = "INSERT INTO `miscellaneous_fee` (Name_of_contribution, Acronym, amount, acronym_of_Fee, Per_Parent) VALUES (?, ?, ?, ?, ?) ";
                     PreparedStatement pst = con.prepareStatement(query);
-                    pst.setString(1, namefee);
+                    pst.setString(1, namefee + " (PER PARENT)");
                     pst.setString(2, acronymq);
                     pst.setString(3, amount);
                     pst.setString(4, acronym);

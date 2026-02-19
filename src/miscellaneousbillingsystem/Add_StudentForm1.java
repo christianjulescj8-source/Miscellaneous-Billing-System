@@ -51,7 +51,7 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
 
         if (Session.role.equals("PTA Treasurer")) {
             data.setVisible(false);
-
+            jButton3.setVisible(false);
         }
         if (grade.equals("7th")) {
             Rooler.setText("Add Student 7th Grade");

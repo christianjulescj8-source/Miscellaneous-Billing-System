@@ -19,6 +19,9 @@ public class Session {
     public static List<Double> dicountedPrice = new ArrayList<>();
     public static List<Double> dicountedAmount = new ArrayList<>();
     public static ArrayList<Integer> IDoffee = new ArrayList<>();
+    public static ArrayList<Integer> IDFee = new ArrayList<>();
     public static String Quarter;
     public static String Identify;
+    public static String siblingsConfirmation;
+    
 }

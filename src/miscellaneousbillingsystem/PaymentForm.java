@@ -61,14 +61,17 @@ public class PaymentForm extends javax.swing.JFrame {
         Session.studentID = studID;
         this.studentid = studID;
         this.numbersib = numberofsib;
-
+        jScrollPane3.setVisible(false);
+        jButton4.setVisible(false);
         LRN.setText(Lrn);
         Nameshow.setText(Name);
         remarks.setText(remark);
-
+        ConfirmButton.setVisible(false);
+        UndoButton.setVisible(false);
         startClock();
         loadTable();
         FeePaid();
+        sibtable();
     }
 
     @SuppressWarnings("unchecked")
@@ -82,6 +85,8 @@ public class PaymentForm extends javax.swing.JFrame {
         Rooler = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         CLOCK = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -89,6 +94,7 @@ public class PaymentForm extends javax.swing.JFrame {
         Paymentfor = new javax.swing.JLabel();
         Nameshow = new javax.swing.JLabel();
         Confirm = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         Total = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -104,6 +110,11 @@ public class PaymentForm extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         check = new javax.swing.JLabel();
+        Searchlabel = new javax.swing.JLabel();
+        Searchtxt = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        UndoButton = new javax.swing.JButton();
+        ConfirmButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -128,6 +139,27 @@ public class PaymentForm extends javax.swing.JFrame {
         jPanel3.add(CLOCK, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, 400, 30));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 94));
+
+        jTable2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTable2);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 970, 230));
 
         jTable1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -204,6 +236,20 @@ public class PaymentForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 640, -1, -1));
+
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(0, 153, 0));
+        jButton4.setText("Fees");
+        jButton4.setBorderPainted(false);
+        jButton4.setFocusPainted(false);
+        jButton4.setFocusable(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 410, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -317,6 +363,70 @@ public class PaymentForm extends javax.swing.JFrame {
         check.setForeground(new java.awt.Color(255, 0, 51));
         jPanel1.add(check, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 490, 360, 30));
 
+        Searchlabel.setBackground(new java.awt.Color(0, 153, 0));
+        Searchlabel.setFont(new java.awt.Font("Baskerville Old Face", 2, 24)); // NOI18N
+        Searchlabel.setForeground(new java.awt.Color(204, 204, 255));
+        Searchlabel.setText("Search...");
+        jPanel1.add(Searchlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 110, 100, -1));
+
+        Searchtxt.setBackground(new java.awt.Color(0, 102, 0));
+        Searchtxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 22)); // NOI18N
+        Searchtxt.setForeground(new java.awt.Color(255, 255, 255));
+        Searchtxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        Searchtxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                SearchtxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                SearchtxtFocusLost(evt);
+            }
+        });
+        Searchtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchtxtActionPerformed(evt);
+            }
+        });
+        Searchtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                SearchtxtKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                SearchtxtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(Searchtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 110, 240, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search icon12.png"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 100, -1, -1));
+
+        UndoButton.setBackground(new java.awt.Color(255, 255, 255));
+        UndoButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        UndoButton.setForeground(new java.awt.Color(0, 153, 0));
+        UndoButton.setText("Undo");
+        UndoButton.setBorderPainted(false);
+        UndoButton.setFocusPainted(false);
+        UndoButton.setFocusable(false);
+        UndoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UndoButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(UndoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, -1, -1));
+
+        ConfirmButton.setBackground(new java.awt.Color(255, 255, 255));
+        ConfirmButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        ConfirmButton.setForeground(new java.awt.Color(0, 153, 0));
+        ConfirmButton.setText("Comfirm");
+        ConfirmButton.setBorderPainted(false);
+        ConfirmButton.setFocusPainted(false);
+        ConfirmButton.setFocusable(false);
+        ConfirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ConfirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 410, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -325,7 +435,7 @@ public class PaymentForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -351,6 +461,22 @@ public class PaymentForm extends javax.swing.JFrame {
                 if (feePaid == null) {
                     feePaid = "";
                 }
+            }
+
+            String remarkText = remarks.getText().toLowerCase();
+
+            if (remarkText.contains("discounted") && remarkText.contains("sibling")) {
+
+                String SQL1 = "SELECT ID FROM miscellaneous_fee WHERE Per_Parent = '1'";
+                PreparedStatement ms1 = con.prepareStatement(SQL1);
+                ResultSet rs1 = ms1.executeQuery();
+
+                while (rs1.next()) {
+                    feePaid += rs1.getString("ID") + ", ";
+                }
+
+            } else {
+                System.out.println("none");
             }
 
             Set<String> paidSet = new HashSet<>();
@@ -485,6 +611,93 @@ public class PaymentForm extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
+    }
+
+    public void sibtable() {
+        String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
+        String SUser = "root";
+        String SPass = "";
+        int ID = this.studentid;
+        String lrn = LRN.getText();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+            String query = "SELECT * FROM student_info WHERE lrn=?";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, lrn);
+            ResultSet rs1 = pst.executeQuery();
+            if (rs1.next()) {
+                String lastname = rs1.getString("lastname");
+                Searchtxt.setText(lastname);
+                Searchlabel.setVisible(false);
+                Searchtxt.setVisible(false);
+                jLabel7.setVisible(false);
+                String sql = "SELECT si.lrn, CONCAT( "
+                        + "    si.lastname, ', ', "
+                        + "    si.firstname, ' ', "
+                        + "    IF(si.middlename = '' OR si.middlename IS NULL, '', CONCAT(LEFT(si.middlename, 1), '.')) "
+                        + ") AS fullname, "
+                        + " si.section, si.grade, si.ID, "
+                        + " sp.student_ID, sp.Fee_Paid, sp.`1st_Quarter`, sp.`2nd_Quarter`, "
+                        + " sp.`3rd_Quarter`, sp.`4th_Quarter`, sp.Total_Paid, "
+                        + " sp.Date_Q1, sp.Date_Q2, sp.Date_Q3, sp.Date_Q4, sp.remarks "
+                        + "FROM student_info si "
+                        + "LEFT JOIN student_payment sp ON si.ID = sp.student_ID "
+                        + "  AND si.school_Year = ? "
+                        + "ORDER BY si.lastname ASC, si.firstname ASC";
+
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setString(1, Session.schoolyear);
+
+                ResultSet rs = stmt.executeQuery();
+
+                ResultSetMetaData rsmd = rs.getMetaData();
+
+                int columnCount = rsmd.getColumnCount();
+
+                DefaultTableModel model = new DefaultTableModel();
+
+                String[] columnHeaders = {
+                    "LRN", "Full Name", "Section", "Grade",
+                    "Student ID", "Payment ID", "Fee Paid",
+                    "1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter", "Total Paid",
+                    "Date Q1", "Date Q2", "Date Q3", "Date Q4", "Remarks"
+                };
+
+                for (String header : columnHeaders) {
+                    model.addColumn(header);
+                }
+
+                while (rs.next()) {
+                    Object[] row = new Object[columnCount];
+                    for (int i = 1; i <= columnCount; i++) {
+                        row[i - 1] = rs.getObject(i);
+                    }
+                    model.addRow(row);
+                }
+
+                jTable2.setModel(model);
+                jTable2.setModel(model);
+                jTable2.getColumnModel().getColumn(11).setPreferredWidth(5);
+                jTable2.getColumnModel().getColumn(3).setPreferredWidth(5);
+                jTable2.getColumnModel().getColumn(2).setPreferredWidth(20);
+                jTable2.getColumnModel().getColumn(1).setPreferredWidth(150);
+                jTable2.setFocusable(false);
+                jTable2.setDefaultEditor(Object.class, null);
+                int[] hiddenCols = {0, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16}; // indexes start at 0
+                for (int colIndex : hiddenCols) {
+                    jTable2.getColumnModel().getColumn(colIndex).setMinWidth(0);
+                    jTable2.getColumnModel().getColumn(colIndex).setMaxWidth(0);
+                    jTable2.getColumnModel().getColumn(colIndex).setWidth(0);
+                }
+
+                rs.close();
+                stmt.close();
+                con.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     class SelectedFee {
@@ -655,17 +868,17 @@ public class PaymentForm extends javax.swing.JFrame {
 
                                 return;
                             }
-
-                            if (!feePaid.isEmpty()) {
+                            //, 90, 90
+                            if (feePaid.isEmpty()) {
                                 for (String i : IDofFees) {
                                     feePaid += i + ", ";
                                 }
                             } else {
                                 for (String i : IDofFees) {
-                                    feePaid = feePaid += ", " + i;
+                                    feePaid += ", " + i;
                                 }
                             }
-
+                            System.out.println(feePaid);
                             double totalPaid = q1 + q2 + q3 + q4;
 
                             String remark = remarks.getText();
@@ -754,9 +967,7 @@ public class PaymentForm extends javax.swing.JFrame {
                             Session.Discount = false;
                             Official_RecieptForm reciept = new Official_RecieptForm();
                             reciept.setVisible(true);
-                            if (sibling != null) {
-                                sibling.setVisible(false);
-                            }
+
                             dispose();
                         }
                     }
@@ -773,36 +984,103 @@ public class PaymentForm extends javax.swing.JFrame {
     private void Qu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qu1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Qu1ActionPerformed
-    private static Siblings_Form sibling;
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
-        String SUser = "root";
-        String SPass = "";
-        int ID = this.studentid;
-        String lrn = LRN.getText();
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
-            String query = "SELECT * FROM student_info WHERE lrn=?";
-            PreparedStatement pst = con.prepareStatement(query);
-            pst.setString(1, lrn);
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                String lastname = rs.getString("lastname");
-                if (sibling == null || !sibling.isShowing()) {
-                    sibling = new Siblings_Form(lastname, ID);
-                    sibling.setVisible(true);
-                } else {
-                    sibling.toFront();
-                }
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        jScrollPane1.setVisible(false);
+        jScrollPane3.setVisible(true);
+        jButton2.setVisible(false);
+        jButton4.setVisible(true);
+        Confirm.setVisible(false);
+        String searchText = Searchtxt.getText().toString();
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        jTable2.setRowSorter(sorter);
+        if (searchText.length() == 0) {
+            sorter.setRowFilter(null);
+        } else {
+            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
         }
+        Searchtxt.setText("");
 
-
+        Searchlabel.setVisible(true);
+        Searchtxt.setVisible(true);
+        jLabel7.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+
+        ConfirmButton.setVisible(true);
+
+
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        jScrollPane1.setVisible(true);
+        jScrollPane3.setVisible(false);
+        jButton4.setVisible(false);
+        jButton2.setVisible(true);
+        Confirm.setVisible(true);
+        ConfirmButton.setVisible(false);
+        UndoButton.setVisible(false);
+        
+        Searchlabel.setVisible(false);
+        Searchtxt.setVisible(false);
+        jLabel7.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void SearchtxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchtxtFocusGained
+        if (Searchlabel.getText().equals("Search...")) {
+            Searchlabel.setVisible(false);
+        }
+    }//GEN-LAST:event_SearchtxtFocusGained
+
+    private void SearchtxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchtxtFocusLost
+        if (Searchtxt.getText().isEmpty()) {
+            Searchlabel.setVisible(true);
+
+        }
+    }//GEN-LAST:event_SearchtxtFocusLost
+
+    private void SearchtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchtxtActionPerformed
+        String searchText = Searchtxt.getText().toString();
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        jTable2.setRowSorter(sorter);
+        if (searchText.length() == 0) {
+            sorter.setRowFilter(null);
+        } else {
+            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
+        }
+    }//GEN-LAST:event_SearchtxtActionPerformed
+
+    private void SearchtxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchtxtKeyReleased
+
+
+    }//GEN-LAST:event_SearchtxtKeyReleased
+
+    private void SearchtxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchtxtKeyTyped
+
+    }//GEN-LAST:event_SearchtxtKeyTyped
+
+    private void UndoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UndoButtonActionPerformed
+        remarks.setText("");
+        if (remarks.equals("Per-parent fee discounted — sibling already paid")) {
+            UndoButton.setVisible(true);
+
+        } else {
+            ConfirmButton.setVisible(true);
+        }
+    }//GEN-LAST:event_UndoButtonActionPerformed
+
+    private void ConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmButtonActionPerformed
+        remarks.setText("Per-parent fee discounted — sibling already paid");
+        if (remarks.equals("Per-parent fee discounted — sibling already paid")) {
+            UndoButton.setVisible(true);
+
+        } else {
+            ConfirmButton.setVisible(true);
+        }
+    }//GEN-LAST:event_ConfirmButtonActionPerformed
     private javax.swing.Timer clockTimer;
 
     public void startClock() {
@@ -858,6 +1136,7 @@ public class PaymentForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CLOCK;
     private javax.swing.JButton Confirm;
+    private javax.swing.JButton ConfirmButton;
     private javax.swing.ButtonGroup Fiscalyear;
     private javax.swing.JLabel LRN;
     private javax.swing.JLabel Nameshow;
@@ -867,22 +1146,29 @@ public class PaymentForm extends javax.swing.JFrame {
     private javax.swing.JRadioButton Qu3;
     private javax.swing.JRadioButton Qu4;
     private javax.swing.JLabel Rooler;
+    private javax.swing.JLabel Searchlabel;
+    private javax.swing.JTextField Searchtxt;
     private javax.swing.JLabel Total;
+    private javax.swing.JButton UndoButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel check;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JLabel logo;
     private javax.swing.JTextArea remarks;
     // End of variables declaration//GEN-END:variables

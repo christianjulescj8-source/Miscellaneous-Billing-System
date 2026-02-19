@@ -367,19 +367,19 @@ public class SPSdiscountForm extends javax.swing.JFrame {
                     if (remark == null || remark.isEmpty()) {
                         this.forRemark = "50% discount granted for Provincial Meet participation.";
                     } else {
-                        this.forRemark = remark + "\n25% discount granted for Provincial Meet participation.";
+                        this.forRemark = remark + "\n50% discount granted for Provincial Meet participation.";
                     }
                 } else if (discountPercent == 75.0) {
                     if (remark == null || remark.isEmpty()) {
                         this.forRemark = "75% discount granted for Regional Meet participation.";
                     } else {
-                        this.forRemark = remark + "\n25% discount granted for Regional Meet participation.";
+                        this.forRemark = remark + "\n75% discount granted for Regional Meet participation.";
                     }
                 } else if (discountPercent == 100.0) {
                     if (remark == null || remark.isEmpty()) {
                         this.forRemark = "100% discount granted for National Meet participation.";
                     } else {
-                        this.forRemark = remark + "\n25% discount granted for National Meet participation.";
+                        this.forRemark = remark + "\n100% discount granted for National Meet participation.";
                     }
                 }
                 double discountRate = discountPercent / 100;

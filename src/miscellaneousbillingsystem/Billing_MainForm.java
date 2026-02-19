@@ -25,7 +25,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
     public Billing_MainForm() {
         initComponents();
         jTable1.getTableHeader().setOpaque(false);
-        jTable1.getTableHeader().setBackground(new Color(153,255,153));
+        jTable1.getTableHeader().setBackground(new Color(153, 255, 153));
         curriculum.setSelectedIndex(0);
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -35,6 +35,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         if (Session.role.equals("Administrator")) {
             Rooler.setText("Administrator");
             report.setVisible(false);
+            Pay1.setVisible(false);
             loadcombobox();
             loadTableStudentData();
         } else if (Session.role.equals("PTA Treasurer")) {
@@ -115,7 +116,6 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Total = new javax.swing.JLabel();
         DateQ1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        Searchlabel = new javax.swing.JLabel();
         Searchtxt = new javax.swing.JTextField();
         Pay = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -665,12 +665,6 @@ public class Billing_MainForm extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search icon12.png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 100, -1, -1));
 
-        Searchlabel.setBackground(new java.awt.Color(0, 153, 0));
-        Searchlabel.setFont(new java.awt.Font("Baskerville Old Face", 2, 24)); // NOI18N
-        Searchlabel.setForeground(new java.awt.Color(204, 204, 255));
-        Searchlabel.setText("Search...");
-        jPanel1.add(Searchlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 110, 120, -1));
-
         Searchtxt.setBackground(new java.awt.Color(0, 102, 0));
         Searchtxt.setFont(new java.awt.Font("Baskerville Old Face", 0, 22)); // NOI18N
         Searchtxt.setForeground(new java.awt.Color(255, 255, 255));
@@ -860,12 +854,16 @@ public class Billing_MainForm extends javax.swing.JFrame {
             viewQ2.setVisible(false);
             viewQ3.setVisible(false);
             viewQ4.setVisible(false);
+            Pay1.setVisible(false);
+            
             Name.setText("");
             LRN.setText("");
             Q1.setText("");
             Q2.setText("");
             Q3.setText("");
             Q4.setText("");
+
+            
             DateQ1.setText("Date: ");
             DateQ2.setText("Date: ");
             DateQ3.setText("Date: ");
@@ -951,52 +949,99 @@ public class Billing_MainForm extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
-            String SQL = "";
-            int selectedrow = jTable1.getSelectedRow();
-            if (selectedrow > -1) {
-                if (Session.role.equals("Administrator")) {
-                    Pay.setVisible(false);
-                } else if (Session.role.equals("PTA Treasurer")) {
-                    Pay.setVisible(true);
-                }
-                //this is a jTextArea
-                //"Full Name", "Section", "Grade",
-                //"Identifier", "Student ID", "Payment ID", "Fee Paid",
-                //"1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter", "Total Paid",
-                //"Date Q1", "Date Q2", "Date Q3", "Date Q4"
-                String lrn = jTable1.getValueAt(selectedrow, 0).toString();
-                String name = jTable1.getValueAt(selectedrow, 1).toString();
-                String id = jTable1.getValueAt(selectedrow, 4).toString();
-                String qo1 = jTable1.getValueAt(selectedrow, 7).toString();
-                String qo2 = jTable1.getValueAt(selectedrow, 8).toString();
-                String qo3 = jTable1.getValueAt(selectedrow, 9).toString();
-                String qo4 = jTable1.getValueAt(selectedrow, 10).toString();
-                String sum = jTable1.getValueAt(selectedrow, 11).toString();
-                String dq1 = jTable1.getValueAt(selectedrow, 12).toString();
-                String dq2 = jTable1.getValueAt(selectedrow, 13).toString();
-                String dq3 = jTable1.getValueAt(selectedrow, 14).toString();
-                String dq4 = jTable1.getValueAt(selectedrow, 15).toString();
-                String feed = jTable1.getValueAt(selectedrow, 6).toString();
-                String remark = jTable1.getValueAt(selectedrow, 16).toString();
-                Name.setText(name);
-                LRN.setText(lrn);
-                Q1.setText(qo1);
-                Q2.setText(qo2);
-                Q3.setText(qo3);
-                Q4.setText(qo4);              
-                DateQ1.setText("Date: " + dq1);
-                DateQ2.setText("Date: " + dq2);
-                DateQ3.setText("Date: " + dq3);
-                DateQ4.setText("Date: " + dq4);               
-                Total.setText(sum);
-                feeprev.setText(feed);
-                studentID.setText(id);
-                remarks.setText(remark);
-                if(!dq1.isEmpty()){viewQ1.setVisible(true);}
-                if(!dq2.isEmpty()){viewQ2.setVisible(true);}
-                if(!dq3.isEmpty()){viewQ3.setVisible(true);}
-                if(!dq4.isEmpty()){viewQ4.setVisible(true);}
+            String SQL = "SELECT SUM(amount) AS total_amount FROM miscellaneous_fee WHERE Per_Parent = '0' ";
+            PreparedStatement ms = con.prepareStatement(SQL);
+            ResultSet rs = ms.executeQuery();
+            String SQL1 = "SELECT SUM(amount) AS total_amount FROM miscellaneous_fee WHERE Per_Parent = '1' ";
+            PreparedStatement ms1 = con.prepareStatement(SQL1);
+            ResultSet rs1 = ms1.executeQuery();
 
+            if (rs.next() && rs1.next()) {
+                double amount = rs.getDouble("total_amount");
+                double perParentAmount = rs1.getDouble("total_amount");
+                double totalamount = amount + perParentAmount;
+                int total = (int) Math.round(totalamount);
+                int selectedrow = jTable1.getSelectedRow();
+                if (selectedrow > -1) {
+                    if (Session.role.equals("Administrator")) {
+                        Pay.setVisible(false);
+                    } else if (Session.role.equals("PTA Treasurer")) {
+                        Pay.setVisible(true);
+                    }
+                    viewQ1.setVisible(false);
+                    viewQ2.setVisible(false);
+                    viewQ3.setVisible(false);
+                    viewQ4.setVisible(false);
+
+                    String lrn = jTable1.getValueAt(selectedrow, 0).toString();
+                    String name = jTable1.getValueAt(selectedrow, 1).toString();
+                    String id = jTable1.getValueAt(selectedrow, 4).toString();
+                    String qo1 = jTable1.getValueAt(selectedrow, 7).toString();
+                    String qo2 = jTable1.getValueAt(selectedrow, 8).toString();
+                    String qo3 = jTable1.getValueAt(selectedrow, 9).toString();
+                    String qo4 = jTable1.getValueAt(selectedrow, 10).toString();
+                    String sum = jTable1.getValueAt(selectedrow, 11).toString();
+                    String dq1 = jTable1.getValueAt(selectedrow, 12).toString();
+                    String dq2 = jTable1.getValueAt(selectedrow, 13).toString();
+                    String dq3 = jTable1.getValueAt(selectedrow, 14).toString();
+                    String dq4 = jTable1.getValueAt(selectedrow, 15).toString();
+                    String feed = jTable1.getValueAt(selectedrow, 6).toString();
+                    String remark = jTable1.getValueAt(selectedrow, 16).toString();
+
+                    String remarkText = remark.toLowerCase();
+
+                    double totalmount = Double.parseDouble(sum);
+                    int Totelmount = (int) Math.round(totalmount);
+                    if (remark.contains("discounted") && remark.contains("sibling")) {
+                        Pay.setVisible(false);
+                        Pay1.setVisible(true);
+                    } else {
+                        if (Totelmount == total) {
+                            Pay.setVisible(false);
+                            Pay1.setVisible(true);
+                        } else {
+                            Pay.setVisible(true);
+                            Pay1.setVisible(false);
+                        }
+                    }
+                    //System.out.println(totalmount);
+                    //System.out.println(Totelmount);
+
+                    if (remarkText.contains("25%") && remarkText.contains("city")
+                            || remarkText.contains("50%") && remarkText.contains("provincial")
+                            || remarkText.contains("75%") && remarkText.contains("regional")
+                            || remarkText.contains("100%") && remarkText.contains("national")) {
+                        Pay1.setVisible(false);
+                        Pay.setVisible(false);
+                    }
+                    Name.setText(name);
+                    LRN.setText(lrn);
+                    Q1.setText(qo1);
+                    Q2.setText(qo2);
+                    Q3.setText(qo3);
+                    Q4.setText(qo4);
+                    DateQ1.setText("Date: " + dq1);
+                    DateQ2.setText("Date: " + dq2);
+                    DateQ3.setText("Date: " + dq3);
+                    DateQ4.setText("Date: " + dq4);
+                    Total.setText(sum);
+                    feeprev.setText(feed);
+                    studentID.setText(id);
+                    remarks.setText(remark);
+                    if (!dq1.isEmpty()) {
+                        viewQ1.setVisible(true);
+                    }
+                    if (!dq2.isEmpty()) {
+                        viewQ2.setVisible(true);
+                    }
+                    if (!dq3.isEmpty()) {
+                        viewQ3.setVisible(true);
+                    }
+                    if (!dq4.isEmpty()) {
+                        viewQ4.setVisible(true);
+                    }
+
+                }
             }
 
         } catch (Exception e) {
@@ -1263,19 +1308,19 @@ public class Billing_MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void SearchtxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchtxtFocusGained
-        if (Searchlabel.getText().equals("Search...")) {
-            y = 0;
-            Menu.setVisible(false);
-            Menu.setSize(0, 500);
-            Searchlabel.setVisible(false);
-        }
+       // if (Searchlabel.getText().equals("Search...")) {
+       //     y = 0;
+        //    Menu.setVisible(false);
+        //    Menu.setSize(0, 500);
+        //    Searchlabel.setVisible(false);
+       // }
     }//GEN-LAST:event_SearchtxtFocusGained
 
     private void SearchtxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchtxtFocusLost
-        if (Searchtxt.getText().isEmpty()) {
-            Searchlabel.setVisible(true);
+       // if (Searchtxt.getText().isEmpty()) {
+       //     Searchlabel.setVisible(true);
 
-        }
+       // }
     }//GEN-LAST:event_SearchtxtFocusLost
 
     private void SearchtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchtxtActionPerformed
@@ -1383,7 +1428,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_report1ActionPerformed
 
     private void viewQ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewQ1ActionPerformed
-        
+
         Session.Quarter = "1st";
         Session.Discount = false;
         Session.studentID = Integer.parseInt(studentID.getText().toString());
@@ -1391,7 +1436,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         Official_RecieptForm reciept = new Official_RecieptForm();
         reciept.setVisible(true);
         dispose();
-        
+
     }//GEN-LAST:event_viewQ1ActionPerformed
 
     private void viewQ2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewQ2ActionPerformed
@@ -1478,7 +1523,6 @@ public class Billing_MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel Q3;
     private javax.swing.JLabel Q4;
     private javax.swing.JLabel Rooler;
-    private javax.swing.JLabel Searchlabel;
     private javax.swing.JTextField Searchtxt;
     private javax.swing.JButton Section;
     private javax.swing.JLabel Section10;

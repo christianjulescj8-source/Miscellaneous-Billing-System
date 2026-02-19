@@ -24,9 +24,10 @@ import java.awt.Desktop;
 import java.io.FileInputStream;
 
 public class ExportForm extends javax.swing.JFrame {
-    
+
     private String gradelevel;
     private String sectionlevel;
+
     public ExportForm() {
         UIManager.put("ScrollBarUI", "miscellaneousbillingsystem.ScrollBarWin11");
         initComponents();
@@ -38,8 +39,6 @@ public class ExportForm extends javax.swing.JFrame {
             Sectionselect.setSelectedIndex(0);  // select first
         }
 
-// ✅ Now load data (don’t skip)
-        loadsum();
         loadTableStudentData();
 
     }
@@ -48,8 +47,6 @@ public class ExportForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -62,7 +59,7 @@ public class ExportForm extends javax.swing.JFrame {
         Categorie = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        Date = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -75,49 +72,35 @@ public class ExportForm extends javax.swing.JFrame {
         TotalStudent = new javax.swing.JLabel();
         Q3 = new javax.swing.JLabel();
         Q4 = new javax.swing.JLabel();
-
-        jButton2.setBackground(new java.awt.Color(0, 153, 0));
-        jButton2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Export to Excel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setBackground(new java.awt.Color(0, 153, 0));
-        jButton4.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Export to PDF");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
+        Quarterly = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        jPanel1.setPreferredSize(new java.awt.Dimension(1234, 583));
+
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setForeground(new java.awt.Color(51, 204, 0));
+        jPanel3.setPreferredSize(new java.awt.Dimension(1234, 583));
         jPanel3.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 153));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setLayout(null);
 
         Rooler.setFont(new java.awt.Font("Baskerville Old Face", 0, 70)); // NOI18N
         Rooler.setForeground(new java.awt.Color(0, 0, 0));
         Rooler.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Rooler.setText("Report");
         Rooler.setToolTipText("");
-        jPanel2.add(Rooler, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 990, 88));
+        jPanel2.add(Rooler);
+        Rooler.setBounds(0, 10, 1220, 88);
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo smaller.png"))); // NOI18N
-        jPanel2.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel2.add(logo);
+        logo.setBounds(0, 0, 95, 95);
 
         jPanel3.add(jPanel2);
-        jPanel2.setBounds(0, 0, 1100, 100);
+        jPanel2.setBounds(0, 0, 1230, 100);
 
         jTable1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -153,13 +136,14 @@ public class ExportForm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jPanel3.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 150, 970, 480);
+        jScrollPane1.setBounds(0, 144, 1218, 400);
 
         Sectionselect.setBackground(new java.awt.Color(255, 255, 255));
         Sectionselect.setFont(new java.awt.Font("Baskerville Old Face", 0, 17)); // NOI18N
         Sectionselect.setForeground(new java.awt.Color(0, 0, 0));
         Sectionselect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         Sectionselect.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        Sectionselect.setFocusable(false);
         Sectionselect.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SectionselectMouseClicked(evt);
@@ -171,13 +155,14 @@ public class ExportForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(Sectionselect);
-        Sectionselect.setBounds(720, 120, 160, 22);
+        Sectionselect.setBounds(840, 110, 160, 22);
 
         curriculum.setBackground(new java.awt.Color(255, 255, 255));
         curriculum.setFont(new java.awt.Font("Baskerville Old Face", 0, 17)); // NOI18N
         curriculum.setForeground(new java.awt.Color(0, 0, 0));
         curriculum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7th", "8th", "9th", "10th", "11th", "12th" }));
         curriculum.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        curriculum.setFocusable(false);
         curriculum.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
@@ -198,13 +183,14 @@ public class ExportForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(curriculum);
-        curriculum.setBounds(630, 120, 80, 22);
+        curriculum.setBounds(710, 110, 80, 22);
 
         Categorie.setBackground(new java.awt.Color(255, 255, 255));
         Categorie.setFont(new java.awt.Font("Baskerville Old Face", 0, 17)); // NOI18N
         Categorie.setForeground(new java.awt.Color(0, 0, 0));
-        Categorie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fees", "Students", "All Students" }));
+        Categorie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Payment Records", "Class Sections", "Student Records", "Quarterly Payments" }));
         Categorie.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        Categorie.setFocusable(false);
         Categorie.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CategorieMouseClicked(evt);
@@ -216,7 +202,7 @@ public class ExportForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(Categorie);
-        Categorie.setBounds(130, 120, 160, 22);
+        Categorie.setBounds(130, 110, 180, 22);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -228,12 +214,14 @@ public class ExportForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton1);
-        jButton1.setBounds(870, 120, 100, 25);
+        jButton1.setBounds(1090, 110, 100, 25);
 
         jButton3.setBackground(new java.awt.Color(0, 153, 0));
         jButton3.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Back");
+        jButton3.setBorderPainted(false);
+        jButton3.setFocusable(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -241,8 +229,11 @@ public class ExportForm extends javax.swing.JFrame {
         });
         jPanel3.add(jButton3);
         jButton3.setBounds(10, 110, 76, 30);
-        jPanel3.add(jDateChooser1);
-        jDateChooser1.setBounds(430, 120, 170, 26);
+
+        Date.setFocusable(false);
+        Date.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        jPanel3.add(Date);
+        Date.setBounds(520, 110, 170, 26);
 
         jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -310,15 +301,36 @@ public class ExportForm extends javax.swing.JFrame {
         jPanel3.add(Q4);
         Q4.setBounds(740, 640, 80, 20);
 
+        Quarterly.setBackground(new java.awt.Color(255, 255, 255));
+        Quarterly.setFont(new java.awt.Font("Baskerville Old Face", 0, 17)); // NOI18N
+        Quarterly.setForeground(new java.awt.Color(0, 0, 0));
+        Quarterly.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4" }));
+        Quarterly.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        Quarterly.setFocusable(false);
+        Quarterly.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                QuarterlyMouseClicked(evt);
+            }
+        });
+        Quarterly.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuarterlyActionPerformed(evt);
+            }
+        });
+        jPanel3.add(Quarterly);
+        Quarterly.setBounds(510, 110, 180, 22);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -335,214 +347,110 @@ public class ExportForm extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    public void exportTableToExcel(JTable jTable1) {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Save as Excel");
-        int userSelection = fileChooser.showSaveDialog(null);
 
-        if (userSelection == JFileChooser.APPROVE_OPTION) {
-            try (org.apache.poi.ss.usermodel.Workbook workbook = new org.apache.poi.xssf.usermodel.XSSFWorkbook()) {
-                org.apache.poi.ss.usermodel.Sheet sheet = workbook.createSheet("Data");
-                javax.swing.table.TableModel model = jTable1.getModel();
+    //Payment Records
+    //Class Sections
+    //Student Records
+    //Quarterly Payments
 
-                // Header
-                org.apache.poi.ss.usermodel.Row headerRow = sheet.createRow(0);
-                for (int i = 0; i < model.getColumnCount(); i++) {
-                    headerRow.createCell(i).setCellValue(model.getColumnName(i));
-                }
-
-                // Data
-                for (int i = 0; i < model.getRowCount(); i++) {
-                    org.apache.poi.ss.usermodel.Row row = sheet.createRow(i + 1);
-                    for (int j = 0; j < model.getColumnCount(); j++) {
-                        Object value = model.getValueAt(i, j);
-                        row.createCell(j).setCellValue(value != null ? value.toString() : "");
-                    }
-                }
-
-                // Save file
-                try (java.io.FileOutputStream fileOut = new java.io.FileOutputStream(fileChooser.getSelectedFile() + ".xlsx")) {
-                    workbook.write(fileOut);
-                }
-
-            } catch (Exception e) {
-                javax.swing.JOptionPane.showMessageDialog(null, "Error exporting Excel: " + e.getMessage());
-            }
-        }
+    public void PaymentRecords(){
+    
+    
     }
-    //"Grade_" + this.gradelevel + "-" + this.sectionlevel+"_"+ Session.schoolyear +"student_reports.pdf")
-    public void exportTableToPDF(JTable jTable1) {
-    JFileChooser fileChooser = new JFileChooser();
-    fileChooser.setDialogTitle("Save PDF");
-    fileChooser.setSelectedFile(new File("Grade_" + this.gradelevel + "-" + this.sectionlevel+"_"+ Session.schoolyear + "_" +"student_reports.pdf"));
-
-    int userSelection = fileChooser.showSaveDialog(null);
-
-    if (userSelection == JFileChooser.APPROVE_OPTION) {
-        File fileToSave = fileChooser.getSelectedFile();
-
-        if (!fileToSave.getAbsolutePath().toLowerCase().endsWith(".pdf")) {
-            fileToSave = new File(fileToSave.getAbsolutePath() + ".pdf");
-        }
-
-        try (PDDocument document = new PDDocument()) {
-            PDPage page = new PDPage();
-            document.addPage(page);
-
-            PDType0Font timesRoman = PDType0Font.load(document,
-                    new FileInputStream("C:/Windows/Fonts/times.ttf")); // change path if needed
-
-            PDPageContentStream contentStream = new PDPageContentStream(document, page);
-
-            TableModel model = jTable1.getModel();
-
-            float margin = 50;
-            float yStart = page.getMediaBox().getHeight() - margin;
-            float rowHeight = 20;
-            float cellMargin = 5;
-
-            // 1. Measure max width per column
-            int cols = model.getColumnCount();
-            float[] colWidths = new float[cols];
-            for (int col = 0; col < cols; col++) {
-                float maxWidth = timesRoman.getStringWidth(model.getColumnName(col)) / 1000 * 12; // header width
-                for (int row = 0; row < model.getRowCount(); row++) {
-                    Object val = model.getValueAt(row, col);
-                    if (val != null) {
-                        float textWidth = timesRoman.getStringWidth(val.toString()) / 1000 * 10;
-                        if (textWidth > maxWidth) {
-                            maxWidth = textWidth;
-                        }
-                    }
-                }
-                colWidths[col] = maxWidth + cellMargin * 2; // add padding
-            }
-
-            float tableWidth = 0;
-            for (float w : colWidths) tableWidth += w;
-
-            // 2. Draw table grid
-            float yPosition = yStart;
-            float xPosition = margin;
-
-            // Draw horizontal lines
-            for (int i = 0; i <= model.getRowCount() + 1; i++) {
-                contentStream.moveTo(margin, yPosition - i * rowHeight);
-                contentStream.lineTo(margin + tableWidth, yPosition - i * rowHeight);
-            }
-
-            // Draw vertical lines
-            float nextX = margin;
-            for (int col = 0; col <= cols; col++) {
-                contentStream.moveTo(nextX, yPosition);
-                contentStream.lineTo(nextX, yPosition - (model.getRowCount() + 1) * rowHeight);
-                if (col < cols) nextX += colWidths[col];
-            }
-            contentStream.stroke();
-
-            // 3. Write header row
-            contentStream.setFont(timesRoman, 12);
-            nextX = margin;
-            for (int col = 0; col < cols; col++) {
-                String text = model.getColumnName(col);
-                contentStream.beginText();
-                contentStream.newLineAtOffset(nextX + cellMargin, yPosition - 15);
-                contentStream.showText(text);
-                contentStream.endText();
-                nextX += colWidths[col];
-            }
-
-            // 4. Write table content
-            for (int row = 0; row < model.getRowCount(); row++) {
-                nextX = margin;
-                for (int col = 0; col < cols; col++) {
-                    Object cellValue = model.getValueAt(row, col);
-                    String text = (cellValue == null) ? "" : cellValue.toString();
-
-                    contentStream.beginText();
-                    contentStream.setFont(timesRoman, 10);
-                    contentStream.newLineAtOffset(nextX + cellMargin,
-                            yPosition - (row + 2) * rowHeight + 5);
-                    contentStream.showText(text);
-                    contentStream.endText();
-
-                    nextX += colWidths[col];
-                }
-            }
-
-            contentStream.close();
-            document.save(fileToSave);
-
-           
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            
-        }
+    
+    public void ClassSections(){
+    
+    
     }
-}
-
-    public void loadsum() {
-        String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
+    
+    public void StudentRecords(){
+    
+    
+    }
+    public void QuarterlyPayments(){
+    String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
         String SUser = "root";
         String SPass = "";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
-            String section = Sectionselect.getSelectedItem().toString();
+
             String grade = curriculum.getSelectedItem().toString();
-            String query0 = "SELECT COUNT(*) AS total FROM student_info WHERE grade = ? AND section = ? AND school_year = ?";
-            PreparedStatement pst = con.prepareStatement(query0);
-            pst.setString(1, grade);
-            pst.setString(2, section);
-            pst.setString(3, Session.schoolyear);
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                int Total = rs.getInt("total");
-                TotalStudent.setText(String.valueOf(Total));
-                String query = "SELECT "
-                        + " SUM(sp.`1st_Quarter`) AS totalQ1, "
-                        + " SUM(sp.`2nd_Quarter`) AS totalQ2, "
-                        + " SUM(sp.`3rd_Quarter`) AS totalQ3, "
-                        + " SUM(sp.`4th_Quarter`) AS totalQ4, "
-                        + " SUM(sp.Total_Paid)   AS overall "
-                        + "FROM student_payment sp "
-                        + "JOIN student_info si ON sp.student_ID = si.ID "
-                        + "WHERE si.grade = ? AND si.section = ? AND si.school_year = ?";
-                PreparedStatement ps = con.prepareStatement(query);
-                ps.setString(1, grade);              // from curriculum.getSelectedItem()
-                ps.setString(2, section);            // from Sectionselect.getSelectedItem()
-                ps.setString(3, Session.schoolyear); // current school year
+            String section = Sectionselect.getSelectedItem().toString();
+            this.gradelevel = grade;
+            this.sectionlevel = section;
+            System.out.println("table secton: " + section);
+            // Query with all needed columns
+            String sql = "SELECT CONCAT( "
+                    + "    si.lastname, ', ', "
+                    + "    si.firstname, ' ', "
+                    + "    IF(si.middlename = '' OR si.middlename IS NULL, '', CONCAT(LEFT(si.middlename, 1), '.')) "
+                    + ") AS fullname, "
+                    + "sp.`1st_Quarter`, sp.`2nd_Quarter`, sp.`3rd_Quarter`, sp.`4th_Quarter`, sp.Total_Paid, "
+                    + " si.section, si.grade "
+                    + "FROM student_info si "
+                    + "LEFT JOIN student_payment sp ON si.ID = sp.student_ID "
+                    + "RIGTH JOIN contribution_paid cp ON si.ID = cp.student_ID "
+                    + "WHERE si.grade = ? AND si.school_Year = ? AND si.section = ?";
 
-                ResultSet rsm = ps.executeQuery();
-                if (rsm.next()) {
-                    int totalQ1 = rsm.getInt("totalQ1");
-                    int totalQ2 = rsm.getInt("totalQ2");
-                    int totalQ3 = rsm.getInt("totalQ3");
-                    int totalQ4 = rsm.getInt("totalQ4");
-                    int overall = rsm.getInt("overall");
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, grade);
+            stmt.setString(2, Session.schoolyear);
+            stmt.setString(3, section);
+            ResultSet rs = stmt.executeQuery();
 
-                    Q1.setText(String.valueOf(totalQ1));
-                    Q2.setText(String.valueOf(totalQ2));
-                    Q3.setText(String.valueOf(totalQ3));
-                    Q4.setText(String.valueOf(totalQ4));
-                    Overall.setText(String.valueOf(overall));
+            ResultSetMetaData rsmd = rs.getMetaData();
 
-                    // Debug output
-                    System.out.println("DEBUG => Q1:" + totalQ1 + " Q2:" + totalQ2
-                            + " Q3:" + totalQ3 + " Q4:" + totalQ4 + " Overall:" + overall);
-                    System.out.println("grade: " + grade);
-                    System.out.println("section: " + section);
-                    System.out.println("year: " + Session.schoolyear);
-                }
+            int columnCount = rsmd.getColumnCount();
+
+            DefaultTableModel model = new DefaultTableModel();
+
+            String[] columnHeaders = {
+                "Full Name",
+                "1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter", "Total Paid",
+                "Section", "Grade",};
+
+            for (String header : columnHeaders) {
+                model.addColumn(header);
             }
+
+            // Fill rows
+            while (rs.next()) {
+                Object[] row = new Object[columnCount];
+                for (int i = 1; i <= columnCount; i++) {
+                    row[i - 1] = rs.getObject(i);
+                }
+                model.addRow(row);
+            }
+
+            // Apply model
+            jTable1.setModel(model);
+            //= "SELECT si.firstname, si.middlename, si.lastname, si.section, si.grade, si.Identifier, si.ID, "
+            //       + "sp.student_ID, sp.Fee_paid, sp.Total_Paid, sp.`1st_Quarter`, sp.`2nd_Quarter`, sp.`3rd_Quarter`, sp.`4th_Quarter`, sp.Date_Q1, sp.Date_Q2, sp.Date_Q3, sp.Date_Q4 "
+            //       + "FROM student_info si "
+            // Hide unwanted columns (keep only LRN_Students, firstname, middlename, lastname, section)
+            int[] hiddenCols = {6, 7}; // indexes start at 0
+            for (int colIndex : hiddenCols) {
+                jTable1.getColumnModel().getColumn(colIndex).setMinWidth(0);
+                jTable1.getColumnModel().getColumn(colIndex).setMaxWidth(0);
+                jTable1.getColumnModel().getColumn(colIndex).setWidth(0);
+                jTable1.getColumnModel().getColumn(0).setPreferredWidth(200);
+            }
+
+            rs.close();
+            stmt.close();
+            con.close();
+
         } catch (Exception e) {
-             System.out.println("Error loading combo box: " + e.getMessage());
+            e.printStackTrace();
         }
-
+    
+    
+    
     }
-
+    
+    
     public void loadTableStudentData() {
         String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
         String SUser = "root";
@@ -676,7 +584,7 @@ public class ExportForm extends javax.swing.JFrame {
             String searchText = Sectionselect.getSelectedItem().toString();
 
             if (Sectionselect.getSelectedItem() != null) {
-                loadsum();
+
                 loadTableStudentData();
             }
 
@@ -694,7 +602,7 @@ public class ExportForm extends javax.swing.JFrame {
 
     private void curriculumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curriculumActionPerformed
         loadcombobox();
-        loadsum();
+
         loadTableStudentData();
 
 
@@ -703,7 +611,7 @@ public class ExportForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         loadcombobox();
-        loadsum();
+
         loadTableStudentData();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -713,21 +621,36 @@ public class ExportForm extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        exportTableToExcel(jTable1);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        exportTableToPDF(jTable1);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void CategorieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CategorieMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_CategorieMouseClicked
 
     private void CategorieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategorieActionPerformed
-        // TODO add your handling code here:
+        if (Categorie.getSelectedIndex() == 0) {
+            //Payment Records
+
+        } else if (Categorie.getSelectedIndex() == 1) {
+            //Class Sections
+
+        } else if (Categorie.getSelectedIndex() == 2) {
+            //Student Records
+
+        } else if (Categorie.getSelectedIndex() == 4) {
+            //Quarterly Payments
+            Quarterly.setVisible(true);
+            Date.setVisible(false);
+            Sectionselect.setVisible(false);
+
+        }
     }//GEN-LAST:event_CategorieActionPerformed
+
+    private void QuarterlyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QuarterlyMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_QuarterlyMouseClicked
+
+    private void QuarterlyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuarterlyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_QuarterlyActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -772,20 +695,19 @@ public class ExportForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Categorie;
+    private com.toedter.calendar.JDateChooser Date;
     private javax.swing.JLabel Overall;
     private javax.swing.JLabel Q1;
     private javax.swing.JLabel Q2;
     private javax.swing.JLabel Q3;
     private javax.swing.JLabel Q4;
+    private javax.swing.JComboBox<String> Quarterly;
     private javax.swing.JLabel Rooler;
     private javax.swing.JComboBox<String> Sectionselect;
     private javax.swing.JLabel TotalStudent;
     private javax.swing.JComboBox<String> curriculum;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
