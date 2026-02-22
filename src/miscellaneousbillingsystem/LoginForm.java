@@ -192,7 +192,7 @@ public class LoginForm extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(51, 204, 0));
         jButton1.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Login");
+        jButton1.setText("Log in");
         jButton1.setToolTipText("");
         jButton1.setBorderPainted(false);
         jButton1.setFocusPainted(false);
@@ -203,7 +203,7 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(400, 380, 90, 35);
+        jButton1.setBounds(400, 380, 96, 35);
 
         incorrectUsername.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         incorrectUsername.setForeground(new java.awt.Color(204, 0, 0));

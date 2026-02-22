@@ -68,6 +68,7 @@ public class PaymentForm extends javax.swing.JFrame {
         remarks.setText(remark);
         ConfirmButton.setVisible(false);
         UndoButton.setVisible(false);
+        jPanel2.setVisible(false);
         startClock();
         loadTable();
         FeePaid();
@@ -91,6 +92,11 @@ public class PaymentForm extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         LRN = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         Paymentfor = new javax.swing.JLabel();
         Nameshow = new javax.swing.JLabel();
         Confirm = new javax.swing.JButton();
@@ -208,11 +214,80 @@ public class PaymentForm extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 640, -1, -1));
 
         LRN.setFont(new java.awt.Font("Baskerville Old Face", 0, 35)); // NOI18N
         LRN.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(LRN, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 520, 40));
+
+        jPanel2.setBackground(new java.awt.Color(0, 102, 0));
+
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(0, 153, 0));
+        jButton5.setText("No");
+        jButton5.setBorderPainted(false);
+        jButton5.setFocusPainted(false);
+        jButton5.setFocusable(false);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(0, 153, 0));
+        jButton6.setText("Yes");
+        jButton6.setBorderPainted(false);
+        jButton6.setFocusPainted(false);
+        jButton6.setFocusable(false);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Are you sure you want to record");
+
+        jLabel13.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("this student's payment?");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addGap(17, 17, 17))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel12))
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
+                .addGap(19, 19, 19))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 470, 380, 210));
 
         Paymentfor.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
         Paymentfor.setForeground(new java.awt.Color(255, 255, 255));
@@ -800,10 +875,7 @@ public class PaymentForm extends javax.swing.JFrame {
 
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
 
-        String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
-        String SUser = "root";
-        String SPass = "";
-        try (Connection con = DriverManager.getConnection(SUrl, SUser, SPass)) {
+       
             if (amounts.isEmpty()) {
                 check.setText("Please Select a Fee.");
             } else if (!amounts.isEmpty()) {
@@ -812,172 +884,12 @@ public class PaymentForm extends javax.swing.JFrame {
                     check.setText("Please Select all Fees.");
                     return;
                 }
-
-                double amount = Double.parseDouble(Total.getText());
-                int size = selectedItems.size();
-                int count = 0;
-                while (size == count) {
-
-                    String recordpayment = "UPDATE student_payment set Fee_paid =?";
-                    PreparedStatement fee = con.prepareStatement(recordpayment);
-                    fee.setString(1, selectedItems.get(count));
-                    fee.executeUpdate();
-                    count++;
-                }
-
-                String sqlPayment = "SELECT * FROM student_payment WHERE student_ID = ?";
-                PreparedStatement psPay = con.prepareStatement(sqlPayment);
-                psPay.setInt(1, this.studentid);
-                ResultSet rsPay = psPay.executeQuery();
-
-                if (rsPay.next()) {
-                    double q1 = rsPay.getInt("1st_Quarter");
-                    double q2 = rsPay.getInt("2nd_Quarter");
-                    double q3 = rsPay.getInt("3rd_Quarter");
-                    double q4 = rsPay.getInt("4th_Quarter");
-                    String date1 = rsPay.getString("Date_Q1");
-                    String date2 = rsPay.getString("Date_Q2");
-                    String date3 = rsPay.getString("Date_Q3");
-                    String date4 = rsPay.getString("Date_Q4");
-                    String feePaid = rsPay.getString("Fee_paid");
-
-                    String sql = "SELECT SUM(amount) AS total_amount FROM miscellaneous_fee";
-                    PreparedStatement ps = con.prepareStatement(sql);
-                    ResultSet rs = ps.executeQuery();
-
-                    if (rs.next()) {
-
-                        if (feePaid == null) {
-                            feePaid = "";
-                        }
-                        if (amount != 0) {
-
-                            if (Qu1.isSelected()) {
-                                q1 = amount;
-                                date1 = CLOCK.getText().toString();
-                            } else if (Qu2.isSelected()) {
-                                q2 = amount;
-                                date2 = CLOCK.getText().toString();
-                            } else if (Qu3.isSelected()) {
-                                q3 = amount;
-                                date3 = CLOCK.getText().toString();
-                            } else if (Qu4.isSelected()) {
-                                q4 = amount;
-                                date4 = CLOCK.getText().toString();
-                            } else {
-
-                                return;
-                            }
-                            //, 90, 90
-                            if (feePaid.isEmpty()) {
-                                for (String i : IDofFees) {
-                                    feePaid += i + ", ";
-                                }
-                            } else {
-                                for (String i : IDofFees) {
-                                    feePaid += ", " + i;
-                                }
-                            }
-                            System.out.println(feePaid);
-                            double totalPaid = q1 + q2 + q3 + q4;
-
-                            String remark = remarks.getText();
-
-                            String updateSql = "UPDATE student_payment SET Fee_Paid=?, 1st_Quarter=?, 2nd_Quarter=?, 3rd_Quarter=?, 4th_Quarter=?, Total_Paid=?, Date_Q1 = ?, Date_Q2 = ?, Date_Q3 = ?, Date_Q4 = ?, remarks = ? WHERE student_ID=?";
-                            PreparedStatement psUpdate = con.prepareStatement(updateSql);
-                            psUpdate.setString(1, feePaid);
-                            psUpdate.setDouble(2, q1);
-                            psUpdate.setDouble(3, q2);
-                            psUpdate.setDouble(4, q3);
-                            psUpdate.setDouble(5, q4);
-                            psUpdate.setDouble(6, totalPaid);
-                            psUpdate.setString(7, date1);
-                            psUpdate.setString(8, date2);
-                            psUpdate.setString(9, date3);
-                            psUpdate.setString(10, date4);
-                            psUpdate.setString(11, remark);
-                            psUpdate.setInt(12, this.studentid);
-                            psUpdate.executeUpdate();
-                            String updateSql2 = "INSERT INTO Contribution_paid (student_ID, Fee, amount, Quarter, School_Year, Fee_ID, Date) VALUES (?, ?, ?, ?, ?, ?, ?)";
-                            PreparedStatement psUpdate2 = con.prepareStatement(updateSql2);
-                            for (int i = 0; i < Feesss.size(); i++) {
-                                if (Qu1.isSelected()) {
-                                    String Fess = Feesss.get(i);
-                                    double amountStr = amounts.get(i);
-                                    String feeId = IDofFees.get(i);
-                                    double amountss = amountStr;
-                                    psUpdate2.setInt(1, this.studentid);
-                                    psUpdate2.setString(2, Fess);
-                                    psUpdate2.setDouble(3, amountss);
-                                    psUpdate2.setString(4, "1st");
-                                    psUpdate2.setString(5, Session.schoolyear);
-                                    psUpdate2.setString(6, feeId);
-                                    psUpdate2.setString(7, CLOCK.getText().toString());
-                                    psUpdate2.executeUpdate();
-                                    Session.Quarter = "1st";
-                                } else if (Qu2.isSelected()) {
-                                    String Fess = Feesss.get(i);
-                                    double amountStr = amounts.get(i);
-                                    String feeId = IDofFees.get(i);
-                                    double amountss = amountStr;
-                                    psUpdate2.setInt(1, this.studentid);
-                                    psUpdate2.setString(2, Fess);
-                                    psUpdate2.setDouble(3, amountss);
-                                    psUpdate2.setString(4, "2nd");
-                                    psUpdate2.setString(5, Session.schoolyear);
-                                    psUpdate2.setString(6, feeId);
-                                    psUpdate2.setString(7, CLOCK.getText().toString());
-                                    psUpdate2.executeUpdate();
-                                    Session.Quarter = "2nd";
-                                } else if (Qu3.isSelected()) {
-                                    String Fess = Feesss.get(i);
-                                    double amountStr = amounts.get(i);
-                                    String feeId = IDofFees.get(i);
-                                    double amountss = amountStr;
-                                    psUpdate2.setInt(1, this.studentid);
-                                    psUpdate2.setString(2, Fess);
-                                    psUpdate2.setDouble(3, amountss);
-                                    psUpdate2.setString(4, "3rd");
-                                    psUpdate2.setString(5, Session.schoolyear);
-                                    psUpdate2.setString(6, feeId);
-                                    psUpdate2.setString(7, CLOCK.getText().toString());
-                                    psUpdate2.executeUpdate();
-                                    Session.Quarter = "3rd";
-                                } else if (Qu4.isSelected()) {
-                                    String Fess = Feesss.get(i);
-                                    double amountStr = amounts.get(i);
-                                    String feeId = IDofFees.get(i);
-                                    double amountss = amountStr;
-                                    psUpdate2.setInt(1, this.studentid);
-                                    psUpdate2.setString(2, Fess);
-                                    psUpdate2.setDouble(3, amountss);
-                                    psUpdate2.setString(4, "4th");
-                                    psUpdate2.setString(5, Session.schoolyear);
-                                    psUpdate2.setString(6, feeId);
-                                    psUpdate2.setString(7, CLOCK.getText().toString());
-                                    psUpdate2.executeUpdate();
-                                    Session.Quarter = "4th";
-                                }
-                            }
-
-                            Session.timer = CLOCK.getText();
-                            this.Feesss = Session.Fees;
-                            this.amounts = Session.AmountItem;
-                            remarks.setText(Session.remarkss);
-                            Session.Discount = false;
-                            Official_RecieptForm reciept = new Official_RecieptForm();
-                            reciept.setVisible(true);
-
-                            dispose();
-                        }
-                    }
-                }
+                check.setText("");
+                jPanel2.setVisible(true);
+                
 
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+      
 
     }//GEN-LAST:event_ConfirmActionPerformed
 
@@ -1081,6 +993,181 @@ public class PaymentForm extends javax.swing.JFrame {
             ConfirmButton.setVisible(true);
         }
     }//GEN-LAST:event_ConfirmButtonActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        jPanel2.setVisible(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+         String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
+        String SUser = "root";
+        String SPass = "";
+        try (Connection con = DriverManager.getConnection(SUrl, SUser, SPass)) {
+        double amount = Double.parseDouble(Total.getText());
+        
+                int size = selectedItems.size();
+                int count = 0;
+                while (size == count) {
+
+                    String recordpayment = "UPDATE student_payment set Fee_paid =?";
+                    PreparedStatement fee = con.prepareStatement(recordpayment);
+                    fee.setString(1, selectedItems.get(count));
+                    fee.executeUpdate();
+                    count++;
+                }
+
+                String sqlPayment = "SELECT * FROM student_payment WHERE student_ID = ?";
+                PreparedStatement psPay = con.prepareStatement(sqlPayment);
+                psPay.setInt(1, this.studentid);
+                ResultSet rsPay = psPay.executeQuery();
+
+                if (rsPay.next()) {
+                    double q1 = rsPay.getInt("1st_Quarter");
+                    double q2 = rsPay.getInt("2nd_Quarter");
+                    double q3 = rsPay.getInt("3rd_Quarter");
+                    double q4 = rsPay.getInt("4th_Quarter");
+                    String date1 = rsPay.getString("Date_Q1");
+                    String date2 = rsPay.getString("Date_Q2");
+                    String date3 = rsPay.getString("Date_Q3");
+                    String date4 = rsPay.getString("Date_Q4");
+                    String feePaid = rsPay.getString("Fee_paid");
+
+                    String sql = "SELECT SUM(amount) AS total_amount FROM miscellaneous_fee";
+                    PreparedStatement ps = con.prepareStatement(sql);
+                    ResultSet rs = ps.executeQuery();
+
+                    if (rs.next()) {
+
+                        if (feePaid == null) {
+                            feePaid = "";
+                        }
+                        if (amount != 0) {
+
+                            if (Qu1.isSelected()) {
+                                q1 = amount;
+                                date1 = CLOCK.getText().toString();
+                            } else if (Qu2.isSelected()) {
+                                q2 = amount;
+                                date2 = CLOCK.getText().toString();
+                            } else if (Qu3.isSelected()) {
+                                q3 = amount;
+                                date3 = CLOCK.getText().toString();
+                            } else if (Qu4.isSelected()) {
+                                q4 = amount;
+                                date4 = CLOCK.getText().toString();
+                            } else {
+
+                                return;
+                            }
+                            //, 90, 90
+                            if (feePaid.isEmpty()) {
+                                for (String i : IDofFees) {
+                                    feePaid += i + ", ";
+                                }
+                            } else {
+                                for (String i : IDofFees) {
+                                    feePaid += ", " + i;
+                                }
+                            }
+                            System.out.println(feePaid);
+                            double totalPaid = q1 + q2 + q3 + q4;
+
+                            String remark = remarks.getText();
+
+                            String updateSql = "UPDATE student_payment SET Fee_Paid=?, 1st_Quarter=?, 2nd_Quarter=?, 3rd_Quarter=?, 4th_Quarter=?, Total_Paid=?, Date_Q1 = ?, Date_Q2 = ?, Date_Q3 = ?, Date_Q4 = ?, remarks = ? WHERE student_ID=?";
+                            PreparedStatement psUpdate = con.prepareStatement(updateSql);
+                            psUpdate.setString(1, feePaid);
+                            psUpdate.setDouble(2, q1);
+                            psUpdate.setDouble(3, q2);
+                            psUpdate.setDouble(4, q3);
+                            psUpdate.setDouble(5, q4);
+                            psUpdate.setDouble(6, totalPaid);
+                            psUpdate.setString(7, date1);
+                            psUpdate.setString(8, date2);
+                            psUpdate.setString(9, date3);
+                            psUpdate.setString(10, date4);
+                            psUpdate.setString(11, remark);
+                            psUpdate.setInt(12, this.studentid);
+                            psUpdate.executeUpdate();
+                            String updateSql2 = "INSERT INTO Contribution_paid (student_ID, Fee, amount, Quarter, School_Year, Fee_ID, Date) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                            PreparedStatement psUpdate2 = con.prepareStatement(updateSql2);
+                            
+                            for (int i = 0; i < Feesss.size(); i++) {
+                                if (Qu1.isSelected()) {
+                                    String Fess = Feesss.get(i);
+                                    double amountStr = amounts.get(i);
+                                    String feeId = IDofFees.get(i);
+                                    double amountss = amountStr;
+                                    psUpdate2.setInt(1, this.studentid);
+                                    psUpdate2.setString(2, Fess);
+                                    psUpdate2.setDouble(3, amountss);
+                                    psUpdate2.setString(4, "1st");
+                                    psUpdate2.setString(5, Session.schoolyear);
+                                    psUpdate2.setString(6, feeId);
+                                    psUpdate2.setString(7, CLOCK.getText().toString());
+                                    psUpdate2.executeUpdate();
+                                    Session.Quarter = "1st";
+                                } else if (Qu2.isSelected()) {
+                                    String Fess = Feesss.get(i);
+                                    double amountStr = amounts.get(i);
+                                    String feeId = IDofFees.get(i);
+                                    double amountss = amountStr;
+                                    psUpdate2.setInt(1, this.studentid);
+                                    psUpdate2.setString(2, Fess);
+                                    psUpdate2.setDouble(3, amountss);
+                                    psUpdate2.setString(4, "2nd");
+                                    psUpdate2.setString(5, Session.schoolyear);
+                                    psUpdate2.setString(6, feeId);
+                                    psUpdate2.setString(7, CLOCK.getText().toString());
+                                    psUpdate2.executeUpdate();
+                                    Session.Quarter = "2nd";
+                                } else if (Qu3.isSelected()) {
+                                    String Fess = Feesss.get(i);
+                                    double amountStr = amounts.get(i);
+                                    String feeId = IDofFees.get(i);
+                                    double amountss = amountStr;
+                                    psUpdate2.setInt(1, this.studentid);
+                                    psUpdate2.setString(2, Fess);
+                                    psUpdate2.setDouble(3, amountss);
+                                    psUpdate2.setString(4, "3rd");
+                                    psUpdate2.setString(5, Session.schoolyear);
+                                    psUpdate2.setString(6, feeId);
+                                    psUpdate2.setString(7, CLOCK.getText().toString());
+                                    psUpdate2.executeUpdate();
+                                    Session.Quarter = "3rd";
+                                } else if (Qu4.isSelected()) {
+                                    String Fess = Feesss.get(i);
+                                    double amountStr = amounts.get(i);
+                                    String feeId = IDofFees.get(i);
+                                    double amountss = amountStr;
+                                    psUpdate2.setInt(1, this.studentid);
+                                    psUpdate2.setString(2, Fess);
+                                    psUpdate2.setDouble(3, amountss);
+                                    psUpdate2.setString(4, "4th");
+                                    psUpdate2.setString(5, Session.schoolyear);
+                                    psUpdate2.setString(6, feeId);
+                                    psUpdate2.setString(7, CLOCK.getText().toString());
+                                    psUpdate2.executeUpdate();
+                                    Session.Quarter = "4th";
+                                }
+                            }
+
+                            Session.timer = CLOCK.getText();
+                            this.Feesss = Session.Fees;
+                            this.amounts = Session.AmountItem;
+                            remarks.setText(Session.remarkss);
+                            Session.Discount = false;
+                            Official_RecieptForm reciept = new Official_RecieptForm();
+                            reciept.setVisible(true);
+
+                            dispose();
+                        }
+                    }
+                }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
     private javax.swing.Timer clockTimer;
 
     public void startClock() {
@@ -1156,13 +1243,18 @@ public class PaymentForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

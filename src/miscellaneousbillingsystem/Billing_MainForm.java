@@ -589,7 +589,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
         jLabel6.setText("Student selected:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, -1, -1));
 
-        Name.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        Name.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
         Name.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 300, 20));
 
@@ -614,7 +614,7 @@ public class Billing_MainForm extends javax.swing.JFrame {
 
         LRN.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         LRN.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(LRN, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 260, 20));
+        jPanel1.add(LRN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 260, 20));
 
         jLabel27.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));

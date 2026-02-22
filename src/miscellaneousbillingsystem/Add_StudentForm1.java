@@ -50,8 +50,8 @@ public class Add_StudentForm1 extends javax.swing.JFrame {
         loadcombobox();
 
         if (Session.role.equals("PTA Treasurer")) {
-            data.setVisible(false);
-            jButton3.setVisible(false);
+            data.setVisible(true);
+            jButton3.setVisible(true);
         }
         if (grade.equals("7th")) {
             Rooler.setText("Add Student 7th Grade");

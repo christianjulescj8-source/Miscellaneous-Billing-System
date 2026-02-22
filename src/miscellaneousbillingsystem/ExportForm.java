@@ -5,51 +5,62 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import javax.swing.JFileChooser;
-import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.common.PDRectangle;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+import java.io.FileOutputStream;
 import javax.swing.JTable;
+import org.apache.poi.ss.usermodel.*;
+import javax.swing.*;
 import javax.swing.table.TableModel;
-import java.io.File;
-import org.apache.pdfbox.pdmodel.font.PDType0Font;
+import java.io.*;
 import java.awt.Desktop;
-import java.io.FileInputStream;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExportForm extends javax.swing.JFrame {
 
-    private String gradelevel;
-    private String sectionlevel;
+    private String Quarter;
+    private List<String> IDofFees = new ArrayList<>();
+    private List<String> Feesss = new ArrayList<>();
 
     public ExportForm() {
         UIManager.put("ScrollBarUI", "miscellaneousbillingsystem.ScrollBarWin11");
         initComponents();
 
         curriculum.setSelectedIndex(0);
+        Quarterly.setSelectedIndex(0);
+        Categorie.setSelectedIndex(0);
         loadcombobox();
 
         if (Sectionselect.getItemCount() > 0) {
             Sectionselect.setSelectedIndex(0);  // select first
         }
-
-        loadTableStudentData();
+        if (Categorie.getSelectedIndex() == 0) {
+            //Payment Records
+            PaymentRecords();
+        } else if (Categorie.getSelectedIndex() == 1) {
+            //Class Sections
+            ClassSections();
+        } else if (Categorie.getSelectedIndex() == 2) {
+            //Quarterly Payments
+            QuarterlyPayments();
+        }
 
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
         Rooler = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -60,19 +71,8 @@ public class ExportForm extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         Date = new com.toedter.calendar.JDateChooser();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        Overall = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        Q2 = new javax.swing.JLabel();
-        Q1 = new javax.swing.JLabel();
-        TotalStudent = new javax.swing.JLabel();
-        Q3 = new javax.swing.JLabel();
-        Q4 = new javax.swing.JLabel();
         Quarterly = new javax.swing.JComboBox<>();
+        change = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -82,10 +82,25 @@ public class ExportForm extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setForeground(new java.awt.Color(51, 204, 0));
         jPanel3.setPreferredSize(new java.awt.Dimension(1234, 583));
-        jPanel3.setLayout(null);
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 153));
         jPanel2.setLayout(null);
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 153, 0));
+        jButton2.setText("Export to Excel");
+        jButton2.setBorderPainted(false);
+        jButton2.setFocusPainted(false);
+        jButton2.setFocusable(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton2);
+        jButton2.setBounds(1060, 60, 150, 30);
 
         Rooler.setFont(new java.awt.Font("Baskerville Old Face", 0, 70)); // NOI18N
         Rooler.setForeground(new java.awt.Color(0, 0, 0));
@@ -93,16 +108,17 @@ public class ExportForm extends javax.swing.JFrame {
         Rooler.setText("Report");
         Rooler.setToolTipText("");
         jPanel2.add(Rooler);
-        Rooler.setBounds(0, 10, 1220, 88);
+        Rooler.setBounds(0, 10, 1230, 88);
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo smaller.png"))); // NOI18N
         jPanel2.add(logo);
         logo.setBounds(0, 0, 95, 95);
 
-        jPanel3.add(jPanel2);
-        jPanel2.setBounds(0, 0, 1230, 100);
+        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1234, 100));
 
-        jTable1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jScrollPane1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+
+        jTable1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -135,8 +151,7 @@ public class ExportForm extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel3.add(jScrollPane1);
-        jScrollPane1.setBounds(0, 144, 1218, 400);
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 144, 1234, 439));
 
         Sectionselect.setBackground(new java.awt.Color(255, 255, 255));
         Sectionselect.setFont(new java.awt.Font("Baskerville Old Face", 0, 17)); // NOI18N
@@ -154,8 +169,7 @@ public class ExportForm extends javax.swing.JFrame {
                 SectionselectActionPerformed(evt);
             }
         });
-        jPanel3.add(Sectionselect);
-        Sectionselect.setBounds(840, 110, 160, 22);
+        jPanel3.add(Sectionselect, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 110, 160, -1));
 
         curriculum.setBackground(new java.awt.Color(255, 255, 255));
         curriculum.setFont(new java.awt.Font("Baskerville Old Face", 0, 17)); // NOI18N
@@ -182,13 +196,12 @@ public class ExportForm extends javax.swing.JFrame {
                 curriculumActionPerformed(evt);
             }
         });
-        jPanel3.add(curriculum);
-        curriculum.setBounds(710, 110, 80, 22);
+        jPanel3.add(curriculum, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 110, 80, -1));
 
         Categorie.setBackground(new java.awt.Color(255, 255, 255));
         Categorie.setFont(new java.awt.Font("Baskerville Old Face", 0, 17)); // NOI18N
         Categorie.setForeground(new java.awt.Color(0, 0, 0));
-        Categorie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Payment Records", "Class Sections", "Student Records", "Quarterly Payments" }));
+        Categorie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Payment Records", "Class Sections", "Quarterly Payments" }));
         Categorie.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         Categorie.setFocusable(false);
         Categorie.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -201,20 +214,21 @@ public class ExportForm extends javax.swing.JFrame {
                 CategorieActionPerformed(evt);
             }
         });
-        jPanel3.add(Categorie);
-        Categorie.setBounds(130, 110, 180, 22);
+        jPanel3.add(Categorie, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 180, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 153, 0));
         jButton1.setText("Refresh");
+        jButton1.setBorderPainted(false);
+        jButton1.setFocusPainted(false);
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1);
-        jButton1.setBounds(1090, 110, 100, 25);
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 110, 100, 25));
 
         jButton3.setBackground(new java.awt.Color(0, 153, 0));
         jButton3.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
@@ -227,79 +241,11 @@ public class ExportForm extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton3);
-        jButton3.setBounds(10, 110, 76, 30);
+        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         Date.setFocusable(false);
         Date.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        jPanel3.add(Date);
-        Date.setBounds(520, 110, 170, 26);
-
-        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Q2:");
-        jPanel3.add(jLabel2);
-        jLabel2.setBounds(430, 640, 30, 19);
-
-        jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Q1:");
-        jPanel3.add(jLabel4);
-        jLabel4.setBounds(280, 640, 30, 20);
-
-        jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Q4:");
-        jPanel3.add(jLabel5);
-        jLabel5.setBounds(710, 640, 30, 19);
-
-        jLabel6.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Total:");
-        jPanel3.add(jLabel6);
-        jLabel6.setBounds(860, 640, 50, 19);
-
-        jLabel7.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Q3:");
-        jPanel3.add(jLabel7);
-        jLabel7.setBounds(570, 640, 30, 19);
-
-        Overall.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        Overall.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(Overall);
-        Overall.setBounds(910, 640, 70, 20);
-
-        jLabel9.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Number of students:");
-        jPanel3.add(jLabel9);
-        jLabel9.setBounds(20, 640, 150, 19);
-
-        Q2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        Q2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(Q2);
-        Q2.setBounds(460, 640, 80, 20);
-
-        Q1.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        Q1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(Q1);
-        Q1.setBounds(310, 640, 80, 20);
-
-        TotalStudent.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        TotalStudent.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(TotalStudent);
-        TotalStudent.setBounds(170, 640, 80, 20);
-
-        Q3.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        Q3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(Q3);
-        Q3.setBounds(600, 640, 80, 20);
-
-        Q4.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        Q4.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(Q4);
-        Q4.setBounds(740, 640, 80, 20);
+        jPanel3.add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 170, -1));
 
         Quarterly.setBackground(new java.awt.Color(255, 255, 255));
         Quarterly.setFont(new java.awt.Font("Baskerville Old Face", 0, 17)); // NOI18N
@@ -317,8 +263,21 @@ public class ExportForm extends javax.swing.JFrame {
                 QuarterlyActionPerformed(evt);
             }
         });
-        jPanel3.add(Quarterly);
-        Quarterly.setBounds(510, 110, 180, 22);
+        jPanel3.add(Quarterly, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 110, 180, -1));
+
+        change.setBackground(new java.awt.Color(255, 255, 255));
+        change.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        change.setForeground(new java.awt.Color(0, 153, 0));
+        change.setText("All");
+        change.setBorderPainted(false);
+        change.setFocusPainted(false);
+        change.setFocusable(false);
+        change.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeActionPerformed(evt);
+            }
+        });
+        jPanel3.add(change, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, 150, 30));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -348,27 +307,92 @@ public class ExportForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    //Payment Records
-    //Class Sections
-    //Student Records
-    //Quarterly Payments
+    
 
-    public void PaymentRecords(){
-    
-    
+    public void PaymentRecords() {
+        curriculum.setVisible(false);
+        Sectionselect.setVisible(false);
+        Date.setVisible(false);
+        Quarterly.setVisible(true);
+        change.setVisible(false);
+        String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
+        String SUser = "root";
+        String SPass = "";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+
+            // Query with all needed columns
+            String sql = "SELECT "
+                    + "mf.Name_of_contribution AS Fee, "
+                    + "COUNT(cp.ID_Contribution) AS Count_Fee, "
+                    + "IFNULL(SUM(cp.amount), 0) AS Total_Paid "
+                    + "FROM miscellaneous_fee mf "
+                    + "LEFT JOIN contribution_paid cp "
+                    + "ON mf.Name_of_contribution = cp.Fee "
+                    + "AND cp.School_Year = ? "
+                    + "AND cp.Quarter = ? "
+                    + "GROUP BY mf.Name_of_contribution "
+                    + "ORDER BY mf.Name_of_contribution";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, Session.schoolyear);
+            stmt.setString(2, this.Quarter);
+            ResultSet rs = stmt.executeQuery();
+
+            ResultSetMetaData rsmd = rs.getMetaData();
+
+            int columnCount = rsmd.getColumnCount();
+
+            DefaultTableModel model = new DefaultTableModel();
+
+            String[] columnHeaders = {"Fee", "Count", "Total"};
+
+            for (String header : columnHeaders) {
+                model.addColumn(header);
+            }
+
+            // Fill rows
+            while (rs.next()) {
+                Object[] row = new Object[columnCount];
+                for (int i = 1; i <= columnCount; i++) {
+                    row[i - 1] = rs.getObject(i);
+                }
+                model.addRow(row);
+            }
+
+            jTable1.setRowSorter(null);
+            jTable1.clearSelection();
+            jTable1.setModel(model);
+            jTable1.revalidate();
+            jTable1.repaint();
+
+            int[] hiddenCols = {};
+            for (int colIndex : hiddenCols) {
+                jTable1.getColumnModel().getColumn(colIndex).setMinWidth(0);
+                jTable1.getColumnModel().getColumn(colIndex).setMaxWidth(0);
+                jTable1.getColumnModel().getColumn(colIndex).setWidth(0);
+                jTable1.getColumnModel().getColumn(0).setPreferredWidth(200);
+            }
+
+            rs.close();
+            stmt.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
-    
-    public void ClassSections(){
-    
-    
-    }
-    
-    public void StudentRecords(){
-    
-    
-    }
-    public void QuarterlyPayments(){
-    String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
+
+    public void ClassSections() {
+        Date.setVisible(false);
+        Quarterly.setVisible(false);
+        change.setVisible(true);
+        curriculum.setVisible(true);
+        Sectionselect.setVisible(true);
+        String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
         String SUser = "root";
         String SPass = "";
 
@@ -378,20 +402,20 @@ public class ExportForm extends javax.swing.JFrame {
 
             String grade = curriculum.getSelectedItem().toString();
             String section = Sectionselect.getSelectedItem().toString();
-            this.gradelevel = grade;
-            this.sectionlevel = section;
-            System.out.println("table secton: " + section);
-            // Query with all needed columns
+
             String sql = "SELECT CONCAT( "
-                    + "    si.lastname, ', ', "
-                    + "    si.firstname, ' ', "
-                    + "    IF(si.middlename = '' OR si.middlename IS NULL, '', CONCAT(LEFT(si.middlename, 1), '.')) "
+                    + "si.lastname, ', ', "
+                    + "si.firstname, ' ', "
+                    + "IF(si.middlename = '' OR si.middlename IS NULL, '', CONCAT(LEFT(si.middlename, 1), '.')) "
                     + ") AS fullname, "
-                    + "sp.`1st_Quarter`, sp.`2nd_Quarter`, sp.`3rd_Quarter`, sp.`4th_Quarter`, sp.Total_Paid, "
-                    + " si.section, si.grade "
+                    + "sp.`1st_Quarter`, "
+                    + "sp.`2nd_Quarter`, "
+                    + "sp.`3rd_Quarter`, "
+                    + "sp.`4th_Quarter`, "
+                    + "sp.Total_Paid, "
+                    + "COALESCE(sp.remarks, '') AS remarks "
                     + "FROM student_info si "
                     + "LEFT JOIN student_payment sp ON si.ID = sp.student_ID "
-                    + "RIGTH JOIN contribution_paid cp ON si.ID = cp.student_ID "
                     + "WHERE si.grade = ? AND si.school_Year = ? AND si.section = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -408,8 +432,8 @@ public class ExportForm extends javax.swing.JFrame {
 
             String[] columnHeaders = {
                 "Full Name",
-                "1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter", "Total Paid",
-                "Section", "Grade",};
+                "1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter", "Total Paid", "Remarks",
+                };
 
             for (String header : columnHeaders) {
                 model.addColumn(header);
@@ -417,26 +441,33 @@ public class ExportForm extends javax.swing.JFrame {
 
             // Fill rows
             while (rs.next()) {
-                Object[] row = new Object[columnCount];
-                for (int i = 1; i <= columnCount; i++) {
-                    row[i - 1] = rs.getObject(i);
-                }
+                Object[] row = new Object[9]; // must match columnHeaders
+                row[0] = rs.getString("fullname");
+                row[1] = rs.getObject("1st_Quarter");
+                row[2] = rs.getObject("2nd_Quarter");
+                row[3] = rs.getObject("3rd_Quarter");
+                row[4] = rs.getObject("4th_Quarter");
+                row[5] = rs.getObject("Total_Paid");
+                row[6] = rs.getString("remarks"); // <-- make sure this column exists               
                 model.addRow(row);
             }
-
-            // Apply model
+            jTable1.setRowSorter(null);
+            jTable1.clearSelection();
             jTable1.setModel(model);
-            //= "SELECT si.firstname, si.middlename, si.lastname, si.section, si.grade, si.Identifier, si.ID, "
-            //       + "sp.student_ID, sp.Fee_paid, sp.Total_Paid, sp.`1st_Quarter`, sp.`2nd_Quarter`, sp.`3rd_Quarter`, sp.`4th_Quarter`, sp.Date_Q1, sp.Date_Q2, sp.Date_Q3, sp.Date_Q4 "
-            //       + "FROM student_info si "
-            // Hide unwanted columns (keep only LRN_Students, firstname, middlename, lastname, section)
-            int[] hiddenCols = {6, 7}; // indexes start at 0
-            for (int colIndex : hiddenCols) {
-                jTable1.getColumnModel().getColumn(colIndex).setMinWidth(0);
-                jTable1.getColumnModel().getColumn(colIndex).setMaxWidth(0);
-                jTable1.getColumnModel().getColumn(colIndex).setWidth(0);
+            jTable1.revalidate();
+            jTable1.repaint();
+
+            
+
                 jTable1.getColumnModel().getColumn(0).setPreferredWidth(200);
-            }
+                jTable1.getColumnModel().getColumn(1).setPreferredWidth(70);
+                jTable1.getColumnModel().getColumn(2).setPreferredWidth(70);
+                jTable1.getColumnModel().getColumn(3).setPreferredWidth(70);
+                jTable1.getColumnModel().getColumn(4).setPreferredWidth(70);
+                jTable1.getColumnModel().getColumn(5).setPreferredWidth(70);
+                jTable1.getColumnModel().getColumn(6).setPreferredWidth(600);
+
+            
 
             rs.close();
             stmt.close();
@@ -445,12 +476,182 @@ public class ExportForm extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    
-    
-    
+
     }
-    
-    
+
+    public void QuarterlyPayments() {
+
+        Date.setVisible(false);
+        Quarterly.setVisible(true);
+        change.setVisible(false);
+        curriculum.setVisible(true);
+        Sectionselect.setVisible(false);
+
+        String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
+        String SUser = "root";
+        String SPass = "";
+
+        ArrayList<String> feeIDs = new ArrayList<>();
+        ArrayList<String> feeNames = new ArrayList<>();
+        ArrayList<Double> feeAmounts = new ArrayList<>();
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+
+            String grade = curriculum.getSelectedItem().toString();
+            String schoolYear = Session.schoolyear;
+
+            // ===============================
+            // 1️⃣ GET ALL FEES (ACRONYM)
+            // ===============================
+            String sqlFees = "SELECT ID, Acronym, amount FROM miscellaneous_fee";
+            PreparedStatement pstFees = con.prepareStatement(sqlFees);
+            ResultSet rsFees = pstFees.executeQuery();
+
+            while (rsFees.next()) {
+                feeIDs.add(rsFees.getString("ID"));
+                feeNames.add(rsFees.getString("Acronym"));
+                feeAmounts.add(rsFees.getDouble("amount"));
+            }
+
+            rsFees.close();
+            pstFees.close();
+
+            // ===============================
+            // 2️⃣ CREATE TABLE MODEL
+            // ===============================
+            DefaultTableModel model = new DefaultTableModel();
+
+            model.addColumn("No.");
+            model.addColumn("Date");
+            model.addColumn("Full Name");
+            model.addColumn("Section");
+
+            for (String fee : feeNames) {
+                model.addColumn(fee);
+            }
+
+            model.addColumn("Total Paid");
+
+            // ===============================
+            // 3️⃣ GET STUDENTS
+            // ===============================
+            String sqlStudents = "SELECT ID, CONCAT(lastname, ', ', firstname) AS fullname, "
+                    + "section "
+                    + "FROM student_info "
+                    + "WHERE grade = ? AND school_Year = ?";
+
+            PreparedStatement pstStudents = con.prepareStatement(sqlStudents);
+            pstStudents.setString(1, grade);
+            pstStudents.setString(2, schoolYear);
+
+            ResultSet rsStudents = pstStudents.executeQuery();
+
+            int count = 1;
+
+            // ===============================
+            // 4️⃣ LOOP STUDENTS
+            // ===============================
+            while (rsStudents.next()) {
+
+                String studentID = rsStudents.getString("ID");
+
+                Vector<Object> row = new Vector<>();
+
+                row.add(count++);
+
+                // 🔹 GET LATEST PAYMENT DATE
+                String paymentDate = "";
+
+                String sqlDate = "SELECT MAX(Date) AS payDate "
+                        + "FROM contribution_paid "
+                        + "WHERE student_ID = ? "
+                        + "AND Quarter = ? "
+                        + "AND School_Year = ?";
+
+                PreparedStatement pstDate = con.prepareStatement(sqlDate);
+                pstDate.setString(1, studentID);
+                pstDate.setString(2, this.Quarter);
+                pstDate.setString(3, schoolYear);
+
+                ResultSet rsDate = pstDate.executeQuery();
+
+                if (rsDate.next()) {
+                    paymentDate = rsDate.getString("payDate");
+                    if (paymentDate == null) {
+                        paymentDate = "";
+                    }
+                }
+
+                rsDate.close();
+                pstDate.close();
+
+                row.add(paymentDate);
+                row.add(rsStudents.getString("fullname"));
+                row.add(rsStudents.getString("section"));
+
+                double totalPaid = 0;
+                double totalRequired = 0;
+
+                // 🔹 LOOP FEES
+                for (int i = 0; i < feeIDs.size(); i++) {
+
+                    String feeID = feeIDs.get(i);
+                    double requiredAmount = feeAmounts.get(i);
+                    totalRequired += requiredAmount;
+
+                    String sqlPayment = "SELECT SUM(amount) AS paid "
+                            + "FROM contribution_paid "
+                            + "WHERE student_ID = ? "
+                            + "AND Fee_ID = ? "
+                            + "AND Quarter = ? "
+                            + "AND School_Year = ?";
+
+                    PreparedStatement pstPayment = con.prepareStatement(sqlPayment);
+                    pstPayment.setString(1, studentID);
+                    pstPayment.setString(2, feeID);
+                    pstPayment.setString(3, this.Quarter);
+                    pstPayment.setString(4, schoolYear);
+
+                    ResultSet rsPayment = pstPayment.executeQuery();
+
+                    double paid = 0;
+
+                    if (rsPayment.next()) {
+                        paid = rsPayment.getDouble("paid");
+                    }
+
+                    rsPayment.close();
+                    pstPayment.close();
+
+                    row.add(String.format("%.2f", paid));
+                    totalPaid += paid;
+                }
+
+                row.add(String.format("%.2f", totalPaid));
+
+                model.addRow(row);
+            }
+
+            jTable1.setRowSorter(null);
+            jTable1.clearSelection();
+            jTable1.setModel(model);
+            jTable1.revalidate();
+            jTable1.repaint();
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(130);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(210);
+
+            rsStudents.close();
+            pstStudents.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void loadTableStudentData() {
         String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
         String SUser = "root";
@@ -462,8 +663,7 @@ public class ExportForm extends javax.swing.JFrame {
 
             String grade = curriculum.getSelectedItem().toString();
             String section = Sectionselect.getSelectedItem().toString();
-            this.gradelevel = grade;
-            this.sectionlevel = section;
+
             System.out.println("table secton: " + section);
             // Query with all needed columns
             String sql = "SELECT CONCAT( "
@@ -472,7 +672,7 @@ public class ExportForm extends javax.swing.JFrame {
                     + "    IF(si.middlename = '' OR si.middlename IS NULL, '', CONCAT(LEFT(si.middlename, 1), '.')) "
                     + ") AS fullname, "
                     + "sp.`1st_Quarter`, sp.`2nd_Quarter`, sp.`3rd_Quarter`, sp.`4th_Quarter`, sp.Total_Paid, "
-                    + " si.section, si.grade "
+                    + " si.section, si.grade, sp.remarks "
                     + "FROM student_info si "
                     + "LEFT JOIN student_payment sp ON si.ID = sp.student_ID "
                     + "WHERE si.grade = ? AND si.school_Year = ? AND si.section = ?";
@@ -576,7 +776,9 @@ public class ExportForm extends javax.swing.JFrame {
         String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
         String SUser = "root";
         String SPass = "";
-
+        change.setText("All");
+        this.number = 0;
+        changes();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
@@ -585,7 +787,16 @@ public class ExportForm extends javax.swing.JFrame {
 
             if (Sectionselect.getSelectedItem() != null) {
 
-                loadTableStudentData();
+                if (Categorie.getSelectedIndex() == 0) {
+                    //Payment Records
+                    PaymentRecords();
+                } else if (Categorie.getSelectedIndex() == 1) {
+                    //Class Sections
+                    ClassSections();
+                } else if (Categorie.getSelectedIndex() == 2) {
+                    //Quarterly Payments
+                    QuarterlyPayments();
+                }
             }
 
         } catch (Exception e) {
@@ -601,18 +812,41 @@ public class ExportForm extends javax.swing.JFrame {
     }//GEN-LAST:event_curriculumMouseClicked
 
     private void curriculumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curriculumActionPerformed
-        loadcombobox();
-
-        loadTableStudentData();
-
+        if (Sectionselect.isVisible()) {
+            loadcombobox();
+        }
+        change.setText("All");
+        this.number = 0;
+        changes();
+        if (!Sectionselect.isVisible()) {
+            if (Categorie.getSelectedIndex() == 0) {
+                //Payment Records
+                PaymentRecords();
+            } else if (Categorie.getSelectedIndex() == 1) {
+                //Class Sections
+                ClassSections();
+            } else if (Categorie.getSelectedIndex() == 2) {
+                //Quarterly Payments
+                QuarterlyPayments();
+            }
+        }
 
     }//GEN-LAST:event_curriculumActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         loadcombobox();
+        if (Categorie.getSelectedIndex() == 0) {
+            //Payment Records
+            PaymentRecords();
+        } else if (Categorie.getSelectedIndex() == 1) {
+            //Class Sections
+            ClassSections();
+        } else if (Categorie.getSelectedIndex() == 2) {
+            //Quarterly Payments
+            QuarterlyPayments();
+        }
 
-        loadTableStudentData();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -628,19 +862,13 @@ public class ExportForm extends javax.swing.JFrame {
     private void CategorieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategorieActionPerformed
         if (Categorie.getSelectedIndex() == 0) {
             //Payment Records
-
+            PaymentRecords();
         } else if (Categorie.getSelectedIndex() == 1) {
             //Class Sections
-
+            ClassSections();
         } else if (Categorie.getSelectedIndex() == 2) {
-            //Student Records
-
-        } else if (Categorie.getSelectedIndex() == 4) {
             //Quarterly Payments
-            Quarterly.setVisible(true);
-            Date.setVisible(false);
-            Sectionselect.setVisible(false);
-
+            QuarterlyPayments();
         }
     }//GEN-LAST:event_CategorieActionPerformed
 
@@ -649,8 +877,230 @@ public class ExportForm extends javax.swing.JFrame {
     }//GEN-LAST:event_QuarterlyMouseClicked
 
     private void QuarterlyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuarterlyActionPerformed
-        // TODO add your handling code here:
+        String Q = Quarterly.getSelectedItem().toString();
+        if (Q == "Quarter 1") {
+            this.Quarter = "1st";
+            if (Categorie.getSelectedIndex() == 0) {
+                //Payment Records
+                PaymentRecords();
+            } else if (Categorie.getSelectedIndex() == 1) {
+                //Class Sections
+                ClassSections();
+            } else if (Categorie.getSelectedIndex() == 2) {
+                //Quarterly Payments
+                QuarterlyPayments();
+            }
+        } else if (Q == "Quarter 2") {
+            this.Quarter = "2nd";
+            if (Categorie.getSelectedIndex() == 0) {
+                PaymentRecords();
+            } else if (Categorie.getSelectedIndex() == 1) {
+                //Class Sections
+                ClassSections();
+            } else if (Categorie.getSelectedIndex() == 2) {
+                //Quarterly Payments
+                QuarterlyPayments();
+            }
+        } else if (Q == "Quarter 3") {
+            this.Quarter = "3rd";
+            if (Categorie.getSelectedIndex() == 0) {
+                //Payment Records
+                PaymentRecords();
+            } else if (Categorie.getSelectedIndex() == 1) {
+                //Class Sections
+                ClassSections();
+            } else if (Categorie.getSelectedIndex() == 2) {
+                //Quarterly Payments
+                QuarterlyPayments();
+            }
+        } else if (Q == "Quarter 4") {
+            this.Quarter = "4th";
+            if (Categorie.getSelectedIndex() == 0) {
+                //Payment Records
+                PaymentRecords();
+            } else if (Categorie.getSelectedIndex() == 1) {
+                //Class Sections
+                ClassSections();
+            } else if (Categorie.getSelectedIndex() == 2) {
+                //Quarterly Payments
+                QuarterlyPayments();
+            }
+        }
     }//GEN-LAST:event_QuarterlyActionPerformed
+    int number = 0;
+
+    public void changes() {
+        String SUrl = "jdbc:mysql://localhost:3307/billing_system_database";
+        String SUser = "root";
+        String SPass = "";
+        double expectedAmount = 0;
+        try (Connection con = DriverManager.getConnection(SUrl, SUser, SPass)) {
+            String sql = "SELECT SUM(amount) AS total_amount FROM miscellaneous_fee";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                expectedAmount = rs.getDouble("total_amount");
+            }
+
+            rs.close();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        jTable1.setRowSorter(sorter);
+
+        if (this.number == 0) {
+            sorter.setRowFilter(null);
+            change.setText("All");
+            this.number += 1;
+        } else if (this.number == 1) {
+            sorter.setRowFilter(RowFilter.regexFilter(".+", 6)); // remarks column
+            change.setText("Discounted");
+            this.number += 1;
+        } else if (this.number == 2) {
+            change.setText("Unpaid");
+            this.number += 1;
+            sorter.setRowFilter(new RowFilter<DefaultTableModel, Integer>() {
+                @Override
+                public boolean include(RowFilter.Entry<? extends DefaultTableModel, ? extends Integer> entry) {
+
+                    Object totalObj = entry.getValue(5);   // Total Paid column
+                    Object remarksObj = entry.getValue(6); // Remarks column
+
+                    double total = 0;
+                    if (totalObj != null) {
+                        try {
+                            total = Double.parseDouble(totalObj.toString());
+                        } catch (NumberFormatException e) {
+                            total = 0;
+                        }
+                    }
+
+                    String remarks = (remarksObj == null) ? "" : remarksObj.toString().trim();
+
+                    // Show ONLY if total == 0 AND remarks is empty
+                    if (total == 0 && remarks.isEmpty()) {
+                        return true;  // include row
+                    }
+
+                    return false; // exclude everything else
+                }
+            });
+        } else if (this.number == 3) {
+            change.setText("Fully Paid");
+            this.number += 1;
+            final double expected = expectedAmount;
+
+            sorter.setRowFilter(new RowFilter<DefaultTableModel, Integer>() {
+                @Override
+                public boolean include(RowFilter.Entry<? extends DefaultTableModel, ? extends Integer> entry) {
+
+                    double totalPaid = parse(entry.getValue(5));
+                    String remarks = value(entry.getValue(6));
+
+                    return totalPaid >= expected
+                            && expected > 0
+                            && remarks.isEmpty();
+                }
+
+                private double parse(Object obj) {
+                    if (obj == null) {
+                        return 0;
+                    }
+                    try {
+                        return Double.parseDouble(obj.toString());
+                    } catch (Exception e) {
+                        return 0;
+                    }
+                }
+
+                private String value(Object obj) {
+                    return obj == null ? "" : obj.toString().trim();
+                }
+            });
+        } else if (this.number == 4) {
+            change.setText("Partially Paid");
+            this.number -= 4;
+            final double expected = expectedAmount;
+
+            sorter.setRowFilter(new RowFilter<DefaultTableModel, Integer>() {
+                @Override
+                public boolean include(RowFilter.Entry<? extends DefaultTableModel, ? extends Integer> entry) {
+
+                    double totalPaid = parse(entry.getValue(5));
+                    String remarks = value(entry.getValue(6));
+
+                    return totalPaid > 0
+                            && totalPaid < expected
+                            && remarks.isEmpty();
+                }
+
+                private double parse(Object obj) {
+                    if (obj == null) {
+                        return 0;
+                    }
+                    try {
+                        return Double.parseDouble(obj.toString());
+                    } catch (Exception e) {
+                        return 0;
+                    }
+                }
+
+                private String value(Object obj) {
+                    return obj == null ? "" : obj.toString().trim();
+                }
+            });
+        }
+    }
+    private void changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeActionPerformed
+        changes();
+    }//GEN-LAST:event_changeActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+        JFileChooser chooser = new JFileChooser();
+        int result = chooser.showSaveDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+
+            Workbook workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Sheet1");
+
+            TableModel model = jTable1.getModel();
+
+            // Header
+            Row headerRow = sheet.createRow(0);
+            for (int i = 0; i < model.getColumnCount(); i++) {
+                headerRow.createCell(i).setCellValue(model.getColumnName(i));
+            }
+
+            // Data
+            for (int i = 0; i < model.getRowCount(); i++) {
+                Row row = sheet.createRow(i + 1);
+                for (int j = 0; j < model.getColumnCount(); j++) {
+                    Object value = model.getValueAt(i, j);
+                    row.createCell(j).setCellValue(value == null ? "" : value.toString());
+                }
+            }
+
+            FileOutputStream out = new FileOutputStream(chooser.getSelectedFile() + ".xlsx");
+            workbook.write(out);
+            out.close();
+            workbook.close();
+
+            System.out.println("exported");
+
+        }
+
+    } catch (Exception e) {
+        
+        e.printStackTrace();
+    }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -696,24 +1146,14 @@ public class ExportForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Categorie;
     private com.toedter.calendar.JDateChooser Date;
-    private javax.swing.JLabel Overall;
-    private javax.swing.JLabel Q1;
-    private javax.swing.JLabel Q2;
-    private javax.swing.JLabel Q3;
-    private javax.swing.JLabel Q4;
     private javax.swing.JComboBox<String> Quarterly;
     private javax.swing.JLabel Rooler;
     private javax.swing.JComboBox<String> Sectionselect;
-    private javax.swing.JLabel TotalStudent;
+    private javax.swing.JButton change;
     private javax.swing.JComboBox<String> curriculum;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
